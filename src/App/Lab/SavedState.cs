@@ -156,9 +156,17 @@ partial class Page
 
         async Task<CompilationPreferences> loadPreferencesAsync()
         {
-            return await LocalStorage.ContainKeyAsync(nameof(CompilationPreferences))
-                ? (await LocalStorage.GetItemAsync<CompilationPreferences>(nameof(CompilationPreferences)) ?? CompilationPreferences.Default)
-                : CompilationPreferences.Default;
+            try
+            {
+                return await LocalStorage.ContainKeyAsync(nameof(CompilationPreferences))
+                    ? (await LocalStorage.GetItemAsync<CompilationPreferences>(nameof(CompilationPreferences)) ?? CompilationPreferences.Default)
+                    : CompilationPreferences.Default;
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex, "Failed to load preferences from local storage");
+                return CompilationPreferences.Default;
+            }
         }
     }
 
