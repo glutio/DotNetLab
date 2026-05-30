@@ -19,6 +19,25 @@
             },
             "isBackground": true,
             "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "wasm: watch",
+            "type": "process",
+            "command": "dotnet",
+            "args": [
+                "watch",
+                "--project",
+                "src/WebAssembly",
+                "--artifacts-path",
+                "artifacts/watch-wasm"
+            ],
+            "options": {
+                "env": {
+                    "DOTNET_WATCH_RESTART_ON_RUDE_EDIT": "1"
+                }
+            },
+            "isBackground": true,
+            "problemMatcher": "$msCompile"
         }
     ]
 }
