@@ -296,6 +296,20 @@ internal sealed record SavedState
     [ProtoMember(21)]
     public SymbolDisplayKinds ShowSymbols { get; init; }
 
+    [ProtoMember(17)]
+    [Obsolete($"Use {nameof(ShowSymbols)} instead", error: true)]
+    public bool LegacyShowSymbols
+    {
+        get => ShowSymbols.HasFlag(SymbolDisplayKinds.Public);
+        init
+        {
+            if (value && ShowSymbols == SymbolDisplayKinds.None)
+            {
+                ShowSymbols = SymbolDisplayKinds.Public;
+            }
+        }
+    }
+
     [ProtoMember(18)]
     public bool ShowOperations { get; init; }
 
