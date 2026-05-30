@@ -10,7 +10,9 @@
                 "--project",
                 "src/Server",
                 "--artifacts-path",
-                "artifacts/watch"
+                "artifacts/watch",
+                "/p:RunAnalyzers=false",
+                "/p:DotNetLabUseCompilerToolset=false"
             ],
             "options": {
                 "env": {
@@ -29,7 +31,9 @@
                 "--project",
                 "src/WebAssembly",
                 "--artifacts-path",
-                "artifacts/watch-wasm"
+                "artifacts/watch-wasm",
+                "/p:RunAnalyzers=false",
+                "/p:DotNetLabUseCompilerToolset=false"
             ],
             "options": {
                 "env": {
