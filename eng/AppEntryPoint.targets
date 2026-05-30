@@ -12,4 +12,10 @@
     <Reference Include="$(PkgMicrosoft_Net_Compilers_Razor_Toolset)\source-generators\*.dll" />
   </ItemGroup>
 
+  <Target Name="_RemoveCodeStyleAnalyzers" AfterTargets="ResolvePackageAssets">
+    <ItemGroup>
+      <ResolvedAnalyzers Remove="$(PkgMicrosoft_CodeAnalysis_CSharp_CodeStyle)\analyzers\dotnet\cs\*.dll" />
+    </ItemGroup>
+  </Target>
+
 </Project>
