@@ -156,9 +156,17 @@ partial class Page
 
         async Task<CompilationPreferences> loadPreferencesAsync()
         {
-            return await LocalStorage.ContainKeyAsync(nameof(CompilationPreferences))
-                ? (await LocalStorage.GetItemAsync<CompilationPreferences>(nameof(CompilationPreferences)) ?? CompilationPreferences.Default)
-                : CompilationPreferences.Default;
+            try
+            {
+                return await LocalStorage.ContainKeyAsync(nameof(CompilationPreferences))
+                    ? (await LocalStorage.GetItemAsync<CompilationPreferences>(nameof(CompilationPreferences)) ?? CompilationPreferences.Default)
+                    : CompilationPreferences.Default;
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex, "Failed to load preferences from local storage");
+                return CompilationPreferences.Default;
+            }
         }
     }
 
@@ -285,8 +293,22 @@ internal sealed record SavedState
 
     public RazorStrategy RazorStrategy { get; init; }
 
+    [ProtoMember(21)]
+    public SymbolDisplayKinds ShowSymbols { get; init; }
+
     [ProtoMember(17)]
-    public bool ShowSymbols { get; init; }
+    [Obsolete($"Use {nameof(ShowSymbols)} instead", error: true)]
+    public bool LegacyShowSymbols
+    {
+        get => ShowSymbols.HasFlag(SymbolDisplayKinds.Public);
+        init
+        {
+            if (value && ShowSymbols == SymbolDisplayKinds.None)
+            {
+                ShowSymbols = SymbolDisplayKinds.Public;
+            }
+        }
+    }
 
     [ProtoMember(18)]
     public bool ShowOperations { get; init; }
@@ -389,7 +411,7 @@ internal sealed record SavedState
     {
         return new()
         {
-            ShowSymbols = ShowSymbols,
+            ShowSymbolKinds = ShowSymbols,
             ShowOperations = ShowOperations,
             ShowBoundNodes = ShowBoundNodes,
             DecodeCustomAttributeBlobs = DecodeCustomAttributeBlobs,
@@ -404,7 +426,7 @@ internal sealed record SavedState
     {
         return this with
         {
-            ShowSymbols = preferences.ShowSymbols,
+            ShowSymbols = preferences.ShowSymbolKinds,
             ShowOperations = preferences.ShowOperations,
             ShowBoundNodes = preferences.ShowBoundNodes,
             DecodeCustomAttributeBlobs = preferences.DecodeCustomAttributeBlobs,

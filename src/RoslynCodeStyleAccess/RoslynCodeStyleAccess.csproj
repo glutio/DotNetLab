@@ -16,4 +16,10 @@
     <Reference Include="$(PkgMicrosoft_CodeAnalysis_CSharp_CodeStyle)\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.CodeStyle.dll" />
   </ItemGroup>
 
+  <Target Name="_RemoveCodeStyleAnalyzers" AfterTargets="ResolvePackageAssets">
+    <ItemGroup>
+      <ResolvedAnalyzers Remove="$(PkgMicrosoft_CodeAnalysis_CSharp_CodeStyle)\analyzers\dotnet\cs\*.dll" />
+    </ItemGroup>
+  </Target>
+
 </Project>

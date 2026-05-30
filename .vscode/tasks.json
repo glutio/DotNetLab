@@ -10,7 +10,30 @@
                 "--project",
                 "src/Server",
                 "--artifacts-path",
-                "artifacts/watch"
+                "artifacts/watch",
+                "/p:RunAnalyzers=false",
+                "/p:DotNetLabUseCompilerToolset=false"
+            ],
+            "options": {
+                "env": {
+                    "DOTNET_WATCH_RESTART_ON_RUDE_EDIT": "1"
+                }
+            },
+            "isBackground": true,
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "wasm: watch",
+            "type": "process",
+            "command": "dotnet",
+            "args": [
+                "watch",
+                "--project",
+                "src/WebAssembly",
+                "--artifacts-path",
+                "artifacts/watch-wasm",
+                "/p:RunAnalyzers=false",
+                "/p:DotNetLabUseCompilerToolset=false"
             ],
             "options": {
                 "env": {

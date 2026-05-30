@@ -7,6 +7,7 @@ public sealed class TreeFormatterTests : VerifyBase
 {
     private static string Format(
         [StringSyntax("C#")] string code,
+        bool showSymbols = false,
         bool showBoundNodes = false)
     {
         var tree = CSharpSyntaxTree.ParseText(code);
@@ -19,7 +20,7 @@ public sealed class TreeFormatterTests : VerifyBase
         var formatter = new TreeFormatter();
         var result = formatter.Format(model, tree.GetRoot(), new()
         {
-            ExcludeSymbols = true,
+            ShowSymbols = showSymbols ? SymbolDisplayKinds.Both : SymbolDisplayKinds.None,
             ExcludeOperations = true,
             ExcludeBoundNodes = !showBoundNodes,
         });
@@ -32,4 +33,7 @@ public sealed class TreeFormatterTests : VerifyBase
 
     [TestMethod]
     public Task BoundBody() => Verify(Format("class C { int M() => 1; }", showBoundNodes: true));
+
+    [TestMethod]
+    public Task Symbols() => Verify(Format("class C { event System.Action E; }", showSymbols: true));
 }

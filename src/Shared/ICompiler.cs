@@ -49,6 +49,15 @@ public sealed record CompilerConfiguration
     public BuildConfiguration RazorConfiguration { get; init; }
 }
 
+[ProtoContract, Flags]
+public enum SymbolDisplayKinds
+{
+    None = 0,
+    Public = 1 << 0,
+    Internal = 1 << 1,
+    Both = Public | Internal,
+}
+
 /// <summary>
 /// These can be saved locally as user's preferences and
 /// also are saved with the input as they affect the output.
@@ -60,7 +69,8 @@ public sealed record CompilationPreferences
         ExcludeSingleFileNameInDiagnostics = true,
     };
 
-    public bool ShowSymbols { get; init; }
+    // This should NOT be named `ShowSymbols` because old versions had that as `bool` property and so it would fail to deserialize.
+    public SymbolDisplayKinds ShowSymbolKinds { get; init; }
     public bool ShowOperations { get; init; }
     public bool ShowBoundNodes { get; init; }
     public bool DecodeCustomAttributeBlobs { get; init; }
@@ -70,6 +80,7 @@ public sealed record CompilationPreferences
     public bool IncludeHiddenDiagnostics { get; init; }
 }
 
+[ProtoContract]
 public enum RazorToolchain
 {
     InternalApi,

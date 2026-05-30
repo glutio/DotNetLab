@@ -17,7 +17,7 @@ public sealed class TreeFormatter
         public static Options Default { get; } = new();
 
         public bool DisplayPropertiesWithDefaultValue { get; init; }
-        public bool ExcludeSymbols { get; init; }
+        public SymbolDisplayKinds ShowSymbols { get; init; }
         public bool ExcludeOperations { get; init; }
         public bool ExcludeBoundNodes { get; init; }
         public bool ThrowExceptions { get; init; }
@@ -186,6 +186,9 @@ public sealed class TreeFormatter
                 // .GetInterceptableLocation()
                 .. PropertyLike.Create(options, obj as InvocationExpressionSyntax, nameof(Microsoft.CodeAnalysis.CSharp.CSharpExtensions.GetInterceptableLocation), (node) => model.GetInterceptableLocation(node)),
 
+                // .UnderlyingSymbol
+                .. PropertyLike.CreateIfNotNull(options, !options.ShowSymbols.HasFlag(SymbolDisplayKinds.Internal) ? null : type.GetProperty("UnderlyingSymbol", BindingFlags.Instance | BindingFlags.NonPublic)),
+
                 // Public instance properties
                 .. type.GetProperties(BindingFlags.Instance | BindingFlags.Public)
                     // Explicitly implemented properties of public interfaces
@@ -309,13 +312,13 @@ public sealed class TreeFormatter
                         property.Type == typeof(ImmutableArray<SyntaxReference>) ||
                         property.Type == typeof(ImmutableArray<AssemblyIdentity>) ||
                         property.Type == typeof(ImmutableArray<IAssemblySymbol>) ||
+                        property.Type == RoslynAccessors.AssemblySymbolArrayType ||
                         // The following basically contain the parent recursively or duplicate children displayed elsewhere.
                         (isSyntaxTrivia && property.Name is nameof(SyntaxTrivia.Token)) ||
                         (property.Name is nameof(SyntaxNode.Parent) or nameof(SyntaxNode.ParentTrivia)) ||
                         (property.Name is nameof(IOperation.ChildOperations) or "Children" &&
                             type.IsAssignableTo(typeof(IOperation))) ||
                         // Preferences.
-                        (options.ExcludeSymbols && (property.Type == typeof(SymbolInfo) || property.Type.IsAssignableTo(typeof(ISymbol)))) ||
                         (options.ExcludeOperations && property.Type.IsAssignableTo(typeof(IOperation))))
                     {
                         continue;
@@ -570,7 +573,8 @@ public sealed class TreeFormatter
 
             return type.IsAssignableTo(typeof(IOperation)) ||
                 type.IsAssignableTo(typeof(SyntaxNode)) ||
-                type.IsAssignableTo(typeof(ISymbol));
+                type.IsAssignableTo(typeof(ISymbol)) ||
+                type.IsAssignableTo(RoslynAccessors.InternalSymbolType);
         }
     }
 
@@ -858,6 +862,11 @@ public sealed class TreeFormatter
             Getter = (obj) => Util.GetValueOrException(options, (obj, property), static (arg) => arg.property.GetValue(arg.obj)),
         };
 
+        public static IEnumerable<PropertyLike> CreateIfNotNull(Options options, PropertyInfo? property)
+        {
+            return property is null ? [] : [Create(options, property)];
+        }
+
         public static PropertyLike Create(Options options, MethodInfo simpleMethod) => new()
         {
             Name = simpleMethod.Name,
@@ -866,7 +875,7 @@ public sealed class TreeFormatter
             Getter = (obj) => Util.GetValueOrException(options, (obj, simpleMethod), static (arg) => arg.simpleMethod.Invoke(arg.obj, null)),
         };
 
-        public static IEnumerable<PropertyLike> Create<TIn, TOut>(Options options, TIn? input, string name, Func<TIn, TOut> getter)
+        public static IEnumerable<PropertyLike> Create<TIn, TOut>(Options options, TIn? input, string name, Func<TIn, TOut> getter, Type? type = null)
         {
             if (input is not null)
             {
@@ -875,7 +884,7 @@ public sealed class TreeFormatter
                     new PropertyLike
                     {
                         Name = name,
-                        Type = typeof(TOut),
+                        Type = type ?? typeof(TOut),
                         IsMethod = true,
                         Getter = _ => Util.GetValueOrException(options, input, getter),
                     },
@@ -883,6 +892,55 @@ public sealed class TreeFormatter
             }
 
             return [];
+        }
+
+        public static IEnumerable<PropertyLike> Create<TIn>(Options options, TIn? input, string name, Func<TIn, ISymbol?> getter)
+        {
+            if (options.ShowSymbols == SymbolDisplayKinds.Internal)
+            {
+                return Create(options, input, name, getUnderlying, RoslynAccessors.InternalSymbolType);
+            }
+
+            if (options.ShowSymbols == SymbolDisplayKinds.None)
+            {
+                return [];
+            }
+
+            Debug.Assert(options.ShowSymbols is SymbolDisplayKinds.Both or SymbolDisplayKinds.Public);
+            return Create<TIn, ISymbol?>(options, input, name, getter);
+
+            object? getUnderlying(TIn input)
+            {
+                var symbol = getter(input);
+                return symbol != null && RoslynAccessors.TryGetUnderlyingSymbol(symbol, out var underlyingSymbol)
+                    ? underlyingSymbol
+                    : null;
+            }
+        }
+
+        public static IEnumerable<PropertyLike> Create<TIn>(Options options, TIn? input, string name, Func<TIn, SymbolInfo> getter)
+        {
+            if (options.ShowSymbols == SymbolDisplayKinds.Internal)
+            {
+                return Create(options, input, name, getUnderlying, RoslynAccessors.InternalSymbolType);
+            }
+
+            if (options.ShowSymbols == SymbolDisplayKinds.None)
+            {
+                return [];
+            }
+
+            Debug.Assert(options.ShowSymbols is SymbolDisplayKinds.Both or SymbolDisplayKinds.Public);
+            return Create<TIn, SymbolInfo>(options, input, name, getter);
+
+            object? getUnderlying(TIn input)
+            {
+                var symbolInfo = getter(input);
+                var symbol = symbolInfo.Symbol;
+                return symbol != null && RoslynAccessors.TryGetUnderlyingSymbol(symbol, out var underlyingSymbol)
+                    ? underlyingSymbol
+                    : null;
+            }
         }
     }
 
@@ -923,6 +981,11 @@ public sealed class TreeFormatter
                 return symbolComparer.Equals(xSymbol, ySymbol);
             }
 
+            if (RoslynAccessors.TryGetInternalSymbolEquality(x, y, out bool internalSymbolsEqual))
+            {
+                return internalSymbolsEqual;
+            }
+
             return objectComparer.Equals(x, y);
         }
 
@@ -931,6 +994,11 @@ public sealed class TreeFormatter
             if (obj is ISymbol symbol)
             {
                 return symbolComparer.GetHashCode(symbol);
+            }
+
+            if (RoslynAccessors.TryGetInternalSymbolHashCode(obj, out int internalSymbolHashCode))
+            {
+                return internalSymbolHashCode;
             }
 
             return objectComparer.GetHashCode(obj);
