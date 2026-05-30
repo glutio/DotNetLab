@@ -187,7 +187,7 @@ public sealed class TreeFormatter
                 .. PropertyLike.Create(options, obj as InvocationExpressionSyntax, nameof(Microsoft.CodeAnalysis.CSharp.CSharpExtensions.GetInterceptableLocation), (node) => model.GetInterceptableLocation(node)),
 
                 // .UnderlyingSymbol
-                .. PropertyLike.CreateIfNotNull(options, type.GetProperty("UnderlyingSymbol", BindingFlags.Instance | BindingFlags.NonPublic)),
+                .. PropertyLike.CreateIfNotNull(options, !options.ShowSymbols.HasFlag(SymbolDisplayKinds.Internal) ? null : type.GetProperty("UnderlyingSymbol", BindingFlags.Instance | BindingFlags.NonPublic)),
 
                 // Public instance properties
                 .. type.GetProperties(BindingFlags.Instance | BindingFlags.Public)
@@ -319,8 +319,6 @@ public sealed class TreeFormatter
                         (property.Name is nameof(IOperation.ChildOperations) or "Children" &&
                             type.IsAssignableTo(typeof(IOperation))) ||
                         // Preferences.
-                        (!options.ShowSymbols.HasFlag(SymbolDisplayKinds.Public) && (property.Type == typeof(SymbolInfo) || property.Type.IsAssignableTo(typeof(ISymbol)))) ||
-                        (!options.ShowSymbols.HasFlag(SymbolDisplayKinds.Internal) && property.Type.IsAssignableTo(RoslynAccessors.InternalSymbolType)) ||
                         (options.ExcludeOperations && property.Type.IsAssignableTo(typeof(IOperation))))
                     {
                         continue;
@@ -903,6 +901,12 @@ public sealed class TreeFormatter
                 return Create(options, input, name, getUnderlying, RoslynAccessors.InternalSymbolType);
             }
 
+            if (options.ShowSymbols == SymbolDisplayKinds.None)
+            {
+                return [];
+            }
+
+            Debug.Assert(options.ShowSymbols is SymbolDisplayKinds.Both or SymbolDisplayKinds.Public);
             return Create<TIn, ISymbol?>(options, input, name, getter);
 
             object? getUnderlying(TIn input)
@@ -921,6 +925,12 @@ public sealed class TreeFormatter
                 return Create(options, input, name, getUnderlying, RoslynAccessors.InternalSymbolType);
             }
 
+            if (options.ShowSymbols == SymbolDisplayKinds.None)
+            {
+                return [];
+            }
+
+            Debug.Assert(options.ShowSymbols is SymbolDisplayKinds.Both or SymbolDisplayKinds.Public);
             return Create<TIn, SymbolInfo>(options, input, name, getter);
 
             object? getUnderlying(TIn input)
