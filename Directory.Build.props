@@ -42,7 +42,11 @@
     <MSBuildWarningsAsMessages>$(MSBuildWarningsAsMessages);WASM0001</MSBuildWarningsAsMessages>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(CI)' == ''">
+  <PropertyGroup>
+    <DotNetLabUseCachingCompiler Condition="'$(DotNetLabUseCachingCompiler)' == '' and '$(CI)' != ''">false</DotNetLabUseCachingCompiler>
+    <DotNetLabUseCachingCompiler Condition="'$(DotNetLabUseCachingCompiler)' == ''">true</DotNetLabUseCachingCompiler>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(DotNetLabUseCachingCompiler)' == 'true'">
     <EnableSourceLink>false</EnableSourceLink>
     <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
     <Features>$(Features);use-global-cache</Features>
