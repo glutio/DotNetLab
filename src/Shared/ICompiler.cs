@@ -70,6 +70,7 @@ public sealed record CompilationPreferences
     public bool IncludeHiddenDiagnostics { get; init; }
 }
 
+[ProtoContract]
 public enum RazorToolchain
 {
     InternalApi,
