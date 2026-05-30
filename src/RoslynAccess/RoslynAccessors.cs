@@ -10,6 +10,9 @@ namespace DotNetLab;
 
 public static class RoslynAccessors
 {
+    public static Type AssemblySymbolArrayType => typeof(ImmutableArray<AssemblySymbol>);
+    public static Type InternalSymbolType => typeof(ISymbolInternal);
+
     extension(Compilation compilation)
     {
         public bool GenerateDocumentationCommentsInternal(
@@ -145,6 +148,30 @@ public static class RoslynAccessors
             .Select(f => (string)f.GetRawConstantValue()!);
     }
 
+    public static bool TryGetInternalSymbolEquality(object? x, object? y, out bool areEqual)
+    {
+        if (x is ISymbolInternal xSymbol && y is ISymbolInternal ySymbol)
+        {
+            areEqual = xSymbol.Equals(ySymbol);
+            return true;
+        }
+
+        areEqual = false;
+        return false;
+    }
+
+    public static bool TryGetInternalSymbolHashCode(object o, out int hashCode)
+    {
+        if (o is ISymbolInternal symbol)
+        {
+            hashCode = symbol.GetHashCode();
+            return true;
+        }
+
+        hashCode = 0;
+        return false;
+    }
+
     public static bool TryGetInternalSymbolName(object o, [NotNullWhen(returnValue: true)] out string? name)
     {
         if (o is ISymbolInternal { Name: { } symbolName })
@@ -154,6 +181,18 @@ public static class RoslynAccessors
         }
 
         name = null;
+        return false;
+    }
+
+    public static bool TryGetUnderlyingSymbol(object o, [NotNullWhen(returnValue: true)] out object? symbol)
+    {
+        if (o is Microsoft.CodeAnalysis.CSharp.Symbols.PublicModel.Symbol publicSymbol)
+        {
+            symbol = publicSymbol.UnderlyingSymbol;
+            return true;
+        }
+
+        symbol = null;
         return false;
     }
 }

@@ -293,8 +293,8 @@ internal sealed record SavedState
 
     public RazorStrategy RazorStrategy { get; init; }
 
-    [ProtoMember(17)]
-    public bool ShowSymbols { get; init; }
+    [ProtoMember(21)]
+    public SymbolDisplayKinds ShowSymbols { get; init; }
 
     [ProtoMember(18)]
     public bool ShowOperations { get; init; }
@@ -397,7 +397,7 @@ internal sealed record SavedState
     {
         return new()
         {
-            ShowSymbols = ShowSymbols,
+            ShowSymbolKinds = ShowSymbols,
             ShowOperations = ShowOperations,
             ShowBoundNodes = ShowBoundNodes,
             DecodeCustomAttributeBlobs = DecodeCustomAttributeBlobs,
@@ -412,7 +412,7 @@ internal sealed record SavedState
     {
         return this with
         {
-            ShowSymbols = preferences.ShowSymbols,
+            ShowSymbols = preferences.ShowSymbolKinds,
             ShowOperations = preferences.ShowOperations,
             ShowBoundNodes = preferences.ShowBoundNodes,
             DecodeCustomAttributeBlobs = preferences.DecodeCustomAttributeBlobs,

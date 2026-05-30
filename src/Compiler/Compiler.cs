@@ -310,7 +310,7 @@ public sealed class Compiler(
                             var model = finalCompilation.GetSemanticModel(syntaxTree);
                             var formatted = treeFormatter.Format(model, syntaxTree.GetRoot(), TreeFormatter.Options.Default with
                             {
-                                ExcludeSymbols = !compilationInput.Preferences.ShowSymbols,
+                                ShowSymbols = compilationInput.Preferences.ShowSymbolKinds,
                                 ExcludeOperations = !compilationInput.Preferences.ShowOperations,
                                 ExcludeBoundNodes = !compilationInput.Preferences.ShowBoundNodes,
                             });

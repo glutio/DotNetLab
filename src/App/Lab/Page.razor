@@ -252,10 +252,24 @@
                     {
                         case "tree":
                             {
-                                <FluentCheckbox @bind-Value:get="savedState.ShowSymbols"
-                                                @bind-Value:set="(v) => ChangePreferencesAsync((s) => s with { ShowSymbols = v })"
-                                                Label="Symbols"
-                                                title="Displays symbol nodes in the tree - look for `.GetSymbolInfo()` and `.GetDeclaredSymbol()` under syntax nodes" />
+                                <FluentSelect @bind-SelectedOption:get="savedState.ShowSymbols"
+                                              @bind-SelectedOption:set="(v) => ChangePreferencesAsync((s) => s with { ShowSymbols = v })"
+                                              Items="Enum.GetValues<SymbolDisplayKinds>()"
+                                              OptionText="getSymbolDisplayKindLabel"
+                                              OptionTitle="getSymbolDisplayKindLabel"
+                                              Width="max-content"
+                                              AdditionalAttributes="@(new Dictionary<string, object>() { ["title"] = "Displays symbol nodes in the tree - look for `.GetSymbolInfo()` and `.GetDeclaredSymbol()` under syntax nodes" })">
+                                </FluentSelect>
+
+                                static string getSymbolDisplayKindLabel(SymbolDisplayKinds kind) => kind switch
+                                {
+                                    SymbolDisplayKinds.None => "No Symbols",
+                                    SymbolDisplayKinds.Public => "Public Symbols",
+                                    SymbolDisplayKinds.Internal => "Internal Symbols",
+                                    SymbolDisplayKinds.Both => "All Symbols",
+                                    _ => kind.ToString(),
+                                };
+
                                 <FluentCheckbox @bind-Value:get="savedState.ShowOperations"
                                                 @bind-Value:set="(v) => ChangePreferencesAsync((s) => s with { ShowOperations = v })"
                                                 Label="Operations"
