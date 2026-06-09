@@ -1,9 +1,10 @@
-#!/bin/sh
-set -eu
-curl -sSL https://builds.dotnet.microsoft.com/dotnet/scripts/v1/dotnet-install.sh > dotnet-install.sh
-chmod +x dotnet-install.sh
-./dotnet-install.sh --jsonfile global.json --install-dir ./dotnet
-./dotnet/dotnet --version
-./dotnet/dotnet workload install wasm-tools wasm-experimental
-./dotnet/dotnet publish -o output src/WebAssembly
-./dotnet/dotnet run --file eng/check-publish-output.cs -- output
+#!/usr/bin/env bash
+set -euo pipefail
+curl -fsSL https://aka.ms/dotnetup/get-dotnetup.sh | bash -s -- --install-dir "$HOME/.dotnetup"
+export PATH="$HOME/.dotnetup:$PATH"
+dotnetup sdk install
+source <(dotnetup print-env-script) || true
+dotnet --version
+dotnet workload install wasm-tools wasm-experimental
+dotnet publish -o output src/WebAssembly
+dotnet run --file eng/check-publish-output.cs -- output

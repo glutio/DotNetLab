@@ -411,6 +411,11 @@ public sealed class TreeFormatter
                 return triviaList.Span;
             }
 
+            if (obj is IOperation operation)
+            {
+                return operation.Syntax.Span;
+            }
+
             if (type.IsGenericType && type.IsValueType && type.GetGenericTypeDefinition() == typeof(SyntaxList<>))
             {
                 return (TextSpan)type.GetProperty(nameof(SyntaxList<>.Span))!.GetValue(obj)!;
