@@ -9,7 +9,7 @@
     <RoslynBuild>26309.3</RoslynBuild>
     <RoslynVersion>5.9.0-1.$(RoslynBuild)</RoslynVersion>
     <RazorVersion>10.4.0-preview.$(RoslynBuild)</RazorVersion>
-    <FluentUIVersion>4.14.1</FluentUIVersion>
+    <FluentUIVersion>4.14.2</FluentUIVersion>
     <NuGetVersion>7.6.0</NuGetVersion>
   </PropertyGroup>
   <ItemGroup>
@@ -18,7 +18,7 @@
     <PackageVersion Include="BlazorMonaco" Version="3.4.0" />
     <PackageVersion Include="Combinatorial.MSTest" Version="2.0.0" />
     <PackageVersion Include="Humanizer.Core" Version="3.0.10" />
-    <PackageVersion Include="ICSharpCode.Decompiler" Version="10.0.1.8346" />
+    <PackageVersion Include="ICSharpCode.Decompiler" Version="10.1.0.8386" />
     <PackageVersion Include="Knapcode.MiniZip" Version="0.21.1" />
     <PackageVersion Include="MetadataReferenceService.BlazorWasm" Version="0.0.1" />
     <PackageVersion Include="Microsoft.AspNetCore.App.Ref" Version="$(AspNetCoreVersion)" />
@@ -46,7 +46,7 @@
     <PackageVersion Include="protobuf-net.BuildTools" Version="3.2.52" />
     <PackageVersion Include="Roslyn.Diagnostics.Analyzers" Version="$(RoslynVersion)" />
     <PackageVersion Include="System.IO.Hashing" Version="$(NetCoreVersion)" />
-    <PackageVersion Include="Verify.MSTest" Version="31.16.3" />
+    <PackageVersion Include="Verify.MSTest" Version="31.19.1" />
   </ItemGroup>
   <ItemGroup Label="Pinned Transitive Dependencies">
     <PackageVersion Include="System.Drawing.Common" Version="5.0.3" />
