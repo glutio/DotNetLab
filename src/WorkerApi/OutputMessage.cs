@@ -6,7 +6,7 @@ namespace DotNetLab;
 [JsonDerivedType(typeof(Empty), nameof(Empty))]
 [JsonDerivedType(typeof(Success), nameof(Success))]
 [JsonDerivedType(typeof(Failure), nameof(Failure))]
-public abstract record WorkerOutputMessage
+public closed record WorkerOutputMessage
 {
     public const int BroadcastId = -1;
     public const string BroadcastInputType = "Broadcast";
