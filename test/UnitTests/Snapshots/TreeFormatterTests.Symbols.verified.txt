@@ -342,7 +342,7 @@
                 .MetadataSignatureHandle = BlobHandle
                 .MethodKind = Constructor
                 .AreLocalsZeroed = InvalidOperationException
-                  .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                  .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                 .OriginalDefinition = PEMethodSymbol ".ctor"
                 .RequiresInstanceReceiver = true
                 .ReturnType = PENamedTypeSymbolNonGeneric "Void"
@@ -527,7 +527,7 @@
                         .MetadataSignatureHandle = BlobHandle
                         .MethodKind = Constructor
                         .AreLocalsZeroed = InvalidOperationException
-                          .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                          .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                         .OriginalDefinition = PEMethodSymbol ".ctor"
                         .RequiresInstanceReceiver = true
                         .ReturnType = PENamedTypeSymbolNonGeneric "Void"
@@ -803,7 +803,7 @@
                       .MetadataSignatureHandle = BlobHandle
                       .MethodKind = DelegateInvoke
                       .AreLocalsZeroed = InvalidOperationException
-                        .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                        .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                       .OriginalDefinition = PEMethodSymbol "Invoke"
                       .RequiresInstanceReceiver = true
                       .ReturnType = PENamedTypeSymbolNonGeneric "Void"
@@ -1007,7 +1007,7 @@
                                     .MetadataSignatureHandle = BlobHandle
                                     .MethodKind = Constructor
                                     .AreLocalsZeroed = InvalidOperationException
-                                      .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                      .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                                     .OriginalDefinition = PEMethodSymbol ".ctor"
                                     .RequiresInstanceReceiver = true
                                     .ReturnType = PENamedTypeSymbolNonGeneric "Void"
@@ -1122,7 +1122,7 @@
                                     .MetadataSignatureHandle = BlobHandle
                                     .MethodKind = Constructor
                                     .AreLocalsZeroed = InvalidOperationException
-                                      .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                      .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                                     .OriginalDefinition = PEMethodSymbol ".ctor"
                                     .RequiresInstanceReceiver = true
                                     .ReturnType = PENamedTypeSymbolNonGeneric "Void"
@@ -1200,7 +1200,7 @@
                                     .MetadataSignatureHandle = BlobHandle
                                     .MethodKind = Constructor
                                     .AreLocalsZeroed = InvalidOperationException
-                                      .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                      .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                                     .OriginalDefinition = PEMethodSymbol ".ctor"
                                     .RequiresInstanceReceiver = true
                                     .ReturnType = PENamedTypeSymbolNonGeneric "Void"
@@ -1258,7 +1258,7 @@
                         .MetadataSignatureHandle = BlobHandle
                         .MethodKind = Constructor
                         .AreLocalsZeroed = InvalidOperationException
-                          .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                          .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                         .OriginalDefinition = PEMethodSymbol ".ctor"
                         .RequiresInstanceReceiver = true
                         .ReturnType = PENamedTypeSymbolNonGeneric "Void"
@@ -1489,7 +1489,7 @@
                                       .MetadataSignatureHandle = BlobHandle
                                       .MethodKind = Constructor
                                       .AreLocalsZeroed = InvalidOperationException
-                                        .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                        .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                                       .OriginalDefinition = PEMethodSymbol ".ctor"
                                       .RequiresInstanceReceiver = true
                                       .ReturnType = PENamedTypeSymbolNonGeneric "Void"
@@ -1601,7 +1601,7 @@
                                       .MetadataSignatureHandle = BlobHandle
                                       .MethodKind = Constructor
                                       .AreLocalsZeroed = InvalidOperationException
-                                        .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                        .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                                       .OriginalDefinition = PEMethodSymbol ".ctor"
                                       .RequiresInstanceReceiver = true
                                       .ReturnType = PENamedTypeSymbolNonGeneric "Void"
@@ -1687,7 +1687,7 @@
                                       .MetadataSignatureHandle = BlobHandle
                                       .MethodKind = Constructor
                                       .AreLocalsZeroed = InvalidOperationException
-                                        .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                        .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                                       .OriginalDefinition = PEMethodSymbol ".ctor"
                                       .RequiresInstanceReceiver = true
                                       .ReturnType = PENamedTypeSymbolNonGeneric "Void"
@@ -1767,7 +1767,7 @@
                                       .MetadataSignatureHandle = BlobHandle
                                       .MethodKind = Constructor
                                       .AreLocalsZeroed = InvalidOperationException
-                                        .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                        .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                                       .OriginalDefinition = PEMethodSymbol ".ctor"
                                       .RequiresInstanceReceiver = true
                                       .ReturnType = PENamedTypeSymbolNonGeneric "Void"
@@ -1877,7 +1877,7 @@
                                       .MetadataSignatureHandle = BlobHandle
                                       .MethodKind = Constructor
                                       .AreLocalsZeroed = InvalidOperationException
-                                        .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                        .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                                       .OriginalDefinition = PEMethodSymbol ".ctor"
                                       .RequiresInstanceReceiver = true
                                       .ReturnType = PENamedTypeSymbolNonGeneric "Void"
@@ -2043,7 +2043,7 @@
                                                     .MetadataSignatureHandle = BlobHandle
                                                     .MethodKind = Constructor
                                                     .AreLocalsZeroed = InvalidOperationException
-                                                      .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                                      .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                                                     .OriginalDefinition = PEMethodSymbol ".ctor"
                                                     .RequiresInstanceReceiver = true
                                                     .ReturnType = PENamedTypeSymbolNonGeneric "Void"
@@ -2100,7 +2100,7 @@
                                                     .MetadataSignatureHandle = BlobHandle
                                                     .MethodKind = Constructor
                                                     .AreLocalsZeroed = InvalidOperationException
-                                                      .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                                      .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                                                     .OriginalDefinition = PEMethodSymbol ".ctor"
                                                     .RequiresInstanceReceiver = true
                                                     .ReturnType = PENamedTypeSymbolNonGeneric "Void"
@@ -2177,7 +2177,7 @@
                                                     .MetadataSignatureHandle = BlobHandle
                                                     .MethodKind = Constructor
                                                     .AreLocalsZeroed = InvalidOperationException
-                                                      .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                                      .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                                                     .OriginalDefinition = PEMethodSymbol ".ctor"
                                                     .RequiresInstanceReceiver = true
                                                     .ReturnType = PENamedTypeSymbolNonGeneric "Void"
@@ -2289,7 +2289,7 @@
                                                     .MetadataSignatureHandle = BlobHandle
                                                     .MethodKind = Constructor
                                                     .AreLocalsZeroed = InvalidOperationException
-                                                      .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                                      .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                                                     .OriginalDefinition = PEMethodSymbol ".ctor"
                                                     .RequiresInstanceReceiver = true
                                                     .ReturnType = PENamedTypeSymbolNonGeneric "Void"
@@ -2389,7 +2389,7 @@
                                                                 .MetadataSignatureHandle = BlobHandle
                                                                 .MethodKind = Constructor
                                                                 .AreLocalsZeroed = InvalidOperationException
-                                                                  .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                                                  .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                                                                 .OriginalDefinition = PEMethodSymbol ".ctor"
                                                                 .RequiresInstanceReceiver = true
                                                                 .ReturnType = PENamedTypeSymbolNonGeneric "Void"
@@ -2501,7 +2501,7 @@
                                                                   .MetadataSignatureHandle = BlobHandle
                                                                   .MethodKind = Constructor
                                                                   .AreLocalsZeroed = InvalidOperationException
-                                                                    .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                                                    .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                                                                   .OriginalDefinition = PEMethodSymbol ".ctor"
                                                                   .RequiresInstanceReceiver = true
                                                                   .ReturnType = PENamedTypeSymbolNonGeneric "Void"
@@ -2675,7 +2675,7 @@
                                                       .AssociatedSymbol = PEPropertySymbolWithCustomModifiers "this[]"
                                                       .MethodKind = PropertyGet
                                                       .AreLocalsZeroed = InvalidOperationException
-                                                        .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                                        .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                                                       .OriginalDefinition = PEMethodSymbol "get_Item"
                                                       .RequiresInstanceReceiver = true
                                                       .ReturnsByRefReadonly = true
@@ -2825,7 +2825,7 @@
                                                         .Message = "Unexpected value 'NotApplicable' of type 'Microsoft.CodeAnalysis.Accessibility'"
                                                       .CanBeReferencedByName = true
                                                   .AreLocalsZeroed = InvalidOperationException
-                                                    .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                                    .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                                                   .DeclaredAccessibility = Public
                                                   .RequiresInstanceReceiver = true
                                                   .Name = ".ctor"
@@ -2882,7 +2882,7 @@
                                                         .Message = "Unexpected value 'NotApplicable' of type 'Microsoft.CodeAnalysis.Accessibility'"
                                                       .CanBeReferencedByName = true
                                                   .AreLocalsZeroed = InvalidOperationException
-                                                    .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                                    .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                                                   .DeclaredAccessibility = Public
                                                   .RequiresInstanceReceiver = true
                                                   .Name = ".ctor"
@@ -2937,7 +2937,7 @@
                                                         .Message = "Unexpected value 'NotApplicable' of type 'Microsoft.CodeAnalysis.Accessibility'"
                                                       .CanBeReferencedByName = true
                                                   .AreLocalsZeroed = InvalidOperationException
-                                                    .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                                    .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                                                   .DeclaredAccessibility = Public
                                                   .RequiresInstanceReceiver = true
                                                   .Name = ".ctor"
@@ -3044,7 +3044,7 @@
                                                         .Message = "Unexpected value 'NotApplicable' of type 'Microsoft.CodeAnalysis.Accessibility'"
                                                       .CanBeReferencedByName = true
                                                   .AreLocalsZeroed = InvalidOperationException
-                                                    .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                                    .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                                                   .DeclaredAccessibility = Public
                                                   .RequiresInstanceReceiver = true
                                                   .Name = ".ctor"
@@ -3152,7 +3152,7 @@
                                                         .CanBeReferencedByName = true
                                                     .RefKind = In
                                                     .AreLocalsZeroed = InvalidOperationException
-                                                      .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                                      .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                                                     .DeclaredAccessibility = Public
                                                     .RequiresInstanceReceiver = true
                                                     .Name = "get_Item"
@@ -3215,7 +3215,7 @@
                                       .MetadataSignatureHandle = BlobHandle
                                       .MethodKind = Constructor
                                       .AreLocalsZeroed = InvalidOperationException
-                                        .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                        .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                                       .OriginalDefinition = PEMethodSymbol ".ctor"
                                       .RequiresInstanceReceiver = true
                                       .ReturnType = PENamedTypeSymbolNonGeneric "Void"
@@ -3349,7 +3349,7 @@
                                       .MetadataSignatureHandle = BlobHandle
                                       .MethodKind = Constructor
                                       .AreLocalsZeroed = InvalidOperationException
-                                        .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                        .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                                       .OriginalDefinition = PEMethodSymbol ".ctor"
                                       .RequiresInstanceReceiver = true
                                       .ReturnType = PENamedTypeSymbolNonGeneric "Void"
@@ -3461,7 +3461,7 @@
                                       .MetadataSignatureHandle = BlobHandle
                                       .MethodKind = Constructor
                                       .AreLocalsZeroed = InvalidOperationException
-                                        .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                        .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                                       .OriginalDefinition = PEMethodSymbol ".ctor"
                                       .RequiresInstanceReceiver = true
                                       .ReturnType = PENamedTypeSymbolNonGeneric "Void"
@@ -3616,7 +3616,7 @@
                                                   .MetadataSignatureHandle = BlobHandle
                                                   .MethodKind = Constructor
                                                   .AreLocalsZeroed = InvalidOperationException
-                                                    .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                                    .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                                                   .OriginalDefinition = PEMethodSymbol ".ctor"
                                                   .RequiresInstanceReceiver = true
                                                   .ReturnType = PENamedTypeSymbolNonGeneric "Void"
@@ -3675,7 +3675,7 @@
                                                   .MetadataSignatureHandle = BlobHandle
                                                   .MethodKind = Constructor
                                                   .AreLocalsZeroed = InvalidOperationException
-                                                    .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                                    .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                                                   .OriginalDefinition = PEMethodSymbol ".ctor"
                                                   .RequiresInstanceReceiver = true
                                                   .ReturnType = PENamedTypeSymbolNonGeneric "Void"
@@ -3761,7 +3761,7 @@
                                                               .MetadataSignatureHandle = BlobHandle
                                                               .MethodKind = Constructor
                                                               .AreLocalsZeroed = InvalidOperationException
-                                                                .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                                                .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                                                               .OriginalDefinition = PEMethodSymbol ".ctor"
                                                               .RequiresInstanceReceiver = true
                                                               .ReturnType = PENamedTypeSymbolNonGeneric "Void"
@@ -3841,7 +3841,7 @@
                                                               .MetadataSignatureHandle = BlobHandle
                                                               .MethodKind = Constructor
                                                               .AreLocalsZeroed = InvalidOperationException
-                                                                .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                                                .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                                                               .OriginalDefinition = PEMethodSymbol ".ctor"
                                                               .RequiresInstanceReceiver = true
                                                               .ReturnType = PENamedTypeSymbolNonGeneric "Void"
@@ -3894,7 +3894,7 @@
                                                   .MetadataSignatureHandle = BlobHandle
                                                   .MethodKind = Constructor
                                                   .AreLocalsZeroed = InvalidOperationException
-                                                    .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                                    .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                                                   .OriginalDefinition = PEMethodSymbol ".ctor"
                                                   .RequiresInstanceReceiver = true
                                                   .ReturnType = PENamedTypeSymbolNonGeneric "Void"
@@ -3947,7 +3947,7 @@
                                       .MetadataSignatureHandle = BlobHandle
                                       .MethodKind = Constructor
                                       .AreLocalsZeroed = InvalidOperationException
-                                        .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                        .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                                       .OriginalDefinition = PEMethodSymbol ".ctor"
                                       .RequiresInstanceReceiver = true
                                       .ReturnType = PENamedTypeSymbolNonGeneric "Void"
@@ -4061,7 +4061,7 @@
                                         .AssociatedSymbol = PEPropertySymbol "this[]"
                                         .MethodKind = PropertyGet
                                         .AreLocalsZeroed = InvalidOperationException
-                                          .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                          .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                                         .OriginalDefinition = PEMethodSymbol "get_Chars"
                                         .RequiresInstanceReceiver = true
                                         .ReturnType = PENamedTypeSymbolNonGeneric "Char"
@@ -4121,7 +4121,7 @@
                           .MetadataSignatureHandle = BlobHandle
                           .MethodKind = Constructor
                           .AreLocalsZeroed = InvalidOperationException
-                            .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                            .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                           .OriginalDefinition = PEMethodSymbol ".ctor"
                           .RequiresInstanceReceiver = true
                           .ReturnType = PENamedTypeSymbolNonGeneric "Void"
@@ -4181,7 +4181,7 @@
                                       .MetadataSignatureHandle = BlobHandle
                                       .MethodKind = Constructor
                                       .AreLocalsZeroed = InvalidOperationException
-                                        .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                        .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                                       .OriginalDefinition = PEMethodSymbol ".ctor"
                                       .RequiresInstanceReceiver = true
                                       .ReturnType = PENamedTypeSymbolNonGeneric "Void"
@@ -4257,7 +4257,7 @@
                           .MetadataSignatureHandle = BlobHandle
                           .MethodKind = Constructor
                           .AreLocalsZeroed = InvalidOperationException
-                            .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                            .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                           .OriginalDefinition = PEMethodSymbol ".ctor"
                           .RequiresInstanceReceiver = true
                           .ReturnType = PENamedTypeSymbolNonGeneric "Void"
@@ -4385,7 +4385,7 @@
                             .MetadataSignatureHandle = BlobHandle
                             .MethodKind = Constructor
                             .AreLocalsZeroed = InvalidOperationException
-                              .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                              .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                             .OriginalDefinition = PEMethodSymbol ".ctor"
                             .RequiresInstanceReceiver = true
                             .ReturnType = PENamedTypeSymbolNonGeneric "Void"
@@ -4466,7 +4466,7 @@
                             .MetadataSignatureHandle = BlobHandle
                             .MethodKind = Constructor
                             .AreLocalsZeroed = InvalidOperationException
-                              .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                              .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                             .OriginalDefinition = PEMethodSymbol ".ctor"
                             .RequiresInstanceReceiver = true
                             .ReturnType = PENamedTypeSymbolNonGeneric "Void"
@@ -19319,7 +19319,7 @@
                                                         .AssociatedSymbol = PEPropertySymbol "this[]"
                                                         .MethodKind = PropertyGet
                                                         .AreLocalsZeroed = InvalidOperationException
-                                                          .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                                          .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                                                         .OriginalDefinition = PEMethodSymbol "get_Item"
                                                         .RequiresInstanceReceiver = true
                                                         .ReturnType = PENamedTypeSymbolNonGeneric "Object"
@@ -19407,7 +19407,7 @@
                                                         .AssociatedSymbol = PEPropertySymbol "this[]"
                                                         .MethodKind = PropertySet
                                                         .AreLocalsZeroed = InvalidOperationException
-                                                          .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                                          .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                                                         .OriginalDefinition = PEMethodSymbol "set_Item"
                                                         .RequiresInstanceReceiver = true
                                                         .ReturnType = PENamedTypeSymbolNonGeneric "Void"
@@ -19674,7 +19674,7 @@
                                                         .AssociatedSymbol = PEPropertySymbol "this[]"
                                                         .MethodKind = PropertyGet
                                                         .AreLocalsZeroed = InvalidOperationException
-                                                          .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                                          .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                                                         .OriginalDefinition = PEMethodSymbol "get_Item"
                                                         .RequiresInstanceReceiver = true
                                                         .ReturnType = PETypeParameterSymbol "T"
@@ -19759,7 +19759,7 @@
                                                         .AssociatedSymbol = PEPropertySymbol "this[]"
                                                         .MethodKind = PropertySet
                                                         .AreLocalsZeroed = InvalidOperationException
-                                                          .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                                          .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                                                         .OriginalDefinition = PEMethodSymbol "set_Item"
                                                         .RequiresInstanceReceiver = true
                                                         .ReturnType = PENamedTypeSymbolNonGeneric "Void"
@@ -19889,7 +19889,7 @@
                                                             .Message = "Unexpected value 'NotApplicable' of type 'Microsoft.CodeAnalysis.Accessibility'"
                                                           .CanBeReferencedByName = true
                                                       .AreLocalsZeroed = InvalidOperationException
-                                                        .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                                        .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                                                       .DeclaredAccessibility = Public
                                                       .RequiresInstanceReceiver = true
                                                       .IsAbstract = true
@@ -19972,7 +19972,7 @@
                                                             .Message = "Unexpected value 'NotApplicable' of type 'Microsoft.CodeAnalysis.Accessibility'"
                                                           .CanBeReferencedByName = true
                                                       .AreLocalsZeroed = InvalidOperationException
-                                                        .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                                        .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                                                       .DeclaredAccessibility = Public
                                                       .RequiresInstanceReceiver = true
                                                       .IsAbstract = true
@@ -20520,7 +20520,7 @@
                                                         .AssociatedSymbol = PEPropertySymbol "this[]"
                                                         .MethodKind = PropertyGet
                                                         .AreLocalsZeroed = InvalidOperationException
-                                                          .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                                          .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                                                         .OriginalDefinition = PEMethodSymbol "get_Item"
                                                         .RequiresInstanceReceiver = true
                                                         .ReturnType = PETypeParameterSymbol "T"
@@ -20651,7 +20651,7 @@
                                                             .Message = "Unexpected value 'NotApplicable' of type 'Microsoft.CodeAnalysis.Accessibility'"
                                                           .CanBeReferencedByName = true
                                                       .AreLocalsZeroed = InvalidOperationException
-                                                        .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                                        .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                                                       .DeclaredAccessibility = Public
                                                       .RequiresInstanceReceiver = true
                                                       .IsAbstract = true
@@ -21603,7 +21603,7 @@
                                                                         .Message = "Unexpected value 'NotApplicable' of type 'Microsoft.CodeAnalysis.Accessibility'"
                                                                       .CanBeReferencedByName = true
                                                                   .AreLocalsZeroed = InvalidOperationException
-                                                                    .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                                                    .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                                                                   .DeclaredAccessibility = Public
                                                                   .RequiresInstanceReceiver = true
                                                                   .IsAbstract = true
@@ -21685,7 +21685,7 @@
                                                                         .Message = "Unexpected value 'NotApplicable' of type 'Microsoft.CodeAnalysis.Accessibility'"
                                                                       .CanBeReferencedByName = true
                                                                   .AreLocalsZeroed = InvalidOperationException
-                                                                    .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                                                    .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                                                                   .DeclaredAccessibility = Public
                                                                   .RequiresInstanceReceiver = true
                                                                   .IsAbstract = true
@@ -21956,7 +21956,7 @@
                                                                         .Message = "Unexpected value 'NotApplicable' of type 'Microsoft.CodeAnalysis.Accessibility'"
                                                                       .CanBeReferencedByName = true
                                                                   .AreLocalsZeroed = InvalidOperationException
-                                                                    .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                                                    .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                                                                   .DeclaredAccessibility = Public
                                                                   .RequiresInstanceReceiver = true
                                                                   .IsAbstract = true
@@ -24797,7 +24797,7 @@
                                         .MetadataSignatureHandle = BlobHandle
                                         .MethodKind = Constructor
                                         .AreLocalsZeroed = InvalidOperationException
-                                          .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                          .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1795"
                                         .OriginalDefinition = PEMethodSymbol ".ctor"
                                         .RequiresInstanceReceiver = true
                                         .ReturnType = PENamedTypeSymbolNonGeneric "Void"
