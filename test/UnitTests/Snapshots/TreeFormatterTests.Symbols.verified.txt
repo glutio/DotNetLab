@@ -511,7 +511,7 @@
                         .ContainingSymbol = PENamedTypeSymbolNonGeneric "ValueType"
                         .ContainingType = PENamedTypeSymbolNonGeneric "ValueType"
                         .Name = ".ctor"
-                        .MetadataToken = 100669269
+                        .MetadataToken = 100669274
                         .DeclaredAccessibility = Protected
                         .ReturnsVoid = true
                         .ReturnTypeWithAnnotations = TypeWithAnnotations
@@ -567,7 +567,7 @@
                         .MethodKind = Constructor
                         .DeclaredAccessibility = Protected
                         .IsDefinition = true
-                        .MetadataToken = 100669269
+                        .MetadataToken = 100669274
                         .MetadataName = ".ctor"
                         .Name = ".ctor"
                         .Language = "C#"
@@ -1371,14 +1371,14 @@
                                       .ContainingSymbol = PENamedTypeSymbolNonGeneric "String"
                                       .ContainingType = PENamedTypeSymbolNonGeneric "String"
                                       .Name = ".ctor"
-                                      .MetadataToken = 100667510
+                                      .MetadataToken = 100667514
                                       .DeclaredAccessibility = Public
                                       .ReturnsVoid = true
                                       .Parameters = [1]
                                         PEParameterSymbol "value"
                                           .Name = "value"
                                           .MetadataName = "value"
-                                          .MetadataToken = 134224495
+                                          .MetadataToken = 134224498
                                           .ContainingSymbol = PEMethodSymbol ".ctor"
                                           .TypeWithAnnotations = TypeWithAnnotations
                                             .IsResolved = true
@@ -1505,14 +1505,14 @@
                                       .ContainingSymbol = PENamedTypeSymbolNonGeneric "String"
                                       .ContainingType = PENamedTypeSymbolNonGeneric "String"
                                       .Name = ".ctor"
-                                      .MetadataToken = 100667511
+                                      .MetadataToken = 100667515
                                       .DeclaredAccessibility = Public
                                       .ReturnsVoid = true
                                       .Parameters = [3]
                                         PEParameterSymbol "value"
                                           .Name = "value"
                                           .MetadataName = "value"
-                                          .MetadataToken = 134224496
+                                          .MetadataToken = 134224499
                                           .ContainingSymbol = PEMethodSymbol ".ctor"
                                           .TypeWithAnnotations = TypeWithAnnotations
                                             .IsResolved = true
@@ -1537,7 +1537,7 @@
                                         PEParameterSymbol "startIndex"
                                           .Name = "startIndex"
                                           .MetadataName = "startIndex"
-                                          .MetadataToken = 134224497
+                                          .MetadataToken = 134224500
                                           .Ordinal = 1
                                           .ContainingSymbol = PEMethodSymbol ".ctor"
                                           .TypeWithAnnotations = TypeWithAnnotations
@@ -1564,7 +1564,7 @@
                                         PEParameterSymbol "length"
                                           .Name = "length"
                                           .MetadataName = "length"
-                                          .MetadataToken = 134224498
+                                          .MetadataToken = 134224501
                                           .Ordinal = 2
                                           .ContainingSymbol = PEMethodSymbol ".ctor"
                                           .TypeWithAnnotations = TypeWithAnnotations
@@ -1617,14 +1617,14 @@
                                       .ContainingSymbol = PENamedTypeSymbolNonGeneric "String"
                                       .ContainingType = PENamedTypeSymbolNonGeneric "String"
                                       .Name = ".ctor"
-                                      .MetadataToken = 100667512
+                                      .MetadataToken = 100667516
                                       .DeclaredAccessibility = Public
                                       .ReturnsVoid = true
                                       .Parameters = [2]
                                         PEParameterSymbol "c"
                                           .Name = "c"
                                           .MetadataName = "c"
-                                          .MetadataToken = 134224499
+                                          .MetadataToken = 134224502
                                           .ContainingSymbol = PEMethodSymbol ".ctor"
                                           .TypeWithAnnotations = TypeWithAnnotations
                                             .IsResolved = true
@@ -1650,7 +1650,7 @@
                                         PEParameterSymbol "count"
                                           .Name = "count"
                                           .MetadataName = "count"
-                                          .MetadataToken = 134224500
+                                          .MetadataToken = 134224503
                                           .Ordinal = 1
                                           .ContainingSymbol = PEMethodSymbol ".ctor"
                                           .TypeWithAnnotations = TypeWithAnnotations
@@ -1703,14 +1703,14 @@
                                       .ContainingSymbol = PENamedTypeSymbolNonGeneric "String"
                                       .ContainingType = PENamedTypeSymbolNonGeneric "String"
                                       .Name = ".ctor"
-                                      .MetadataToken = 100667513
+                                      .MetadataToken = 100667517
                                       .DeclaredAccessibility = Public
                                       .ReturnsVoid = true
                                       .Parameters = [1]
                                         PEParameterSymbol "value"
                                           .Name = "value"
                                           .MetadataName = "value"
-                                          .MetadataToken = 134224501
+                                          .MetadataToken = 134224504
                                           .ContainingSymbol = PEMethodSymbol ".ctor"
                                           .TypeWithAnnotations = TypeWithAnnotations
                                             .IsResolved = true
@@ -1783,14 +1783,14 @@
                                       .ContainingSymbol = PENamedTypeSymbolNonGeneric "String"
                                       .ContainingType = PENamedTypeSymbolNonGeneric "String"
                                       .Name = ".ctor"
-                                      .MetadataToken = 100667514
+                                      .MetadataToken = 100667518
                                       .DeclaredAccessibility = Public
                                       .ReturnsVoid = true
                                       .Parameters = [3]
                                         PEParameterSymbol "value"
                                           .Name = "value"
                                           .MetadataName = "value"
-                                          .MetadataToken = 134224502
+                                          .MetadataToken = 134224505
                                           .ContainingSymbol = PEMethodSymbol ".ctor"
                                           .TypeWithAnnotations = TypeWithAnnotations
                                             .IsResolved = true
@@ -1813,7 +1813,7 @@
                                         PEParameterSymbol "startIndex"
                                           .Name = "startIndex"
                                           .MetadataName = "startIndex"
-                                          .MetadataToken = 134224503
+                                          .MetadataToken = 134224506
                                           .Ordinal = 1
                                           .ContainingSymbol = PEMethodSymbol ".ctor"
                                           .TypeWithAnnotations = TypeWithAnnotations
@@ -1840,7 +1840,7 @@
                                         PEParameterSymbol "length"
                                           .Name = "length"
                                           .MetadataName = "length"
-                                          .MetadataToken = 134224504
+                                          .MetadataToken = 134224507
                                           .Ordinal = 2
                                           .ContainingSymbol = PEMethodSymbol ".ctor"
                                           .TypeWithAnnotations = TypeWithAnnotations
@@ -1893,14 +1893,14 @@
                                       .ContainingSymbol = PENamedTypeSymbolNonGeneric "String"
                                       .ContainingType = PENamedTypeSymbolNonGeneric "String"
                                       .Name = ".ctor"
-                                      .MetadataToken = 100667515
+                                      .MetadataToken = 100667519
                                       .DeclaredAccessibility = Public
                                       .ReturnsVoid = true
                                       .Parameters = [1]
                                         PEParameterSymbol "value"
                                           .Name = "value"
                                           .MetadataName = "value"
-                                          .MetadataToken = 134224505
+                                          .MetadataToken = 134224508
                                           .ContainingSymbol = PEMethodSymbol ".ctor"
                                           .TypeWithAnnotations = TypeWithAnnotations
                                             .IsResolved = true
@@ -1974,14 +1974,14 @@
                                                     .ContainingSymbol = PENamedTypeSymbolGeneric "ReadOnlySpan"
                                                     .ContainingType = PENamedTypeSymbolGeneric "ReadOnlySpan"
                                                     .Name = ".ctor"
-                                                    .MetadataToken = 100667092
+                                                    .MetadataToken = 100667096
                                                     .DeclaredAccessibility = Public
                                                     .ReturnsVoid = true
                                                     .Parameters = [2]
                                                       PEParameterSymbol "pointer"
                                                         .Name = "pointer"
                                                         .MetadataName = "pointer"
-                                                        .MetadataToken = 134223916
+                                                        .MetadataToken = 134223919
                                                         .ContainingSymbol = PEMethodSymbol ".ctor"
                                                         .TypeWithAnnotations = TypeWithAnnotations
                                                           .IsResolved = true
@@ -2006,7 +2006,7 @@
                                                       PEParameterSymbol "length"
                                                         .Name = "length"
                                                         .MetadataName = "length"
-                                                        .MetadataToken = 134223917
+                                                        .MetadataToken = 134223920
                                                         .Ordinal = 1
                                                         .ContainingSymbol = PEMethodSymbol ".ctor"
                                                         .TypeWithAnnotations = TypeWithAnnotations
@@ -2059,7 +2059,7 @@
                                                     .ContainingSymbol = PENamedTypeSymbolGeneric "ReadOnlySpan"
                                                     .ContainingType = PENamedTypeSymbolGeneric "ReadOnlySpan"
                                                     .Name = ".ctor"
-                                                    .MetadataToken = 100667093
+                                                    .MetadataToken = 100667097
                                                     .DeclaredAccessibility = Public
                                                     .ReturnsVoid = true
                                                     .Parameters = [1]
@@ -2067,7 +2067,7 @@
                                                         .RefKind = RefReadOnlyParameter
                                                         .Name = "reference"
                                                         .MetadataName = "reference"
-                                                        .MetadataToken = 134223918
+                                                        .MetadataToken = 134223921
                                                         .ContainingSymbol = PEMethodSymbol ".ctor"
                                                         .TypeWithAnnotations = TypeWithAnnotations
                                                           .IsResolved = true
@@ -2116,14 +2116,14 @@
                                                     .ContainingSymbol = PENamedTypeSymbolGeneric "ReadOnlySpan"
                                                     .ContainingType = PENamedTypeSymbolGeneric "ReadOnlySpan"
                                                     .Name = ".ctor"
-                                                    .MetadataToken = 100667094
+                                                    .MetadataToken = 100667098
                                                     .DeclaredAccessibility = Public
                                                     .ReturnsVoid = true
                                                     .Parameters = [1]
                                                       PEParameterSymbol "array"
                                                         .Name = "array"
                                                         .MetadataName = "array"
-                                                        .MetadataToken = 134223919
+                                                        .MetadataToken = 134223922
                                                         .ContainingSymbol = PEMethodSymbol ".ctor"
                                                         .TypeWithAnnotations = TypeWithAnnotations
                                                           .IsResolved = true
@@ -2193,14 +2193,14 @@
                                                     .ContainingSymbol = PENamedTypeSymbolGeneric "ReadOnlySpan"
                                                     .ContainingType = PENamedTypeSymbolGeneric "ReadOnlySpan"
                                                     .Name = ".ctor"
-                                                    .MetadataToken = 100667095
+                                                    .MetadataToken = 100667099
                                                     .DeclaredAccessibility = Public
                                                     .ReturnsVoid = true
                                                     .Parameters = [3]
                                                       PEParameterSymbol "array"
                                                         .Name = "array"
                                                         .MetadataName = "array"
-                                                        .MetadataToken = 134223920
+                                                        .MetadataToken = 134223923
                                                         .ContainingSymbol = PEMethodSymbol ".ctor"
                                                         .TypeWithAnnotations = TypeWithAnnotations
                                                           .IsResolved = true
@@ -2225,7 +2225,7 @@
                                                       PEParameterSymbol "start"
                                                         .Name = "start"
                                                         .MetadataName = "start"
-                                                        .MetadataToken = 134223921
+                                                        .MetadataToken = 134223924
                                                         .Ordinal = 1
                                                         .ContainingSymbol = PEMethodSymbol ".ctor"
                                                         .TypeWithAnnotations = TypeWithAnnotations
@@ -2252,7 +2252,7 @@
                                                       PEParameterSymbol "length"
                                                         .Name = "length"
                                                         .MetadataName = "length"
-                                                        .MetadataToken = 134223922
+                                                        .MetadataToken = 134223925
                                                         .Ordinal = 2
                                                         .ContainingSymbol = PEMethodSymbol ".ctor"
                                                         .TypeWithAnnotations = TypeWithAnnotations
@@ -2373,7 +2373,7 @@
                                                                 .ContainingSymbol = PENamedTypeSymbolNonGeneric "InAttribute"
                                                                 .ContainingType = PENamedTypeSymbolNonGeneric "InAttribute"
                                                                 .Name = ".ctor"
-                                                                .MetadataToken = 100670819
+                                                                .MetadataToken = 100670825
                                                                 .DeclaredAccessibility = Public
                                                                 .ReturnsVoid = true
                                                                 .ReturnTypeWithAnnotations = TypeWithAnnotations
@@ -2567,7 +2567,7 @@
                                                                 .MethodKind = Constructor
                                                                 .DeclaredAccessibility = Public
                                                                 .IsDefinition = true
-                                                                .MetadataToken = 100670819
+                                                                .MetadataToken = 100670825
                                                                 .MetadataName = ".ctor"
                                                                 .Name = ".ctor"
                                                                 .Language = "C#"
@@ -2595,7 +2595,7 @@
                                                       PEParameterSymbol "index"
                                                         .Name = "index"
                                                         .MetadataName = "index"
-                                                        .MetadataToken = 134223925
+                                                        .MetadataToken = 134223928
                                                         .ContainingSymbol = PEPropertySymbolWithCustomModifiers "this[]"
                                                         .TypeWithAnnotations = TypeWithAnnotations
                                                           .IsResolved = true
@@ -2630,13 +2630,13 @@
                                                       .ContainingSymbol = PENamedTypeSymbolGeneric "ReadOnlySpan"
                                                       .ContainingType = PENamedTypeSymbolGeneric "ReadOnlySpan"
                                                       .Name = "get_Item"
-                                                      .MetadataToken = 100667098
+                                                      .MetadataToken = 100667102
                                                       .DeclaredAccessibility = Public
                                                       .Parameters = [1]
                                                         PEParameterSymbol "index"
                                                           .Name = "index"
                                                           .MetadataName = "index"
-                                                          .MetadataToken = 134223925
+                                                          .MetadataToken = 134223928
                                                           .ContainingSymbol = PEMethodSymbol "get_Item"
                                                           .TypeWithAnnotations = TypeWithAnnotations
                                                             .IsResolved = true
@@ -3231,14 +3231,14 @@
                                       .ContainingSymbol = PENamedTypeSymbolNonGeneric "String"
                                       .ContainingType = PENamedTypeSymbolNonGeneric "String"
                                       .Name = ".ctor"
-                                      .MetadataToken = 100667516
+                                      .MetadataToken = 100667520
                                       .DeclaredAccessibility = Public
                                       .ReturnsVoid = true
                                       .Parameters = [1]
                                         PEParameterSymbol "value"
                                           .Name = "value"
                                           .MetadataName = "value"
-                                          .MetadataToken = 134224506
+                                          .MetadataToken = 134224509
                                           .ContainingSymbol = PEMethodSymbol ".ctor"
                                           .TypeWithAnnotations = TypeWithAnnotations
                                             .IsResolved = true
@@ -3365,122 +3365,10 @@
                                       .ContainingSymbol = PENamedTypeSymbolNonGeneric "String"
                                       .ContainingType = PENamedTypeSymbolNonGeneric "String"
                                       .Name = ".ctor"
-                                      .MetadataToken = 100667517
+                                      .MetadataToken = 100667521
                                       .DeclaredAccessibility = Public
                                       .ReturnsVoid = true
                                       .Parameters = [3]
-                                        PEParameterSymbol "value"
-                                          .Name = "value"
-                                          .MetadataName = "value"
-                                          .MetadataToken = 134224507
-                                          .ContainingSymbol = PEMethodSymbol ".ctor"
-                                          .TypeWithAnnotations = TypeWithAnnotations
-                                            .IsResolved = true
-                                            .Type = PointerTypeSymbol ""
-                                            .NullableAnnotation = Oblivious
-                                            .NullableUnderlyingTypeOrSelf = PointerTypeSymbol ""
-                                            .TypeKind = Pointer
-                                            .PrimitiveTypeCode = Pointer
-                                            .DefaultNullableAnnotation = Oblivious
-                                          .OriginalDefinition = PEParameterSymbol "value"
-                                          .Type = PointerTypeSymbol ""
-                                          .ExplicitDefaultValue = InvalidOperationException
-                                            .Message = "Operation is not valid due to the current state of the object."
-                                          .Kind = Parameter
-                                          .ContainingType = PENamedTypeSymbolNonGeneric "String"
-                                          .ContainingNamespace = PENestedNamespaceSymbol "System"
-                                          .ContainingAssembly = PEAssemblySymbol "System.Runtime"
-                                          .MetadataVisibility = InvalidOperationException
-                                            .Message = "Unexpected value 'NotApplicable' of type 'Microsoft.CodeAnalysis.Accessibility'"
-                                          .IsDefinition = true
-                                          .CanBeReferencedByName = true
-                                        PEParameterSymbol "startIndex"
-                                          .Name = "startIndex"
-                                          .MetadataName = "startIndex"
-                                          .MetadataToken = 134224508
-                                          .Ordinal = 1
-                                          .ContainingSymbol = PEMethodSymbol ".ctor"
-                                          .TypeWithAnnotations = TypeWithAnnotations
-                                            .IsResolved = true
-                                            .Type = PENamedTypeSymbolNonGeneric "Int32"
-                                            .NullableAnnotation = Oblivious
-                                            .NullableUnderlyingTypeOrSelf = PENamedTypeSymbolNonGeneric "Int32"
-                                            .TypeKind = Struct
-                                            .SpecialType = System_Int32
-                                            .PrimitiveTypeCode = Int32
-                                            .DefaultNullableAnnotation = Oblivious
-                                          .OriginalDefinition = PEParameterSymbol "startIndex"
-                                          .Type = PENamedTypeSymbolNonGeneric "Int32"
-                                          .ExplicitDefaultValue = InvalidOperationException
-                                            .Message = "Operation is not valid due to the current state of the object."
-                                          .Kind = Parameter
-                                          .ContainingType = PENamedTypeSymbolNonGeneric "String"
-                                          .ContainingNamespace = PENestedNamespaceSymbol "System"
-                                          .ContainingAssembly = PEAssemblySymbol "System.Runtime"
-                                          .MetadataVisibility = InvalidOperationException
-                                            .Message = "Unexpected value 'NotApplicable' of type 'Microsoft.CodeAnalysis.Accessibility'"
-                                          .IsDefinition = true
-                                          .CanBeReferencedByName = true
-                                        PEParameterSymbol "length"
-                                          .Name = "length"
-                                          .MetadataName = "length"
-                                          .MetadataToken = 134224509
-                                          .Ordinal = 2
-                                          .ContainingSymbol = PEMethodSymbol ".ctor"
-                                          .TypeWithAnnotations = TypeWithAnnotations
-                                            .IsResolved = true
-                                            .Type = PENamedTypeSymbolNonGeneric "Int32"
-                                            .NullableAnnotation = Oblivious
-                                            .NullableUnderlyingTypeOrSelf = PENamedTypeSymbolNonGeneric "Int32"
-                                            .TypeKind = Struct
-                                            .SpecialType = System_Int32
-                                            .PrimitiveTypeCode = Int32
-                                            .DefaultNullableAnnotation = Oblivious
-                                          .OriginalDefinition = PEParameterSymbol "length"
-                                          .Type = PENamedTypeSymbolNonGeneric "Int32"
-                                          .ExplicitDefaultValue = InvalidOperationException
-                                            .Message = "Operation is not valid due to the current state of the object."
-                                          .Kind = Parameter
-                                          .ContainingType = PENamedTypeSymbolNonGeneric "String"
-                                          .ContainingNamespace = PENestedNamespaceSymbol "System"
-                                          .ContainingAssembly = PEAssemblySymbol "System.Runtime"
-                                          .MetadataVisibility = InvalidOperationException
-                                            .Message = "Unexpected value 'NotApplicable' of type 'Microsoft.CodeAnalysis.Accessibility'"
-                                          .IsDefinition = true
-                                          .CanBeReferencedByName = true
-                                      .ReturnTypeWithAnnotations = TypeWithAnnotations
-                                        .IsResolved = true
-                                        .Type = PENamedTypeSymbolNonGeneric "Void"
-                                        .NullableAnnotation = Oblivious
-                                        .NullableUnderlyingTypeOrSelf = PENamedTypeSymbolNonGeneric "Void"
-                                        .TypeKind = Struct
-                                        .SpecialType = System_Void
-                                        .PrimitiveTypeCode = Void
-                                        .DefaultNullableAnnotation = Oblivious
-                                      .ReturnNotNullIfParameterNotNull = ImmutableHashSet`1
-                                      .MetadataSignatureHandle = BlobHandle
-                                      .MethodKind = Constructor
-                                      .AreLocalsZeroed = InvalidOperationException
-                                        .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
-                                      .OriginalDefinition = PEMethodSymbol ".ctor"
-                                      .RequiresInstanceReceiver = true
-                                      .ReturnType = PENamedTypeSymbolNonGeneric "Void"
-                                      .ConstructedFrom = PEMethodSymbol ".ctor"
-                                      .Kind = Method
-                                      .ReceiverType = PENamedTypeSymbolNonGeneric "String"
-                                      .MetadataName = ".ctor"
-                                      .ContainingNamespace = PENestedNamespaceSymbol "System"
-                                      .ContainingAssembly = PEAssemblySymbol "System.Runtime"
-                                      .MetadataVisibility = Public
-                                      .IsDefinition = true
-                                    PEMethodSymbol ".ctor"
-                                      .ContainingSymbol = PENamedTypeSymbolNonGeneric "String"
-                                      .ContainingType = PENamedTypeSymbolNonGeneric "String"
-                                      .Name = ".ctor"
-                                      .MetadataToken = 100667518
-                                      .DeclaredAccessibility = Public
-                                      .ReturnsVoid = true
-                                      .Parameters = [4]
                                         PEParameterSymbol "value"
                                           .Name = "value"
                                           .MetadataName = "value"
@@ -3560,10 +3448,122 @@
                                             .Message = "Unexpected value 'NotApplicable' of type 'Microsoft.CodeAnalysis.Accessibility'"
                                           .IsDefinition = true
                                           .CanBeReferencedByName = true
+                                      .ReturnTypeWithAnnotations = TypeWithAnnotations
+                                        .IsResolved = true
+                                        .Type = PENamedTypeSymbolNonGeneric "Void"
+                                        .NullableAnnotation = Oblivious
+                                        .NullableUnderlyingTypeOrSelf = PENamedTypeSymbolNonGeneric "Void"
+                                        .TypeKind = Struct
+                                        .SpecialType = System_Void
+                                        .PrimitiveTypeCode = Void
+                                        .DefaultNullableAnnotation = Oblivious
+                                      .ReturnNotNullIfParameterNotNull = ImmutableHashSet`1
+                                      .MetadataSignatureHandle = BlobHandle
+                                      .MethodKind = Constructor
+                                      .AreLocalsZeroed = InvalidOperationException
+                                        .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEMethodSymbol.cs' Line=1793"
+                                      .OriginalDefinition = PEMethodSymbol ".ctor"
+                                      .RequiresInstanceReceiver = true
+                                      .ReturnType = PENamedTypeSymbolNonGeneric "Void"
+                                      .ConstructedFrom = PEMethodSymbol ".ctor"
+                                      .Kind = Method
+                                      .ReceiverType = PENamedTypeSymbolNonGeneric "String"
+                                      .MetadataName = ".ctor"
+                                      .ContainingNamespace = PENestedNamespaceSymbol "System"
+                                      .ContainingAssembly = PEAssemblySymbol "System.Runtime"
+                                      .MetadataVisibility = Public
+                                      .IsDefinition = true
+                                    PEMethodSymbol ".ctor"
+                                      .ContainingSymbol = PENamedTypeSymbolNonGeneric "String"
+                                      .ContainingType = PENamedTypeSymbolNonGeneric "String"
+                                      .Name = ".ctor"
+                                      .MetadataToken = 100667522
+                                      .DeclaredAccessibility = Public
+                                      .ReturnsVoid = true
+                                      .Parameters = [4]
+                                        PEParameterSymbol "value"
+                                          .Name = "value"
+                                          .MetadataName = "value"
+                                          .MetadataToken = 134224513
+                                          .ContainingSymbol = PEMethodSymbol ".ctor"
+                                          .TypeWithAnnotations = TypeWithAnnotations
+                                            .IsResolved = true
+                                            .Type = PointerTypeSymbol ""
+                                            .NullableAnnotation = Oblivious
+                                            .NullableUnderlyingTypeOrSelf = PointerTypeSymbol ""
+                                            .TypeKind = Pointer
+                                            .PrimitiveTypeCode = Pointer
+                                            .DefaultNullableAnnotation = Oblivious
+                                          .OriginalDefinition = PEParameterSymbol "value"
+                                          .Type = PointerTypeSymbol ""
+                                          .ExplicitDefaultValue = InvalidOperationException
+                                            .Message = "Operation is not valid due to the current state of the object."
+                                          .Kind = Parameter
+                                          .ContainingType = PENamedTypeSymbolNonGeneric "String"
+                                          .ContainingNamespace = PENestedNamespaceSymbol "System"
+                                          .ContainingAssembly = PEAssemblySymbol "System.Runtime"
+                                          .MetadataVisibility = InvalidOperationException
+                                            .Message = "Unexpected value 'NotApplicable' of type 'Microsoft.CodeAnalysis.Accessibility'"
+                                          .IsDefinition = true
+                                          .CanBeReferencedByName = true
+                                        PEParameterSymbol "startIndex"
+                                          .Name = "startIndex"
+                                          .MetadataName = "startIndex"
+                                          .MetadataToken = 134224514
+                                          .Ordinal = 1
+                                          .ContainingSymbol = PEMethodSymbol ".ctor"
+                                          .TypeWithAnnotations = TypeWithAnnotations
+                                            .IsResolved = true
+                                            .Type = PENamedTypeSymbolNonGeneric "Int32"
+                                            .NullableAnnotation = Oblivious
+                                            .NullableUnderlyingTypeOrSelf = PENamedTypeSymbolNonGeneric "Int32"
+                                            .TypeKind = Struct
+                                            .SpecialType = System_Int32
+                                            .PrimitiveTypeCode = Int32
+                                            .DefaultNullableAnnotation = Oblivious
+                                          .OriginalDefinition = PEParameterSymbol "startIndex"
+                                          .Type = PENamedTypeSymbolNonGeneric "Int32"
+                                          .ExplicitDefaultValue = InvalidOperationException
+                                            .Message = "Operation is not valid due to the current state of the object."
+                                          .Kind = Parameter
+                                          .ContainingType = PENamedTypeSymbolNonGeneric "String"
+                                          .ContainingNamespace = PENestedNamespaceSymbol "System"
+                                          .ContainingAssembly = PEAssemblySymbol "System.Runtime"
+                                          .MetadataVisibility = InvalidOperationException
+                                            .Message = "Unexpected value 'NotApplicable' of type 'Microsoft.CodeAnalysis.Accessibility'"
+                                          .IsDefinition = true
+                                          .CanBeReferencedByName = true
+                                        PEParameterSymbol "length"
+                                          .Name = "length"
+                                          .MetadataName = "length"
+                                          .MetadataToken = 134224515
+                                          .Ordinal = 2
+                                          .ContainingSymbol = PEMethodSymbol ".ctor"
+                                          .TypeWithAnnotations = TypeWithAnnotations
+                                            .IsResolved = true
+                                            .Type = PENamedTypeSymbolNonGeneric "Int32"
+                                            .NullableAnnotation = Oblivious
+                                            .NullableUnderlyingTypeOrSelf = PENamedTypeSymbolNonGeneric "Int32"
+                                            .TypeKind = Struct
+                                            .SpecialType = System_Int32
+                                            .PrimitiveTypeCode = Int32
+                                            .DefaultNullableAnnotation = Oblivious
+                                          .OriginalDefinition = PEParameterSymbol "length"
+                                          .Type = PENamedTypeSymbolNonGeneric "Int32"
+                                          .ExplicitDefaultValue = InvalidOperationException
+                                            .Message = "Operation is not valid due to the current state of the object."
+                                          .Kind = Parameter
+                                          .ContainingType = PENamedTypeSymbolNonGeneric "String"
+                                          .ContainingNamespace = PENestedNamespaceSymbol "System"
+                                          .ContainingAssembly = PEAssemblySymbol "System.Runtime"
+                                          .MetadataVisibility = InvalidOperationException
+                                            .Message = "Unexpected value 'NotApplicable' of type 'Microsoft.CodeAnalysis.Accessibility'"
+                                          .IsDefinition = true
+                                          .CanBeReferencedByName = true
                                         PEParameterSymbol "enc"
                                           .Name = "enc"
                                           .MetadataName = "enc"
-                                          .MetadataToken = 134224513
+                                          .MetadataToken = 134224516
                                           .Ordinal = 3
                                           .ContainingSymbol = PEMethodSymbol ".ctor"
                                           .TypeWithAnnotations = TypeWithAnnotations
@@ -3600,7 +3600,7 @@
                                                   .ContainingSymbol = PENamedTypeSymbolNonGeneric "Encoding"
                                                   .ContainingType = PENamedTypeSymbolNonGeneric "Encoding"
                                                   .Name = ".ctor"
-                                                  .MetadataToken = 100670125
+                                                  .MetadataToken = 100670130
                                                   .DeclaredAccessibility = Protected
                                                   .ReturnsVoid = true
                                                   .ReturnTypeWithAnnotations = TypeWithAnnotations
@@ -3632,14 +3632,14 @@
                                                   .ContainingSymbol = PENamedTypeSymbolNonGeneric "Encoding"
                                                   .ContainingType = PENamedTypeSymbolNonGeneric "Encoding"
                                                   .Name = ".ctor"
-                                                  .MetadataToken = 100670126
+                                                  .MetadataToken = 100670131
                                                   .DeclaredAccessibility = Protected
                                                   .ReturnsVoid = true
                                                   .Parameters = [1]
                                                     PEParameterSymbol "codePage"
                                                       .Name = "codePage"
                                                       .MetadataName = "codePage"
-                                                      .MetadataToken = 134228780
+                                                      .MetadataToken = 134228783
                                                       .ContainingSymbol = PEMethodSymbol ".ctor"
                                                       .TypeWithAnnotations = TypeWithAnnotations
                                                         .IsResolved = true
@@ -3691,14 +3691,14 @@
                                                   .ContainingSymbol = PENamedTypeSymbolNonGeneric "Encoding"
                                                   .ContainingType = PENamedTypeSymbolNonGeneric "Encoding"
                                                   .Name = ".ctor"
-                                                  .MetadataToken = 100670127
+                                                  .MetadataToken = 100670132
                                                   .DeclaredAccessibility = Protected
                                                   .ReturnsVoid = true
                                                   .Parameters = [3]
                                                     PEParameterSymbol "codePage"
                                                       .Name = "codePage"
                                                       .MetadataName = "codePage"
-                                                      .MetadataToken = 134228781
+                                                      .MetadataToken = 134228784
                                                       .ContainingSymbol = PEMethodSymbol ".ctor"
                                                       .TypeWithAnnotations = TypeWithAnnotations
                                                         .IsResolved = true
@@ -3724,7 +3724,7 @@
                                                     PEParameterSymbol "encoderFallback"
                                                       .Name = "encoderFallback"
                                                       .MetadataName = "encoderFallback"
-                                                      .MetadataToken = 134228782
+                                                      .MetadataToken = 134228785
                                                       .Ordinal = 1
                                                       .ContainingSymbol = PEMethodSymbol ".ctor"
                                                       .TypeWithAnnotations = TypeWithAnnotations
@@ -3745,7 +3745,7 @@
                                                               .ContainingSymbol = PENamedTypeSymbolNonGeneric "EncoderFallback"
                                                               .ContainingType = PENamedTypeSymbolNonGeneric "EncoderFallback"
                                                               .Name = ".ctor"
-                                                              .MetadataToken = 100670091
+                                                              .MetadataToken = 100670096
                                                               .DeclaredAccessibility = Protected
                                                               .ReturnsVoid = true
                                                               .ReturnTypeWithAnnotations = TypeWithAnnotations
@@ -3804,7 +3804,7 @@
                                                     PEParameterSymbol "decoderFallback"
                                                       .Name = "decoderFallback"
                                                       .MetadataName = "decoderFallback"
-                                                      .MetadataToken = 134228783
+                                                      .MetadataToken = 134228786
                                                       .Ordinal = 2
                                                       .ContainingSymbol = PEMethodSymbol ".ctor"
                                                       .TypeWithAnnotations = TypeWithAnnotations
@@ -3825,7 +3825,7 @@
                                                               .ContainingSymbol = PENamedTypeSymbolNonGeneric "DecoderFallback"
                                                               .ContainingType = PENamedTypeSymbolNonGeneric "DecoderFallback"
                                                               .Name = ".ctor"
-                                                              .MetadataToken = 100670036
+                                                              .MetadataToken = 100670041
                                                               .DeclaredAccessibility = Protected
                                                               .ReturnsVoid = true
                                                               .ReturnTypeWithAnnotations = TypeWithAnnotations
@@ -3981,7 +3981,7 @@
                                         PEParameterSymbol "index"
                                           .Name = "index"
                                           .MetadataName = "index"
-                                          .MetadataToken = 134224514
+                                          .MetadataToken = 134224517
                                           .ContainingSymbol = PEPropertySymbol "this[]"
                                           .TypeWithAnnotations = TypeWithAnnotations
                                             .IsResolved = true
@@ -4018,13 +4018,13 @@
                                         .ContainingSymbol = PENamedTypeSymbolNonGeneric "String"
                                         .ContainingType = PENamedTypeSymbolNonGeneric "String"
                                         .Name = "get_Chars"
-                                        .MetadataToken = 100667519
+                                        .MetadataToken = 100667523
                                         .DeclaredAccessibility = Public
                                         .Parameters = [1]
                                           PEParameterSymbol "index"
                                             .Name = "index"
                                             .MetadataName = "index"
-                                            .MetadataToken = 134224514
+                                            .MetadataToken = 134224517
                                             .ContainingSymbol = PEMethodSymbol "get_Chars"
                                             .TypeWithAnnotations = TypeWithAnnotations
                                               .IsResolved = true
@@ -4165,7 +4165,7 @@
                                       .ContainingSymbol = PENamedTypeSymbolNonGeneric "Type"
                                       .ContainingType = PENamedTypeSymbolNonGeneric "Type"
                                       .Name = ".ctor"
-                                      .MetadataToken = 100668204
+                                      .MetadataToken = 100668208
                                       .DeclaredAccessibility = Protected
                                       .ReturnsVoid = true
                                       .ReturnTypeWithAnnotations = TypeWithAnnotations
@@ -18854,7 +18854,7 @@
                                       .MethodKind = Constructor
                                       .DeclaredAccessibility = Public
                                       .IsDefinition = true
-                                      .MetadataToken = 100667510
+                                      .MetadataToken = 100667514
                                       .MetadataName = ".ctor"
                                       .Name = ".ctor"
                                       .Language = "C#"
@@ -18875,7 +18875,7 @@
                                           .NullableAnnotation = NotAnnotated
                                           .CanBeReferencedByName = true
                                           .IsDefinition = true
-                                          .MetadataToken = 134224495
+                                          .MetadataToken = 134224498
                                           .MetadataName = "value"
                                           .Name = "value"
                                           .Language = "C#"
@@ -18912,7 +18912,7 @@
                                       .MethodKind = Constructor
                                       .DeclaredAccessibility = Public
                                       .IsDefinition = true
-                                      .MetadataToken = 100667511
+                                      .MetadataToken = 100667515
                                       .MetadataName = ".ctor"
                                       .Name = ".ctor"
                                       .Language = "C#"
@@ -18933,7 +18933,7 @@
                                           .NullableAnnotation = NotAnnotated
                                           .CanBeReferencedByName = true
                                           .IsDefinition = true
-                                          .MetadataToken = 134224496
+                                          .MetadataToken = 134224499
                                           .MetadataName = "value"
                                           .Name = "value"
                                           .Language = "C#"
@@ -18954,7 +18954,7 @@
                                           .NullableAnnotation = NotAnnotated
                                           .CanBeReferencedByName = true
                                           .IsDefinition = true
-                                          .MetadataToken = 134224497
+                                          .MetadataToken = 134224500
                                           .MetadataName = "startIndex"
                                           .Name = "startIndex"
                                           .Language = "C#"
@@ -18975,7 +18975,7 @@
                                           .NullableAnnotation = NotAnnotated
                                           .CanBeReferencedByName = true
                                           .IsDefinition = true
-                                          .MetadataToken = 134224498
+                                          .MetadataToken = 134224501
                                           .MetadataName = "length"
                                           .Name = "length"
                                           .Language = "C#"
@@ -18998,7 +18998,7 @@
                                       .MethodKind = Constructor
                                       .DeclaredAccessibility = Public
                                       .IsDefinition = true
-                                      .MetadataToken = 100667512
+                                      .MetadataToken = 100667516
                                       .MetadataName = ".ctor"
                                       .Name = ".ctor"
                                       .Language = "C#"
@@ -19019,7 +19019,7 @@
                                           .NullableAnnotation = NotAnnotated
                                           .CanBeReferencedByName = true
                                           .IsDefinition = true
-                                          .MetadataToken = 134224499
+                                          .MetadataToken = 134224502
                                           .MetadataName = "c"
                                           .Name = "c"
                                           .Language = "C#"
@@ -19040,7 +19040,7 @@
                                           .NullableAnnotation = NotAnnotated
                                           .CanBeReferencedByName = true
                                           .IsDefinition = true
-                                          .MetadataToken = 134224500
+                                          .MetadataToken = 134224503
                                           .MetadataName = "count"
                                           .Name = "count"
                                           .Language = "C#"
@@ -19063,7 +19063,7 @@
                                       .MethodKind = Constructor
                                       .DeclaredAccessibility = Public
                                       .IsDefinition = true
-                                      .MetadataToken = 100667513
+                                      .MetadataToken = 100667517
                                       .MetadataName = ".ctor"
                                       .Name = ".ctor"
                                       .Language = "C#"
@@ -19084,7 +19084,7 @@
                                           .NullableAnnotation = Annotated
                                           .CanBeReferencedByName = true
                                           .IsDefinition = true
-                                          .MetadataToken = 134224501
+                                          .MetadataToken = 134224504
                                           .MetadataName = "value"
                                           .Name = "value"
                                           .Language = "C#"
@@ -19238,7 +19238,7 @@
                                                         PEParameterSymbol "index"
                                                           .Name = "index"
                                                           .MetadataName = "index"
-                                                          .MetadataToken = 134233974
+                                                          .MetadataToken = 134233978
                                                           .ContainingSymbol = PEPropertySymbol "this[]"
                                                           .TypeWithAnnotations = TypeWithAnnotations
                                                             .IsResolved = true
@@ -19275,14 +19275,14 @@
                                                         .ContainingSymbol = PENamedTypeSymbolNonGeneric "IList"
                                                         .ContainingType = PENamedTypeSymbolNonGeneric "IList"
                                                         .Name = "get_Item"
-                                                        .MetadataToken = 100674554
+                                                        .MetadataToken = 100674562
                                                         .DeclaredAccessibility = Public
                                                         .IsAbstract = true
                                                         .Parameters = [1]
                                                           PEParameterSymbol "index"
                                                             .Name = "index"
                                                             .MetadataName = "index"
-                                                            .MetadataToken = 134233973
+                                                            .MetadataToken = 134233977
                                                             .ContainingSymbol = PEMethodSymbol "get_Item"
                                                             .TypeWithAnnotations = TypeWithAnnotations
                                                               .IsResolved = true
@@ -19335,7 +19335,7 @@
                                                         .ContainingSymbol = PENamedTypeSymbolNonGeneric "IList"
                                                         .ContainingType = PENamedTypeSymbolNonGeneric "IList"
                                                         .Name = "set_Item"
-                                                        .MetadataToken = 100674555
+                                                        .MetadataToken = 100674563
                                                         .DeclaredAccessibility = Public
                                                         .IsAbstract = true
                                                         .ReturnsVoid = true
@@ -19343,7 +19343,7 @@
                                                           PEParameterSymbol "index"
                                                             .Name = "index"
                                                             .MetadataName = "index"
-                                                            .MetadataToken = 134233974
+                                                            .MetadataToken = 134233978
                                                             .ContainingSymbol = PEMethodSymbol "set_Item"
                                                             .TypeWithAnnotations = TypeWithAnnotations
                                                               .IsResolved = true
@@ -19369,7 +19369,7 @@
                                                           PEParameterSymbol "value"
                                                             .Name = "value"
                                                             .MetadataName = "value"
-                                                            .MetadataToken = 134233975
+                                                            .MetadataToken = 134233979
                                                             .Ordinal = 1
                                                             .ContainingSymbol = PEMethodSymbol "set_Item"
                                                             .TypeWithAnnotations = TypeWithAnnotations
@@ -19599,7 +19599,7 @@
                                                         PEParameterSymbol "index"
                                                           .Name = "index"
                                                           .MetadataName = "index"
-                                                          .MetadataToken = 134234115
+                                                          .MetadataToken = 134234119
                                                           .ContainingSymbol = PEPropertySymbol "this[]"
                                                           .TypeWithAnnotations = TypeWithAnnotations
                                                             .IsResolved = true
@@ -19633,14 +19633,14 @@
                                                         .ContainingSymbol = PENamedTypeSymbolGeneric "IList"
                                                         .ContainingType = PENamedTypeSymbolGeneric "IList"
                                                         .Name = "get_Item"
-                                                        .MetadataToken = 100674724
+                                                        .MetadataToken = 100674732
                                                         .DeclaredAccessibility = Public
                                                         .IsAbstract = true
                                                         .Parameters = [1]
                                                           PEParameterSymbol "index"
                                                             .Name = "index"
                                                             .MetadataName = "index"
-                                                            .MetadataToken = 134234114
+                                                            .MetadataToken = 134234118
                                                             .ContainingSymbol = PEMethodSymbol "get_Item"
                                                             .TypeWithAnnotations = TypeWithAnnotations
                                                               .IsResolved = true
@@ -19690,7 +19690,7 @@
                                                         .ContainingSymbol = PENamedTypeSymbolGeneric "IList"
                                                         .ContainingType = PENamedTypeSymbolGeneric "IList"
                                                         .Name = "set_Item"
-                                                        .MetadataToken = 100674725
+                                                        .MetadataToken = 100674733
                                                         .DeclaredAccessibility = Public
                                                         .IsAbstract = true
                                                         .ReturnsVoid = true
@@ -19698,7 +19698,7 @@
                                                           PEParameterSymbol "index"
                                                             .Name = "index"
                                                             .MetadataName = "index"
-                                                            .MetadataToken = 134234115
+                                                            .MetadataToken = 134234119
                                                             .ContainingSymbol = PEMethodSymbol "set_Item"
                                                             .TypeWithAnnotations = TypeWithAnnotations
                                                               .IsResolved = true
@@ -19724,7 +19724,7 @@
                                                           PEParameterSymbol "value"
                                                             .Name = "value"
                                                             .MetadataName = "value"
-                                                            .MetadataToken = 134234116
+                                                            .MetadataToken = 134234120
                                                             .Ordinal = 1
                                                             .ContainingSymbol = PEMethodSymbol "set_Item"
                                                             .TypeWithAnnotations = TypeWithAnnotations
@@ -20445,7 +20445,7 @@
                                                         PEParameterSymbol "index"
                                                           .Name = "index"
                                                           .MetadataName = "index"
-                                                          .MetadataToken = 134234125
+                                                          .MetadataToken = 134234129
                                                           .ContainingSymbol = PEPropertySymbol "this[]"
                                                           .TypeWithAnnotations = TypeWithAnnotations
                                                             .IsResolved = true
@@ -20479,14 +20479,14 @@
                                                         .ContainingSymbol = PENamedTypeSymbolGeneric "IReadOnlyList"
                                                         .ContainingType = PENamedTypeSymbolGeneric "IReadOnlyList"
                                                         .Name = "get_Item"
-                                                        .MetadataToken = 100674735
+                                                        .MetadataToken = 100674743
                                                         .DeclaredAccessibility = Public
                                                         .IsAbstract = true
                                                         .Parameters = [1]
                                                           PEParameterSymbol "index"
                                                             .Name = "index"
                                                             .MetadataName = "index"
-                                                            .MetadataToken = 134234125
+                                                            .MetadataToken = 134234129
                                                             .ContainingSymbol = PEMethodSymbol "get_Item"
                                                             .TypeWithAnnotations = TypeWithAnnotations
                                                               .IsResolved = true
@@ -21088,7 +21088,7 @@
                                       .MethodKind = Constructor
                                       .DeclaredAccessibility = Public
                                       .IsDefinition = true
-                                      .MetadataToken = 100667514
+                                      .MetadataToken = 100667518
                                       .MetadataName = ".ctor"
                                       .Name = ".ctor"
                                       .Language = "C#"
@@ -21109,7 +21109,7 @@
                                           .NullableAnnotation = NotAnnotated
                                           .CanBeReferencedByName = true
                                           .IsDefinition = true
-                                          .MetadataToken = 134224502
+                                          .MetadataToken = 134224505
                                           .MetadataName = "value"
                                           .Name = "value"
                                           .Language = "C#"
@@ -21130,7 +21130,7 @@
                                           .NullableAnnotation = NotAnnotated
                                           .CanBeReferencedByName = true
                                           .IsDefinition = true
-                                          .MetadataToken = 134224503
+                                          .MetadataToken = 134224506
                                           .MetadataName = "startIndex"
                                           .Name = "startIndex"
                                           .Language = "C#"
@@ -21151,7 +21151,7 @@
                                           .NullableAnnotation = NotAnnotated
                                           .CanBeReferencedByName = true
                                           .IsDefinition = true
-                                          .MetadataToken = 134224504
+                                          .MetadataToken = 134224507
                                           .MetadataName = "length"
                                           .Name = "length"
                                           .Language = "C#"
@@ -21174,7 +21174,7 @@
                                       .MethodKind = Constructor
                                       .DeclaredAccessibility = Public
                                       .IsDefinition = true
-                                      .MetadataToken = 100667515
+                                      .MetadataToken = 100667519
                                       .MetadataName = ".ctor"
                                       .Name = ".ctor"
                                       .Language = "C#"
@@ -21195,7 +21195,7 @@
                                           .NullableAnnotation = NotAnnotated
                                           .CanBeReferencedByName = true
                                           .IsDefinition = true
-                                          .MetadataToken = 134224505
+                                          .MetadataToken = 134224508
                                           .MetadataName = "value"
                                           .Name = "value"
                                           .Language = "C#"
@@ -21314,7 +21314,7 @@
                                                   .MethodKind = Constructor
                                                   .DeclaredAccessibility = Public
                                                   .IsDefinition = true
-                                                  .MetadataToken = 100667092
+                                                  .MetadataToken = 100667096
                                                   .MetadataName = ".ctor"
                                                   .Name = ".ctor"
                                                   .Language = "C#"
@@ -21335,7 +21335,7 @@
                                                       .NullableAnnotation = NotAnnotated
                                                       .CanBeReferencedByName = true
                                                       .IsDefinition = true
-                                                      .MetadataToken = 134223916
+                                                      .MetadataToken = 134223919
                                                       .MetadataName = "pointer"
                                                       .Name = "pointer"
                                                       .Language = "C#"
@@ -21370,7 +21370,7 @@
                                                       .NullableAnnotation = NotAnnotated
                                                       .CanBeReferencedByName = true
                                                       .IsDefinition = true
-                                                      .MetadataToken = 134223917
+                                                      .MetadataToken = 134223920
                                                       .MetadataName = "length"
                                                       .Name = "length"
                                                       .Language = "C#"
@@ -21393,7 +21393,7 @@
                                                   .MethodKind = Constructor
                                                   .DeclaredAccessibility = Public
                                                   .IsDefinition = true
-                                                  .MetadataToken = 100667093
+                                                  .MetadataToken = 100667097
                                                   .MetadataName = ".ctor"
                                                   .Name = ".ctor"
                                                   .Language = "C#"
@@ -21415,7 +21415,7 @@
                                                       .RefKind = RefReadOnlyParameter
                                                       .CanBeReferencedByName = true
                                                       .IsDefinition = true
-                                                      .MetadataToken = 134223918
+                                                      .MetadataToken = 134223921
                                                       .MetadataName = "reference"
                                                       .Name = "reference"
                                                       .Language = "C#"
@@ -21438,7 +21438,7 @@
                                                   .MethodKind = Constructor
                                                   .DeclaredAccessibility = Public
                                                   .IsDefinition = true
-                                                  .MetadataToken = 100667094
+                                                  .MetadataToken = 100667098
                                                   .MetadataName = ".ctor"
                                                   .Name = ".ctor"
                                                   .Language = "C#"
@@ -21459,7 +21459,7 @@
                                                       .NullableAnnotation = Annotated
                                                       .CanBeReferencedByName = true
                                                       .IsDefinition = true
-                                                      .MetadataToken = 134223919
+                                                      .MetadataToken = 134223922
                                                       .MetadataName = "array"
                                                       .Name = "array"
                                                       .Language = "C#"
@@ -22083,7 +22083,7 @@
                                                   .MethodKind = Constructor
                                                   .DeclaredAccessibility = Public
                                                   .IsDefinition = true
-                                                  .MetadataToken = 100667095
+                                                  .MetadataToken = 100667099
                                                   .MetadataName = ".ctor"
                                                   .Name = ".ctor"
                                                   .Language = "C#"
@@ -22104,7 +22104,7 @@
                                                       .NullableAnnotation = Annotated
                                                       .CanBeReferencedByName = true
                                                       .IsDefinition = true
-                                                      .MetadataToken = 134223920
+                                                      .MetadataToken = 134223923
                                                       .MetadataName = "array"
                                                       .Name = "array"
                                                       .Language = "C#"
@@ -22125,7 +22125,7 @@
                                                       .NullableAnnotation = NotAnnotated
                                                       .CanBeReferencedByName = true
                                                       .IsDefinition = true
-                                                      .MetadataToken = 134223921
+                                                      .MetadataToken = 134223924
                                                       .MetadataName = "start"
                                                       .Name = "start"
                                                       .Language = "C#"
@@ -22146,7 +22146,7 @@
                                                       .NullableAnnotation = NotAnnotated
                                                       .CanBeReferencedByName = true
                                                       .IsDefinition = true
-                                                      .MetadataToken = 134223922
+                                                      .MetadataToken = 134223925
                                                       .MetadataName = "length"
                                                       .Name = "length"
                                                       .Language = "C#"
@@ -22430,7 +22430,7 @@
                                       .MethodKind = Constructor
                                       .DeclaredAccessibility = Public
                                       .IsDefinition = true
-                                      .MetadataToken = 100667516
+                                      .MetadataToken = 100667520
                                       .MetadataName = ".ctor"
                                       .Name = ".ctor"
                                       .Language = "C#"
@@ -22451,7 +22451,7 @@
                                           .NullableAnnotation = NotAnnotated
                                           .CanBeReferencedByName = true
                                           .IsDefinition = true
-                                          .MetadataToken = 134224506
+                                          .MetadataToken = 134224509
                                           .MetadataName = "value"
                                           .Name = "value"
                                           .Language = "C#"
@@ -24181,7 +24181,7 @@
                                       .MethodKind = Constructor
                                       .DeclaredAccessibility = Public
                                       .IsDefinition = true
-                                      .MetadataToken = 100667517
+                                      .MetadataToken = 100667521
                                       .MetadataName = ".ctor"
                                       .Name = ".ctor"
                                       .Language = "C#"
@@ -24195,92 +24195,6 @@
                                     .OriginalDefinition = MethodSymbol ".ctor"
                                     .ReturnType = NonErrorNamedTypeSymbol "Void"
                                     .Parameters = [3]
-                                      ParameterSymbol "value"
-                                        //
-                                          .ExplicitDefaultValue = InvalidOperationException
-                                            .Message = "Operation is not valid due to the current state of the object."
-                                          .NullableAnnotation = NotAnnotated
-                                          .CanBeReferencedByName = true
-                                          .IsDefinition = true
-                                          .MetadataToken = 134224507
-                                          .MetadataName = "value"
-                                          .Name = "value"
-                                          .Language = "C#"
-                                          .Kind = Parameter
-                                        .UnderlyingSymbol = PEParameterSymbol "value"
-                                        .ContainingSymbol = MethodSymbol ".ctor"
-                                        .ContainingAssembly = NonSourceAssemblySymbol "System.Runtime"
-                                        .ContainingModule = ModuleSymbol "System.Runtime.dll"
-                                        .ContainingType = NonErrorNamedTypeSymbol "String"
-                                        .ContainingNamespace = NamespaceSymbol "System"
-                                        .OriginalDefinition = ParameterSymbol "value"
-                                        .Type = PointerTypeSymbol ""
-                                      ParameterSymbol "startIndex"
-                                        //
-                                          .ExplicitDefaultValue = InvalidOperationException
-                                            .Message = "Operation is not valid due to the current state of the object."
-                                          .Ordinal = 1
-                                          .NullableAnnotation = NotAnnotated
-                                          .CanBeReferencedByName = true
-                                          .IsDefinition = true
-                                          .MetadataToken = 134224508
-                                          .MetadataName = "startIndex"
-                                          .Name = "startIndex"
-                                          .Language = "C#"
-                                          .Kind = Parameter
-                                        .UnderlyingSymbol = PEParameterSymbol "startIndex"
-                                        .ContainingSymbol = MethodSymbol ".ctor"
-                                        .ContainingAssembly = NonSourceAssemblySymbol "System.Runtime"
-                                        .ContainingModule = ModuleSymbol "System.Runtime.dll"
-                                        .ContainingType = NonErrorNamedTypeSymbol "String"
-                                        .ContainingNamespace = NamespaceSymbol "System"
-                                        .OriginalDefinition = ParameterSymbol "startIndex"
-                                        .Type = NonErrorNamedTypeSymbol "Int32"
-                                      ParameterSymbol "length"
-                                        //
-                                          .ExplicitDefaultValue = InvalidOperationException
-                                            .Message = "Operation is not valid due to the current state of the object."
-                                          .Ordinal = 2
-                                          .NullableAnnotation = NotAnnotated
-                                          .CanBeReferencedByName = true
-                                          .IsDefinition = true
-                                          .MetadataToken = 134224509
-                                          .MetadataName = "length"
-                                          .Name = "length"
-                                          .Language = "C#"
-                                          .Kind = Parameter
-                                        .UnderlyingSymbol = PEParameterSymbol "length"
-                                        .ContainingSymbol = MethodSymbol ".ctor"
-                                        .ContainingAssembly = NonSourceAssemblySymbol "System.Runtime"
-                                        .ContainingModule = ModuleSymbol "System.Runtime.dll"
-                                        .ContainingType = NonErrorNamedTypeSymbol "String"
-                                        .ContainingNamespace = NamespaceSymbol "System"
-                                        .OriginalDefinition = ParameterSymbol "length"
-                                        .Type = NonErrorNamedTypeSymbol "Int32"
-                                    .ConstructedFrom = MethodSymbol ".ctor"
-                                    .ReceiverType = NonErrorNamedTypeSymbol "String"
-                                  MethodSymbol ".ctor"
-                                    //
-                                      .ReceiverNullableAnnotation = NotAnnotated
-                                      .ReturnNullableAnnotation = NotAnnotated
-                                      .ReturnsVoid = true
-                                      .MethodKind = Constructor
-                                      .DeclaredAccessibility = Public
-                                      .IsDefinition = true
-                                      .MetadataToken = 100667518
-                                      .MetadataName = ".ctor"
-                                      .Name = ".ctor"
-                                      .Language = "C#"
-                                      .Kind = Method
-                                    .UnderlyingSymbol = PEMethodSymbol ".ctor"
-                                    .ContainingSymbol = NonErrorNamedTypeSymbol "String"
-                                    .ContainingAssembly = NonSourceAssemblySymbol "System.Runtime"
-                                    .ContainingModule = ModuleSymbol "System.Runtime.dll"
-                                    .ContainingType = NonErrorNamedTypeSymbol "String"
-                                    .ContainingNamespace = NamespaceSymbol "System"
-                                    .OriginalDefinition = MethodSymbol ".ctor"
-                                    .ReturnType = NonErrorNamedTypeSymbol "Void"
-                                    .Parameters = [4]
                                       ParameterSymbol "value"
                                         //
                                           .ExplicitDefaultValue = InvalidOperationException
@@ -24343,6 +24257,92 @@
                                         .ContainingNamespace = NamespaceSymbol "System"
                                         .OriginalDefinition = ParameterSymbol "length"
                                         .Type = NonErrorNamedTypeSymbol "Int32"
+                                    .ConstructedFrom = MethodSymbol ".ctor"
+                                    .ReceiverType = NonErrorNamedTypeSymbol "String"
+                                  MethodSymbol ".ctor"
+                                    //
+                                      .ReceiverNullableAnnotation = NotAnnotated
+                                      .ReturnNullableAnnotation = NotAnnotated
+                                      .ReturnsVoid = true
+                                      .MethodKind = Constructor
+                                      .DeclaredAccessibility = Public
+                                      .IsDefinition = true
+                                      .MetadataToken = 100667522
+                                      .MetadataName = ".ctor"
+                                      .Name = ".ctor"
+                                      .Language = "C#"
+                                      .Kind = Method
+                                    .UnderlyingSymbol = PEMethodSymbol ".ctor"
+                                    .ContainingSymbol = NonErrorNamedTypeSymbol "String"
+                                    .ContainingAssembly = NonSourceAssemblySymbol "System.Runtime"
+                                    .ContainingModule = ModuleSymbol "System.Runtime.dll"
+                                    .ContainingType = NonErrorNamedTypeSymbol "String"
+                                    .ContainingNamespace = NamespaceSymbol "System"
+                                    .OriginalDefinition = MethodSymbol ".ctor"
+                                    .ReturnType = NonErrorNamedTypeSymbol "Void"
+                                    .Parameters = [4]
+                                      ParameterSymbol "value"
+                                        //
+                                          .ExplicitDefaultValue = InvalidOperationException
+                                            .Message = "Operation is not valid due to the current state of the object."
+                                          .NullableAnnotation = NotAnnotated
+                                          .CanBeReferencedByName = true
+                                          .IsDefinition = true
+                                          .MetadataToken = 134224513
+                                          .MetadataName = "value"
+                                          .Name = "value"
+                                          .Language = "C#"
+                                          .Kind = Parameter
+                                        .UnderlyingSymbol = PEParameterSymbol "value"
+                                        .ContainingSymbol = MethodSymbol ".ctor"
+                                        .ContainingAssembly = NonSourceAssemblySymbol "System.Runtime"
+                                        .ContainingModule = ModuleSymbol "System.Runtime.dll"
+                                        .ContainingType = NonErrorNamedTypeSymbol "String"
+                                        .ContainingNamespace = NamespaceSymbol "System"
+                                        .OriginalDefinition = ParameterSymbol "value"
+                                        .Type = PointerTypeSymbol ""
+                                      ParameterSymbol "startIndex"
+                                        //
+                                          .ExplicitDefaultValue = InvalidOperationException
+                                            .Message = "Operation is not valid due to the current state of the object."
+                                          .Ordinal = 1
+                                          .NullableAnnotation = NotAnnotated
+                                          .CanBeReferencedByName = true
+                                          .IsDefinition = true
+                                          .MetadataToken = 134224514
+                                          .MetadataName = "startIndex"
+                                          .Name = "startIndex"
+                                          .Language = "C#"
+                                          .Kind = Parameter
+                                        .UnderlyingSymbol = PEParameterSymbol "startIndex"
+                                        .ContainingSymbol = MethodSymbol ".ctor"
+                                        .ContainingAssembly = NonSourceAssemblySymbol "System.Runtime"
+                                        .ContainingModule = ModuleSymbol "System.Runtime.dll"
+                                        .ContainingType = NonErrorNamedTypeSymbol "String"
+                                        .ContainingNamespace = NamespaceSymbol "System"
+                                        .OriginalDefinition = ParameterSymbol "startIndex"
+                                        .Type = NonErrorNamedTypeSymbol "Int32"
+                                      ParameterSymbol "length"
+                                        //
+                                          .ExplicitDefaultValue = InvalidOperationException
+                                            .Message = "Operation is not valid due to the current state of the object."
+                                          .Ordinal = 2
+                                          .NullableAnnotation = NotAnnotated
+                                          .CanBeReferencedByName = true
+                                          .IsDefinition = true
+                                          .MetadataToken = 134224515
+                                          .MetadataName = "length"
+                                          .Name = "length"
+                                          .Language = "C#"
+                                          .Kind = Parameter
+                                        .UnderlyingSymbol = PEParameterSymbol "length"
+                                        .ContainingSymbol = MethodSymbol ".ctor"
+                                        .ContainingAssembly = NonSourceAssemblySymbol "System.Runtime"
+                                        .ContainingModule = ModuleSymbol "System.Runtime.dll"
+                                        .ContainingType = NonErrorNamedTypeSymbol "String"
+                                        .ContainingNamespace = NamespaceSymbol "System"
+                                        .OriginalDefinition = ParameterSymbol "length"
+                                        .Type = NonErrorNamedTypeSymbol "Int32"
                                       ParameterSymbol "enc"
                                         //
                                           .ExplicitDefaultValue = InvalidOperationException
@@ -24351,7 +24351,7 @@
                                           .NullableAnnotation = NotAnnotated
                                           .CanBeReferencedByName = true
                                           .IsDefinition = true
-                                          .MetadataToken = 134224513
+                                          .MetadataToken = 134224516
                                           .MetadataName = "enc"
                                           .Name = "enc"
                                           .Language = "C#"
@@ -24417,7 +24417,7 @@
                                                 .MethodKind = Constructor
                                                 .DeclaredAccessibility = Protected
                                                 .IsDefinition = true
-                                                .MetadataToken = 100670125
+                                                .MetadataToken = 100670130
                                                 .MetadataName = ".ctor"
                                                 .Name = ".ctor"
                                                 .Language = "C#"
@@ -24440,7 +24440,7 @@
                                                 .MethodKind = Constructor
                                                 .DeclaredAccessibility = Protected
                                                 .IsDefinition = true
-                                                .MetadataToken = 100670126
+                                                .MetadataToken = 100670131
                                                 .MetadataName = ".ctor"
                                                 .Name = ".ctor"
                                                 .Language = "C#"
@@ -24461,7 +24461,7 @@
                                                     .NullableAnnotation = NotAnnotated
                                                     .CanBeReferencedByName = true
                                                     .IsDefinition = true
-                                                    .MetadataToken = 134228780
+                                                    .MetadataToken = 134228783
                                                     .MetadataName = "codePage"
                                                     .Name = "codePage"
                                                     .Language = "C#"
@@ -24484,7 +24484,7 @@
                                                 .MethodKind = Constructor
                                                 .DeclaredAccessibility = Protected
                                                 .IsDefinition = true
-                                                .MetadataToken = 100670127
+                                                .MetadataToken = 100670132
                                                 .MetadataName = ".ctor"
                                                 .Name = ".ctor"
                                                 .Language = "C#"
@@ -24505,7 +24505,7 @@
                                                     .NullableAnnotation = NotAnnotated
                                                     .CanBeReferencedByName = true
                                                     .IsDefinition = true
-                                                    .MetadataToken = 134228781
+                                                    .MetadataToken = 134228784
                                                     .MetadataName = "codePage"
                                                     .Name = "codePage"
                                                     .Language = "C#"
@@ -24526,7 +24526,7 @@
                                                     .NullableAnnotation = Annotated
                                                     .CanBeReferencedByName = true
                                                     .IsDefinition = true
-                                                    .MetadataToken = 134228782
+                                                    .MetadataToken = 134228785
                                                     .MetadataName = "encoderFallback"
                                                     .Name = "encoderFallback"
                                                     .Language = "C#"
@@ -24569,7 +24569,7 @@
                                                           .MethodKind = Constructor
                                                           .DeclaredAccessibility = Protected
                                                           .IsDefinition = true
-                                                          .MetadataToken = 100670091
+                                                          .MetadataToken = 100670096
                                                           .MetadataName = ".ctor"
                                                           .Name = ".ctor"
                                                           .Language = "C#"
@@ -24594,7 +24594,7 @@
                                                     .NullableAnnotation = Annotated
                                                     .CanBeReferencedByName = true
                                                     .IsDefinition = true
-                                                    .MetadataToken = 134228783
+                                                    .MetadataToken = 134228786
                                                     .MetadataName = "decoderFallback"
                                                     .Name = "decoderFallback"
                                                     .Language = "C#"
@@ -24637,7 +24637,7 @@
                                                           .MethodKind = Constructor
                                                           .DeclaredAccessibility = Protected
                                                           .IsDefinition = true
-                                                          .MetadataToken = 100670036
+                                                          .MetadataToken = 100670041
                                                           .MetadataName = ".ctor"
                                                           .Name = ".ctor"
                                                           .Language = "C#"
@@ -24781,7 +24781,7 @@
                                         .ContainingSymbol = PENamedTypeSymbolNonGeneric "MemberInfo"
                                         .ContainingType = PENamedTypeSymbolNonGeneric "MemberInfo"
                                         .Name = ".ctor"
-                                        .MetadataToken = 100671723
+                                        .MetadataToken = 100671730
                                         .DeclaredAccessibility = Protected
                                         .ReturnsVoid = true
                                         .ReturnTypeWithAnnotations = TypeWithAnnotations
@@ -24898,7 +24898,7 @@
                                         .MethodKind = Constructor
                                         .DeclaredAccessibility = Protected
                                         .IsDefinition = true
-                                        .MetadataToken = 100671723
+                                        .MetadataToken = 100671730
                                         .MetadataName = ".ctor"
                                         .Name = ".ctor"
                                         .Language = "C#"
@@ -24969,7 +24969,7 @@
                                       .MethodKind = Constructor
                                       .DeclaredAccessibility = Protected
                                       .IsDefinition = true
-                                      .MetadataToken = 100668204
+                                      .MetadataToken = 100668208
                                       .MetadataName = ".ctor"
                                       .Name = ".ctor"
                                       .Language = "C#"
@@ -42184,7 +42184,7 @@
                           .CanBeReferencedByName = true
                       .ContainingSymbol = MergedNamespaceSymbol ""
                         .Name = ""
-                        .ConstituentNamespaces = [309]
+                        .ConstituentNamespaces = [310]
                           SourceNamespaceSymbol ""
                           PEGlobalNamespaceSymbol ""
                             .ContainingSymbol = PEModuleSymbol "Microsoft.CSharp.dll"
@@ -48207,6 +48207,59 @@
                             .OriginalDefinition = PEGlobalNamespaceSymbol ""
                             .IsDefinition = true
                           PEGlobalNamespaceSymbol ""
+                            .ContainingSymbol = PEModuleSymbol "Microsoft.Extensions.Validation.Localization.dll"
+                              .AreLocalsZeroed = InvalidOperationException
+                                .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEModuleSymbol.cs' Line=171"
+                              .GlobalNamespace = PEGlobalNamespaceSymbol ""
+                              .Name = "Microsoft.Extensions.Validation.Localization.dll"
+                              .ContainingSymbol = PEAssemblySymbol "Microsoft.Extensions.Validation.Localization"
+                                .Identity = AssemblyIdentity
+                                  .Name = "Microsoft.Extensions.Validation.Localization"
+                                  .Version = Version
+                                    .Major = 11
+                                  .CultureName = ""
+                                  .Flags = PublicKey
+                                  .HasPublicKey = true
+                                  .PublicKey = [160]
+                                    0x0024000004800000940000000602000000240000525341310004000001000100f33a29044fa9d740c9b3213a93e57c84b472c84e0b8a0e1ae48e67a9f8f6de9d5f7f3d52ac23e48ac51801f1dc950abe901da34d2a9e3baadb141a17c77ef3c565dd5ee5054b91cf63bb3c6ab83f72ab3aafe93d0fc3c2348b764fafb0b1c0733de51459aeab46580384bf9d74c4e28164b7cde247f891ba07891c9d872ad2bb
+                                  .PublicKeyToken = [8]
+                                    0xadb9793829ddae60
+                                  .IsStrongName = true
+                                .Modules = [1]
+                                  PEModuleSymbol "Microsoft.Extensions.Validation.Localization.dll"
+                                .MetadataToken = 536870913
+                                .MightContainExtensions = true
+                                .GlobalNamespace = PEGlobalNamespaceSymbol ""
+                                .Name = "Microsoft.Extensions.Validation.Localization"
+                                .Kind = Assembly
+                                .MetadataName = "Microsoft.Extensions.Validation.Localization"
+                                .MetadataVisibility = InvalidOperationException
+                                  .Message = "Unexpected value 'NotApplicable' of type 'Microsoft.CodeAnalysis.Accessibility'"
+                                .OriginalDefinition = PEAssemblySymbol "Microsoft.Extensions.Validation.Localization"
+                                .IsDefinition = true
+                              .ContainingAssembly = PEAssemblySymbol "Microsoft.Extensions.Validation.Localization"
+                              .Kind = NetModule
+                              .MetadataName = "Microsoft.Extensions.Validation.Localization.dll"
+                              .MetadataVisibility = InvalidOperationException
+                                .Message = "Unexpected value 'NotApplicable' of type 'Microsoft.CodeAnalysis.Accessibility'"
+                              .OriginalDefinition = PEModuleSymbol "Microsoft.Extensions.Validation.Localization.dll"
+                              .IsDefinition = true
+                            .Name = ""
+                            .IsGlobalNamespace = true
+                            .ContainingAssembly = PEAssemblySymbol "Microsoft.Extensions.Validation.Localization"
+                            .NamespaceKind = Module
+                            .ConstituentNamespaces = [1]
+                              PEGlobalNamespaceSymbol ""
+                            .Kind = Namespace
+                            .IsImplicitlyDeclared = true
+                            .DeclaredAccessibility = Public
+                            .IsStatic = true
+                            .IsNamespace = true
+                            .MetadataName = ""
+                            .MetadataVisibility = Public
+                            .OriginalDefinition = PEGlobalNamespaceSymbol ""
+                            .IsDefinition = true
+                          PEGlobalNamespaceSymbol ""
                             .ContainingSymbol = PEModuleSymbol "Microsoft.Extensions.WebEncoders.dll"
                               .AreLocalsZeroed = InvalidOperationException
                                 .Message = "This program location is thought to be unreachable. File='/_/src/Compilers/CSharp/Portable/Symbols/Metadata/PE/PEModuleSymbol.cs' Line=171"
@@ -48407,7 +48460,7 @@
                         .Kind = Namespace
                       .UnderlyingSymbol = MergedNamespaceSymbol ""
                       .OriginalDefinition = NamespaceSymbol ""
-                      .ConstituentNamespaces = [309]
+                      .ConstituentNamespaces = [310]
                         NamespaceSymbol ""
                         NamespaceSymbol ""
                           //
@@ -61862,6 +61915,51 @@
                             .GlobalNamespace = NamespaceSymbol ""
                           .ContainingAssembly = NonSourceAssemblySymbol "Microsoft.Extensions.Validation"
                           .ContainingModule = ModuleSymbol "Microsoft.Extensions.Validation.dll"
+                          .OriginalDefinition = NamespaceSymbol ""
+                          .ConstituentNamespaces = [1]
+                            NamespaceSymbol ""
+                        NamespaceSymbol ""
+                          //
+                            .NamespaceKind = Module
+                            .IsGlobalNamespace = true
+                            .IsNamespace = true
+                            .DeclaredAccessibility = Public
+                            .IsImplicitlyDeclared = true
+                            .IsStatic = true
+                            .IsDefinition = true
+                            .MetadataName = ""
+                            .Name = ""
+                            .Language = "C#"
+                            .Kind = Namespace
+                          .UnderlyingSymbol = PEGlobalNamespaceSymbol ""
+                          .ContainingSymbol = ModuleSymbol "Microsoft.Extensions.Validation.Localization.dll"
+                            //
+                              .IsDefinition = true
+                              .MetadataName = "Microsoft.Extensions.Validation.Localization.dll"
+                              .Name = "Microsoft.Extensions.Validation.Localization.dll"
+                              .Language = "C#"
+                              .Kind = NetModule
+                            .UnderlyingSymbol = PEModuleSymbol "Microsoft.Extensions.Validation.Localization.dll"
+                            .ContainingSymbol = NonSourceAssemblySymbol "Microsoft.Extensions.Validation.Localization"
+                              //
+                                .MightContainExtensionMethods = true
+                                .Modules = [1]
+                                  ModuleSymbol "Microsoft.Extensions.Validation.Localization.dll"
+                                .Identity = AssemblyIdentity
+                                .IsDefinition = true
+                                .MetadataToken = 536870913
+                                .MetadataName = "Microsoft.Extensions.Validation.Localization"
+                                .Name = "Microsoft.Extensions.Validation.Localization"
+                                .Language = "C#"
+                                .Kind = Assembly
+                              .UnderlyingSymbol = PEAssemblySymbol "Microsoft.Extensions.Validation.Localization"
+                              .OriginalDefinition = NonSourceAssemblySymbol "Microsoft.Extensions.Validation.Localization"
+                              .GlobalNamespace = NamespaceSymbol ""
+                            .ContainingAssembly = NonSourceAssemblySymbol "Microsoft.Extensions.Validation.Localization"
+                            .OriginalDefinition = ModuleSymbol "Microsoft.Extensions.Validation.Localization.dll"
+                            .GlobalNamespace = NamespaceSymbol ""
+                          .ContainingAssembly = NonSourceAssemblySymbol "Microsoft.Extensions.Validation.Localization"
+                          .ContainingModule = ModuleSymbol "Microsoft.Extensions.Validation.Localization.dll"
                           .OriginalDefinition = NamespaceSymbol ""
                           .ConstituentNamespaces = [1]
                             NamespaceSymbol ""
