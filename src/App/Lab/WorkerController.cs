@@ -431,7 +431,9 @@ internal sealed class WorkerController : IAsyncDisposable
                 null => throw new WorkerException(failure),
                 _ => fallback(failure.FullString),
             },
-            _ => throw new InvalidOperationException($"Unexpected message type: {incoming}"),
+            WorkerOutputMessage.Ready
+            or WorkerOutputMessage.Empty
+            => throw new InvalidOperationException($"Unexpected message type: {incoming}"),
         };
     }
 

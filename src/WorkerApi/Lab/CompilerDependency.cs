@@ -152,7 +152,7 @@ public sealed record CompilerInfo(
 [JsonDerivedType(typeof(Build), nameof(Build))]
 [JsonDerivedType(typeof(PullRequest), nameof(PullRequest))]
 [JsonDerivedType(typeof(Branch), nameof(Branch))]
-public abstract record CompilerVersionSpecifier
+public closed record CompilerVersionSpecifier
 {
     /// <remarks>
     /// Order matters here. Only the first specifier

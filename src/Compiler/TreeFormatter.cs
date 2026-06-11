@@ -183,6 +183,12 @@ public sealed class TreeFormatter
                 // .GetImplicitInterfaceImplementations()
                 .. PropertyLike.Create(options, obj is ISymbol s && s.CanHaveImplicitInterfaceImplementations() ? s : null, nameof(CodeAnalysisUtil.GetImplicitInterfaceImplementations), (symbol) => symbol.GetImplicitInterfaceImplementations()),
 
+                // .GetMembers() on source INamespaceOrTypeSymbol
+                .. PropertyLike.Create(options, obj is INamespaceOrTypeSymbol t && t.DeclaringSyntaxReferences.Length != 0 ? t : null, nameof(INamespaceOrTypeSymbol.GetMembers), (type) => type.GetMembers()),
+
+                // .GetMembers() on source NamespaceOrTypeSymbol
+                .. PropertyLike.Create(options, RoslynAccessors.TryGetSourceInternalSymbolGetMembers(obj), nameof(INamespaceOrTypeSymbol.GetMembers), static f => f()),
+
                 // .GetInterceptableLocation()
                 .. PropertyLike.Create(options, obj as InvocationExpressionSyntax, nameof(Microsoft.CodeAnalysis.CSharp.CSharpExtensions.GetInterceptableLocation), (node) => model.GetInterceptableLocation(node)),
 
@@ -313,6 +319,7 @@ public sealed class TreeFormatter
                         property.Type == typeof(ImmutableArray<AssemblyIdentity>) ||
                         property.Type == typeof(ImmutableArray<IAssemblySymbol>) ||
                         property.Type == RoslynAccessors.AssemblySymbolArrayType ||
+                        property.Name == nameof(INamespaceSymbol.ConstituentNamespaces) ||
                         // The following basically contain the parent recursively or duplicate children displayed elsewhere.
                         (isSyntaxTrivia && property.Name is nameof(SyntaxTrivia.Token)) ||
                         (property.Name is nameof(SyntaxNode.Parent) or nameof(SyntaxNode.ParentTrivia)) ||

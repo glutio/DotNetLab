@@ -1,0 +1,42 @@
+<!-- Workaround for https://github.com/dotnet/runtime/issues/129280. -->
+<Project>
+  <PropertyGroup>
+    <_BlazorWasmIncrementalBuildBootExtensionJsonPath>$(IntermediateOutputPath)blazor.build.boot-extension.json</_BlazorWasmIncrementalBuildBootExtensionJsonPath>
+    <_BlazorWasmIncrementalPublishBootExtensionJsonPath>$(IntermediateOutputPath)blazor.publish.boot-extension.json</_BlazorWasmIncrementalPublishBootExtensionJsonPath>
+  </PropertyGroup>
+
+  <Target Name="_GenerateBuildBlazorBootExtensionJsonFile"
+    Inputs="$(MSBuildProjectFullPath);$(MSBuildThisFileFullPath);$(_BlazorWebAssemblySdkTasksAssembly)"
+    Outputs="$(_BlazorWasmIncrementalBuildBootExtensionJsonPath)">
+
+    <GenerateBlazorBootExtensionJson OutputPath="$(_BlazorWasmIncrementalBuildBootExtensionJsonPath)" />
+    <Touch Files="$(_BlazorWasmIncrementalBuildBootExtensionJsonPath)" />
+  </Target>
+
+  <Target Name="GenerateBuildBlazorBootExtensionJson"
+    DependsOnTargets="_GenerateBuildBlazorBootExtensionJsonFile">
+
+    <ItemGroup>
+      <FileWrites Include="$(_BlazorWasmIncrementalBuildBootExtensionJsonPath)" />
+      <WasmBootConfigExtension Include="$(_BlazorWasmIncrementalBuildBootExtensionJsonPath)" Key="blazor" />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="_GeneratePublishBlazorBootExtensionJsonFile"
+    Inputs="$(MSBuildProjectFullPath);$(MSBuildThisFileFullPath);$(_BlazorWebAssemblySdkTasksAssembly)"
+    Outputs="$(_BlazorWasmIncrementalPublishBootExtensionJsonPath)">
+
+    <GenerateBlazorBootExtensionJson OutputPath="$(_BlazorWasmIncrementalPublishBootExtensionJsonPath)" />
+    <Touch Files="$(_BlazorWasmIncrementalPublishBootExtensionJsonPath)" />
+  </Target>
+
+  <Target Name="GeneratePublishBlazorBootExtensionJson"
+    DependsOnTargets="_GeneratePublishBlazorBootExtensionJsonFile">
+
+    <ItemGroup>
+      <FileWrites Include="$(_BlazorWasmIncrementalPublishBootExtensionJsonPath)" />
+      <WasmBootConfigExtension Remove="@(WasmBootConfigExtension)" Condition="'%(Key)' == 'blazor'" />
+      <WasmBootConfigExtension Include="$(_BlazorWasmIncrementalPublishBootExtensionJsonPath)" Key="blazor" />
+    </ItemGroup>
+  </Target>
+</Project>
