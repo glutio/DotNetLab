@@ -232,8 +232,6 @@
                             .IsGlobalNamespace = true
                             .ContainingAssembly = PEAssemblySymbol "System.Runtime"
                             .NamespaceKind = Module
-                            .ConstituentNamespaces = [1]
-                              PEGlobalNamespaceSymbol ""
                             .Kind = Namespace
                             .IsImplicitlyDeclared = true
                             .DeclaredAccessibility = Public
@@ -246,8 +244,6 @@
                           .Name = "System"
                           .ContainingAssembly = PEAssemblySymbol "System.Runtime"
                           .NamespaceKind = Module
-                          .ConstituentNamespaces = [1]
-                            PENestedNamespaceSymbol "System"
                           .Kind = Namespace
                           .DeclaredAccessibility = Public
                           .IsStatic = true

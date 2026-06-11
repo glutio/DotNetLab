@@ -319,6 +319,7 @@ public sealed class TreeFormatter
                         property.Type == typeof(ImmutableArray<AssemblyIdentity>) ||
                         property.Type == typeof(ImmutableArray<IAssemblySymbol>) ||
                         property.Type == RoslynAccessors.AssemblySymbolArrayType ||
+                        property.Name == nameof(INamespaceSymbol.ConstituentNamespaces) ||
                         // The following basically contain the parent recursively or duplicate children displayed elsewhere.
                         (isSyntaxTrivia && property.Name is nameof(SyntaxTrivia.Token)) ||
                         (property.Name is nameof(SyntaxNode.Parent) or nameof(SyntaxNode.ParentTrivia)) ||
