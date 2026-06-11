@@ -14,6 +14,7 @@
     <Deterministic>true</Deterministic>
     <ArtifactsPath Condition="'$(FileBasedProgram)' != 'true'">$(MSBuildThisFileDirectory)artifacts</ArtifactsPath>
     <SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
+    <CustomAfterBlazorWebAssemblySdkTargets>$(MSBuildThisFileDirectory)eng\BlazorWasmIncrementalWorkaround.targets</CustomAfterBlazorWebAssemblySdkTargets>
 
     <!--
       Needed to get diagnostics inside XML doc comments.
