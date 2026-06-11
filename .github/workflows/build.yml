@@ -33,6 +33,10 @@ jobs:
         if: ${{ always() && steps.build.outcome == 'success' }}
         run: dotnet test --no-build --report-trx
 
+      - name: Check BOM changes
+        if: always()
+        run: dnx bom check pr
+
       - name: Upload Windows UnitTests binaries
         if: ${{ matrix.os == 'windows-latest' && steps.build.outcome == 'success' }}
         uses: actions/upload-artifact@v6
