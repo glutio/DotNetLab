@@ -184,6 +184,18 @@ public static class RoslynAccessors
         return false;
     }
 
+    public static Func<object>? TryGetSourceInternalSymbolGetMembers(object o)
+    {
+        if (o is NamespaceOrTypeSymbol s && s.DeclaringCompilation != null)
+        {
+            return s.GetMembersAsObject;
+        }
+
+        return null;
+    }
+
+    internal static object GetMembersAsObject(this NamespaceOrTypeSymbol s) => s.GetMembers();
+
     public static bool TryGetUnderlyingSymbol(object o, [NotNullWhen(returnValue: true)] out object? symbol)
     {
         if (o is Microsoft.CodeAnalysis.CSharp.Symbols.PublicModel.Symbol publicSymbol)

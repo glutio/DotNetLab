@@ -183,6 +183,12 @@ public sealed class TreeFormatter
                 // .GetImplicitInterfaceImplementations()
                 .. PropertyLike.Create(options, obj is ISymbol s && s.CanHaveImplicitInterfaceImplementations() ? s : null, nameof(CodeAnalysisUtil.GetImplicitInterfaceImplementations), (symbol) => symbol.GetImplicitInterfaceImplementations()),
 
+                // .GetMembers() on source INamespaceOrTypeSymbol
+                .. PropertyLike.Create(options, obj is INamespaceOrTypeSymbol t && t.DeclaringSyntaxReferences.Length != 0 ? t : null, nameof(INamespaceOrTypeSymbol.GetMembers), (type) => type.GetMembers()),
+
+                // .GetMembers() on source NamespaceOrTypeSymbol
+                .. PropertyLike.Create(options, RoslynAccessors.TryGetSourceInternalSymbolGetMembers(obj), nameof(INamespaceOrTypeSymbol.GetMembers), static f => f()),
+
                 // .GetInterceptableLocation()
                 .. PropertyLike.Create(options, obj as InvocationExpressionSyntax, nameof(Microsoft.CodeAnalysis.CSharp.CSharpExtensions.GetInterceptableLocation), (node) => model.GetInterceptableLocation(node)),
 
