@@ -11,4 +11,6 @@
     <ProjectReference Include="..\Worker\Worker.csproj" />
   </ItemGroup>
 
+  <Import Project="..\..\eng\PatchCoreLib.targets" />
+
 </Project>
