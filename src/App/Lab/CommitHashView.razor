@@ -1,4 +1,4 @@
-@implements IDisposable
+@implements IAsyncDisposable
 @inject ILocalStorageService LocalStorage
 @inject WorkerController Worker
 @inject HttpClient Client
@@ -122,8 +122,10 @@
         }
     }
 
-    void IDisposable.Dispose()
+    async ValueTask IAsyncDisposable.DisposeAsync()
     {
+        // Wait for OnParametersSetAsync to complete before disposing the lock it's using.
+        (await loading.LockAsync()).Dispose();
         loading.Dispose();
     }
 
