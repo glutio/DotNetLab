@@ -15,14 +15,13 @@
 
   <Target Name="PatchCoreLibFile"
           DependsOnTargets="_CollectCoreLibCandidate"
+          Condition="'@(ReferenceCopyLocalPaths->WithMetadataValue('FileName','System.Private.CoreLib')->WithMetadataValue('Extension','.dll'))' != ''"
           Inputs="@(_CoreLibCandidate);$(MSBuildThisFileDirectory)patch-corelib.cs"
           Outputs="$(_PatchedCoreLibPath)">
 
-    <MakeDir Directories="$(_PatchedCoreLibDir)"
-             Condition="'@(_CoreLibCandidate)' != ''" />
+    <MakeDir Directories="$(_PatchedCoreLibDir)" />
 
-    <Exec Condition="'@(_CoreLibCandidate)' != ''"
-          Command="&quot;$(DOTNET_HOST_PATH)&quot; run --file &quot;$(MSBuildThisFileDirectory)patch-corelib.cs&quot; &quot;@(_CoreLibCandidate)&quot; &quot;$(_PatchedCoreLibPath)&quot;" />
+    <Exec Command="&quot;$(DOTNET_HOST_PATH)&quot; run --file &quot;$(MSBuildThisFileDirectory)patch-corelib.cs&quot; &quot;@(_CoreLibCandidate)&quot; &quot;$(_PatchedCoreLibPath)&quot;" />
   </Target>
 
   <Target Name="UsePatchedCoreLib"
