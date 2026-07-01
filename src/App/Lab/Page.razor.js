@@ -97,31 +97,45 @@ export function restoreMonacoEditorViewState(editorId, state) {
     blazorMonaco.editor.getEditor(editorId)?.restoreViewState(state);
 }
 
-export function disableVirtualKeyboard(editorId) {
+const virtualKeyboardObservers = new Map();
+
+export function setVirtualKeyboardDisabled(editorId, disabled) {
+    const existing = virtualKeyboardObservers.get(editorId);
+    if (existing) {
+        existing.disconnect();
+        virtualKeyboardObservers.delete(editorId);
+    }
+
     const editor = blazorMonaco.editor.getEditor(editorId);
     const domNode = editor?.getDomNode();
     if (!domNode) {
-        console.warn(`disableVirtualKeyboard: could not find dom node for editor ${editorId}`);
+        console.warn(`setVirtualKeyboardDisabled: could not find dom node for editor ${editorId}`);
         return;
     }
 
-    const apply = () => {
-        const target = domNode.querySelector('.native-edit-context');
-        if (target && target.getAttribute('inputmode') !== 'none') {
-            target.setAttribute('inputmode', 'none');
-        }
-    };
+    const selector = '.native-edit-context';
+    if (disabled) {
+        const apply = () => {
+            const target = domNode.querySelector(selector);
+            if (target && target.getAttribute('inputmode') !== 'none') {
+                target.setAttribute('inputmode', 'none');
+            }
+        };
 
-    apply();
+        apply();
 
-    const observer = new MutationObserver(apply);
-    observer.observe(domNode, {
-        childList: true,
-        subtree: true,
-        attributes: true,
-        attributeFilter: ['inputmode'],
-    });
-    return observer;
+        const observer = new MutationObserver(apply);
+        observer.observe(domNode, {
+            childList: true,
+            subtree: true,
+            attributes: true,
+            attributeFilter: ['inputmode'],
+        });
+        virtualKeyboardObservers.set(editorId, observer);
+    } else {
+        const target = domNode.querySelector(selector);
+        target?.removeAttribute('inputmode');
+    }
 }
 
 export function copyUrlToClipboard(urlPrefix) {

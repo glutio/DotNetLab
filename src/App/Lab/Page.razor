@@ -112,6 +112,13 @@
         }
 
         <div>
+            @* Keyboard button *@
+            <FluentButton OnClick="ToggleInputVirtualKeyboardAsync"
+                          Appearance="@(disableInputVirtualKeyboard ? Appearance.Accent : Appearance.Neutral)"
+                          Title="@(disableInputVirtualKeyboard ? "Enable the on-screen keyboard for the input editor" : "Disable the on-screen keyboard for the input editor")">
+                <FluentIcon Value="@(new Icons.Regular.Size20.Keyboard())" Color="Color.Neutral" />
+            </FluentButton>
+
             @* Orientation button *@
             @if (orientation == Orientation.Horizontal)
             {
@@ -387,6 +394,7 @@
     private bool useVim;
     private bool enableMemoryUsageView;
     private bool displayHintSquiggles;
+    private bool disableInputVirtualKeyboard;
     private bool showRenderedHtml;
     private Orientation orientation;
     private string? workerError;
@@ -534,6 +542,7 @@
         Worker.Failed += OnWorkerFailed;
 
         displayHintSquiggles = await LocalStorage.TryLoadOptionAsync(nameof(displayHintSquiggles), defaultValue: false);
+        disableInputVirtualKeyboard = await LocalStorage.TryLoadOptionAsync(nameof(disableInputVirtualKeyboard), defaultValue: false);
     }
 
     private async Task EditorInitAsync()
@@ -565,6 +574,11 @@
 
         await LoadStateFromUrlAsync();
 
+        if (disableInputVirtualKeyboard)
+        {
+            await module.InvokeVoidAsync("setVirtualKeyboardDisabled", inputEditor.Id, true);
+        }
+
         if (await HostEnvironment.HasHardwareKeyboardAsync())
         {
             await inputEditor.Focus();
@@ -590,7 +604,15 @@
     private async Task OutputEditorInitAsync()
     {
         await editorInitialized.Task;
-        await module.InvokeVoidAsync("disableVirtualKeyboard", outputEditor.Id);
+        await module.InvokeVoidAsync("setVirtualKeyboardDisabled", outputEditor.Id, true);
+    }
+
+    private async Task ToggleInputVirtualKeyboardAsync()
+    {
+        disableInputVirtualKeyboard = !disableInputVirtualKeyboard;
+        StateHasChanged();
+        await LocalStorage.SetItemAsync(nameof(disableInputVirtualKeyboard), disableInputVirtualKeyboard);
+        await module.InvokeVoidAsync("setVirtualKeyboardDisabled", inputEditor.Id, disableInputVirtualKeyboard);
     }
 
     async ValueTask IAsyncDisposable.DisposeAsync()
