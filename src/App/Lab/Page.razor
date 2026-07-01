@@ -342,6 +342,7 @@
                 }
                 <div style="@style">
                     <StandaloneCodeEditor @ref="outputEditor" Id="output-editor"
+                                          OnDidInit="OutputEditorInitAsync"
                                           ConstructionOptions="OutputConstructionOptions" />
                 </div>
             </div>
@@ -584,6 +585,12 @@
             // users can always store their snippet separately by compiling manually).
             await CompileAsync(storeInCache: false);
         }
+    }
+
+    private async Task OutputEditorInitAsync()
+    {
+        await editorInitialized.Task;
+        await module.InvokeVoidAsync("disableVirtualKeyboard", outputEditor.Id);
     }
 
     async ValueTask IAsyncDisposable.DisposeAsync()
