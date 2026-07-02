@@ -349,7 +349,6 @@
                 }
                 <div style="@style">
                     <StandaloneCodeEditor @ref="outputEditor" Id="output-editor"
-                                          OnDidInit="OutputEditorInitAsync"
                                           ConstructionOptions="OutputConstructionOptions" />
                 </div>
             </div>
@@ -543,6 +542,14 @@
 
         displayHintSquiggles = await LocalStorage.TryLoadOptionAsync(nameof(displayHintSquiggles), defaultValue: false);
         disableInputVirtualKeyboard = await LocalStorage.TryLoadOptionAsync(nameof(disableInputVirtualKeyboard), defaultValue: false);
+
+        module = await JSRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/DotNetLab.App/Lab/Page.razor.js");
+        await module.InvokeVoidAsync("setVirtualKeyboardDisabled", outputEditor.Id, true);
+
+        if (disableInputVirtualKeyboard)
+        {
+            await module.InvokeVoidAsync("setVirtualKeyboardDisabled", inputEditor.Id, true);
+        }
     }
 
     private async Task EditorInitAsync()
@@ -563,7 +570,6 @@
         await RegisterWordWrapActionAsync();
         await RegisterFormatActionAsync();
         await RegisterSquigglyHintActionAsync();
-        module = await JSRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/DotNetLab.App/Lab/Page.razor.js");
         dotNetObjectReference = DotNetObjectReference.Create(this);
         unregisterEventListeners = await module.InvokeAsync<Action>("registerEventListeners", dotNetObjectReference);
 
@@ -573,11 +579,6 @@
         await settings.InitializeAsync();
 
         await LoadStateFromUrlAsync();
-
-        if (disableInputVirtualKeyboard)
-        {
-            await module.InvokeVoidAsync("setVirtualKeyboardDisabled", inputEditor.Id, true);
-        }
 
         if (await HostEnvironment.HasHardwareKeyboardAsync())
         {
@@ -599,12 +600,6 @@
             // users can always store their snippet separately by compiling manually).
             await CompileAsync(storeInCache: false);
         }
-    }
-
-    private async Task OutputEditorInitAsync()
-    {
-        await editorInitialized.Task;
-        await module.InvokeVoidAsync("setVirtualKeyboardDisabled", outputEditor.Id, true);
     }
 
     private async Task ToggleInputVirtualKeyboardAsync()
