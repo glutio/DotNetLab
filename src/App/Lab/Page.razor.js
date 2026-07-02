@@ -97,50 +97,70 @@ export function restoreMonacoEditorViewState(editorId, state) {
     blazorMonaco.editor.getEditor(editorId)?.restoreViewState(state);
 }
 
+/** @type {Map<string, MutationObserver[]>} */
 const virtualKeyboardObservers = new Map();
 
 export function setVirtualKeyboardDisabled(editorId, disabled) {
-    const existing = virtualKeyboardObservers.get(editorId);
-    if (existing) {
-        existing.disconnect();
-        virtualKeyboardObservers.delete(editorId);
-    }
+    virtualKeyboardObservers.get(editorId)?.forEach((o) => o.disconnect());
+    virtualKeyboardObservers.delete(editorId);
 
-    const editor = blazorMonaco.editor.getEditor(editorId);
-    const domNode = editor?.getDomNode();
-    if (!domNode) {
-        console.warn(`setVirtualKeyboardDisabled: could not find dom node for editor ${editorId}`);
+    const root = document.getElementById(editorId);
+    if (!root) {
+        console.warn(`setVirtualKeyboardDisabled: could not find editor container #${editorId}`);
         return;
     }
 
-    const selector = '.native-edit-context';
-    if (disabled) {
-        const apply = () => {
-            const target = domNode.querySelector(selector);
-            if (target && target.getAttribute('inputmode') !== 'none') {
-                target.setAttribute('inputmode', 'none');
-            }
-        };
-
-        apply();
-
-        const observer = new MutationObserver(apply);
-        observer.observe(domNode, {
-            childList: true,
-            subtree: true,
-            attributes: true,
-            attributeFilter: ['inputmode'],
-        });
-        virtualKeyboardObservers.set(editorId, observer);
-    } else {
-        const target = domNode.querySelector(selector);
-        target?.removeAttribute('inputmode');
+    if (!disabled) {
+        root.querySelector('.native-edit-context')?.removeAttribute('inputmode');
+        return;
     }
+
+    const observers = [];
+    virtualKeyboardObservers.set(editorId, observers);
+
+    let current = null;
+    let currentAttrObserver = null;
+
+    const ensureInputMode = (el) => {
+        if (el.getAttribute('inputmode') !== 'none') {
+            el.setAttribute('inputmode', 'none');
+        }
+    };
+
+    const attach = () => {
+        const el = root.querySelector('.native-edit-context');
+
+        // Skip early if the element is missing or unchanged.
+        if (!el || el === current) {
+            return;
+        }
+        current = el;
+
+        // Stop watching the previous (now replaced) element.
+        if (currentAttrObserver) {
+            currentAttrObserver.disconnect();
+            observers.splice(observers.indexOf(currentAttrObserver), 1);
+        }
+
+        ensureInputMode(el);
+
+        // Re-apply if Monaco clears `inputmode` on this element (cheap: one attribute).
+        currentAttrObserver = new MutationObserver(() => ensureInputMode(el));
+        currentAttrObserver.observe(el, { attributes: true, attributeFilter: ['inputmode'] });
+        observers.push(currentAttrObserver);
+    };
+
+    // Watch only for the input element being (re)created.
+    const rootObserver = new MutationObserver(attach);
+    rootObserver.observe(root, { childList: true, subtree: true });
+    observers.push(rootObserver);
+
+    attach();
 }
 
 export function dispose() {
-    for (const observer of virtualKeyboardObservers.values()) {
-        observer.disconnect();
+    for (const observers of virtualKeyboardObservers.values()) {
+        observers.forEach((o) => o.disconnect());
     }
 
     virtualKeyboardObservers.clear();
