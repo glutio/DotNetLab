@@ -428,6 +428,21 @@ public sealed class TreeFormatter
                 return (TextSpan)type.GetProperty(nameof(SyntaxList<>.Span))!.GetValue(obj)!;
             }
 
+            if (RoslynAccessors.TryGetBoundNodeSyntax(obj, out var syntax))
+            {
+                return syntax.Span;
+            }
+
+            if (RoslynAccessors.TryGetInternalSymbolSyntax(obj, out syntax))
+            {
+                return syntax.Span;
+            }
+
+            if (obj is ISymbol { DeclaringSyntaxReferences: [{ } syntaxRef, ..] })
+            {
+                return syntaxRef.GetSyntax().Span;
+            }
+
             return default;
         }
 

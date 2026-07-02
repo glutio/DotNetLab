@@ -20,7 +20,10 @@
                 }
             },
             "isBackground": true,
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "group": {
+                "kind": "build"
+            }
         },
         {
             "label": "wasm: watch",
@@ -41,7 +44,11 @@
                 }
             },
             "isBackground": true,
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         }
     ]
 }

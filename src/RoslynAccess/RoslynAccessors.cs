@@ -148,6 +148,18 @@ public static class RoslynAccessors
             .Select(f => (string)f.GetRawConstantValue()!);
     }
 
+    public static bool TryGetBoundNodeSyntax(object o, [NotNullWhen(returnValue: true)] out SyntaxNode? syntax)
+    {
+        if (o is BoundNode boundNode)
+        {
+            syntax = boundNode.Syntax;
+            return true;
+        }
+
+        syntax = null;
+        return false;
+    }
+
     public static bool TryGetInternalSymbolEquality(object? x, object? y, out bool areEqual)
     {
         if (x is ISymbolInternal xSymbol && y is ISymbolInternal ySymbol)
@@ -181,6 +193,18 @@ public static class RoslynAccessors
         }
 
         name = null;
+        return false;
+    }
+
+    public static bool TryGetInternalSymbolSyntax(object o, [NotNullWhen(returnValue: true)] out SyntaxNode? syntax)
+    {
+        if (o is Symbol { DeclaringSyntaxReferences: [{ } syntaxRef, ..] })
+        {
+            syntax = syntaxRef.GetSyntax();
+            return true;
+        }
+
+        syntax = null;
         return false;
     }
 

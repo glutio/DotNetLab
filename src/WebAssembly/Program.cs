@@ -36,7 +36,7 @@ file sealed class WebAssemblyAppHostEnvironment(IWebAssemblyHostEnvironment webA
 
     public DesktopAppLink DesktopAppLink { get; } = new()
     {
-        Url = "https://github.com/jjonescz/DotNetLab/blob/main/docs/native-apps.md",
+        Url = App.NativeAppsLink,
         Title = "Native apps available",
         Description = "Faster version of .NET Lab running on full .NET.",
     };
@@ -76,7 +76,7 @@ file sealed class WebAssemblyCompilerOutputPlugin : ICompilerOutputPlugin
             language = null;
             return $"""
                 JIT disassembler is not available on this platform.
-                Please use the desktop app instead ({App.DesktopAppLink}).
+                Please use a native app instead ({App.NativeAppsLink}).
 
                 """;
         }

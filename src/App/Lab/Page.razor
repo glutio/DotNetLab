@@ -112,6 +112,13 @@
         }
 
         <div>
+            @* Keyboard button *@
+            <FluentButton OnClick="ToggleInputVirtualKeyboardAsync"
+                          Appearance="@(disableInputVirtualKeyboard ? Appearance.Accent : Appearance.Neutral)"
+                          Title="@(disableInputVirtualKeyboard ? "Enable the on-screen keyboard for the input editor" : "Disable the on-screen keyboard for the input editor")">
+                <FluentIcon Value="@(new Icons.Regular.Size20.Keyboard())" Color="Color.Neutral" />
+            </FluentButton>
+
             @* Orientation button *@
             @if (orientation == Orientation.Horizontal)
             {
@@ -321,7 +328,7 @@
             {
                 <FluentMessageBar Intent="MessageIntent.Info" AllowDismiss="false">
                     JIT disassembler is not available on this platform
-                    (it's only available in the <a href="@App.DesktopAppLink" target="_blank" rel="noopener noreferrer">desktop app</a>).<br/>
+                    (it's only available in a <a href="@App.NativeAppsLink" target="_blank" rel="noopener noreferrer">native app</a>).<br/>
                     Displaying cached output@(compiled?.CacheInfo?.Timestamp is { } cacheTimestamp ? $" ({FormatCacheTimestamp(cacheTimestamp)})" : "").
                 </FluentMessageBar>
             }
@@ -386,6 +393,7 @@
     private bool useVim;
     private bool enableMemoryUsageView;
     private bool displayHintSquiggles;
+    private bool disableInputVirtualKeyboard;
     private bool showRenderedHtml;
     private Orientation orientation;
     private string? workerError;
@@ -533,6 +541,15 @@
         Worker.Failed += OnWorkerFailed;
 
         displayHintSquiggles = await LocalStorage.TryLoadOptionAsync(nameof(displayHintSquiggles), defaultValue: false);
+        disableInputVirtualKeyboard = await LocalStorage.TryLoadOptionAsync(nameof(disableInputVirtualKeyboard), defaultValue: false);
+
+        module = await JSRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/DotNetLab.App/Lab/Page.razor.js");
+        await module.InvokeVoidAsync("setVirtualKeyboardDisabled", outputEditor.Id, true);
+
+        if (disableInputVirtualKeyboard)
+        {
+            await module.InvokeVoidAsync("setVirtualKeyboardDisabled", inputEditor.Id, true);
+        }
     }
 
     private async Task EditorInitAsync()
@@ -553,7 +570,6 @@
         await RegisterWordWrapActionAsync();
         await RegisterFormatActionAsync();
         await RegisterSquigglyHintActionAsync();
-        module = await JSRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/DotNetLab.App/Lab/Page.razor.js");
         dotNetObjectReference = DotNetObjectReference.Create(this);
         unregisterEventListeners = await module.InvokeAsync<Action>("registerEventListeners", dotNetObjectReference);
 
@@ -586,6 +602,14 @@
         }
     }
 
+    private async Task ToggleInputVirtualKeyboardAsync()
+    {
+        disableInputVirtualKeyboard = !disableInputVirtualKeyboard;
+        StateHasChanged();
+        await LocalStorage.SetItemAsync(nameof(disableInputVirtualKeyboard), disableInputVirtualKeyboard);
+        await module.InvokeVoidAsync("setVirtualKeyboardDisabled", inputEditor.Id, disableInputVirtualKeyboard);
+    }
+
     async ValueTask IAsyncDisposable.DisposeAsync()
     {
         NavigationManager.LocationChanged -= OnLocationChanged;
@@ -611,6 +635,7 @@
         {
             try
             {
+                await module.InvokeVoidAsync("dispose");
                 await module.DisposeAsync();
             }
             catch (JSDisconnectedException) { }

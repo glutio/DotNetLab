@@ -8,7 +8,7 @@ namespace DotNetLab;
 public partial class App
 {
     public const string Domain = "lab.razor.fyi";
-    public const string DesktopAppLink = "https://apps.microsoft.com/detail/9PCPMM329DZT";
+    public const string NativeAppsLink = "https://github.com/jjonescz/DotNetLab/blob/main/docs/native-apps.md";
 
     public static void RegisterRootComponents(Action<Type, string> adder)
     {
