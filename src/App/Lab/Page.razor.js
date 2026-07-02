@@ -138,6 +138,14 @@ export function setVirtualKeyboardDisabled(editorId, disabled) {
     }
 }
 
+export function dispose() {
+    for (const observer of virtualKeyboardObservers.values()) {
+        observer.disconnect();
+    }
+
+    virtualKeyboardObservers.clear();
+}
+
 export function copyUrlToClipboard(urlPrefix) {
     navigator.clipboard.writeText(urlPrefix ? `${urlPrefix}${location.hash}` : location.href);
 }
