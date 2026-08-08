@@ -45,6 +45,7 @@
 
   <PropertyGroup>
     <DotNetLabUseCachingCompiler Condition="'$(DotNetLabUseCachingCompiler)' == '' and '$(CI)' != ''">false</DotNetLabUseCachingCompiler>
+    <DotNetLabUseCachingCompiler Condition="'$(DotNetLabUseCachingCompiler)' == '' and '$(DotNetLabWatchBuild)' == 'true'">false</DotNetLabUseCachingCompiler>
     <DotNetLabUseCachingCompiler Condition="'$(DotNetLabUseCachingCompiler)' == ''">true</DotNetLabUseCachingCompiler>
   </PropertyGroup>
   <PropertyGroup Condition="'$(DotNetLabUseCachingCompiler)' == 'true'">
@@ -54,6 +55,9 @@
     <PathMap>$(MSBuildThisFileDirectory)=/_/</PathMap>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <DotNetLabUseCompilerToolset Condition="'$(DotNetLabUseCompilerToolset)' == '' and '$(DotNetLabWatchBuild)' == 'true'">false</DotNetLabUseCompilerToolset>
+  </PropertyGroup>
   <ItemGroup Condition="'$(DotNetLabUseCompilerToolset)' != 'false'">
     <PackageReference Include="Microsoft.Net.Compilers.Toolset">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
