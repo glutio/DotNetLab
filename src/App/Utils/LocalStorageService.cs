@@ -102,10 +102,10 @@ internal sealed class LocalStorageService(
                 return static (ref _) => { };
             }
 
-            TPropertyType value;
+            TPropertyType? value;
             try
             {
-                value = JsonSerializer.Deserialize<TPropertyType>(json, jsonOptions)!;  
+                value = JsonSerializer.Deserialize<TPropertyType>(json, jsonOptions);  
             }
             catch (Exception ex)
             {
@@ -113,8 +113,14 @@ internal sealed class LocalStorageService(
                 return static (ref _) => { };
             }
 
+            if (value is null && propertyShape.IsSetterNonNullable)
+            {
+                logger.LogWarning("Ignoring null value for non-nullable property {PropertyName} during deserialization", propertyShape.Name);
+                return static (ref _) => { };
+            }
+
             var setter = propertyShape.GetSetter();
-            return (ref obj) => setter(ref obj, value);
+            return (ref obj) => setter(ref obj, value!);
         }
     }
 
