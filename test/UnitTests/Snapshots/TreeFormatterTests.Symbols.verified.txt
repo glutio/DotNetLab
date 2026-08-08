@@ -18858,6 +18858,7 @@
                                       .ReturnsVoid = true
                                       .MethodKind = Constructor
                                       .DeclaredAccessibility = Public
+                                      .RequiresUnsafe = true
                                       .IsDefinition = true
                                       .MetadataToken = 100667514
                                       .MetadataName = ".ctor"
@@ -18916,6 +18917,7 @@
                                       .ReturnsVoid = true
                                       .MethodKind = Constructor
                                       .DeclaredAccessibility = Public
+                                      .RequiresUnsafe = true
                                       .IsDefinition = true
                                       .MetadataToken = 100667515
                                       .MetadataName = ".ctor"
@@ -21318,6 +21320,7 @@
                                                   .ReturnsVoid = true
                                                   .MethodKind = Constructor
                                                   .DeclaredAccessibility = Public
+                                                  .RequiresUnsafe = true
                                                   .IsDefinition = true
                                                   .MetadataToken = 100667096
                                                   .MetadataName = ".ctor"
@@ -22208,6 +22211,7 @@
                                                 .ReturnsVoid = true
                                                 .MethodKind = Constructor
                                                 .DeclaredAccessibility = Public
+                                                .RequiresUnsafe = true
                                                 .MetadataName = ".ctor"
                                                 .Name = ".ctor"
                                                 .Language = "C#"
@@ -22434,6 +22438,7 @@
                                       .ReturnsVoid = true
                                       .MethodKind = Constructor
                                       .DeclaredAccessibility = Public
+                                      .RequiresUnsafe = true
                                       .IsDefinition = true
                                       .MetadataToken = 100667520
                                       .MetadataName = ".ctor"
@@ -24185,6 +24190,7 @@
                                       .ReturnsVoid = true
                                       .MethodKind = Constructor
                                       .DeclaredAccessibility = Public
+                                      .RequiresUnsafe = true
                                       .IsDefinition = true
                                       .MetadataToken = 100667521
                                       .MetadataName = ".ctor"
@@ -24271,6 +24277,7 @@
                                       .ReturnsVoid = true
                                       .MethodKind = Constructor
                                       .DeclaredAccessibility = Public
+                                      .RequiresUnsafe = true
                                       .IsDefinition = true
                                       .MetadataToken = 100667522
                                       .MetadataName = ".ctor"
@@ -28723,6 +28730,7 @@
                                   .ReturnsVoid = true
                                   .MethodKind = Constructor
                                   .DeclaredAccessibility = Public
+                                  .RequiresUnsafe = true
                                   .IsDefinition = true
                                   .MetadataToken = 100666483
                                   .MetadataName = ".ctor"
