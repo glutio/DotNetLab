@@ -1,9 +1,8 @@
 ﻿@implements IDisposable
 @inject ILogger<Settings> Logger
 @inject IJSRuntime JSRuntime
-@inject ILocalStorageService LocalStorage
+@inject SettingsService SettingsService
 @inject WorkerController Worker
-@inject LanguageServicesClient LanguageServices
 @inject IUpdateChecker UpdateChecker
 @inject IAppHostEnvironment HostEnvironment
 
@@ -50,8 +49,8 @@
                         Wrap text in the editors.
                     </Description>
                     <ActionContent>
-                        <FluentSwitch @bind-Value="WordWrap" @bind-Value:after="OnWordWrapChanged">
-                            @(WordWrap ? "On" : "Off")
+                        <FluentSwitch @bind-Value="SettingsService.WordWrap" @bind-Value:after="SettingsService.SaveAsync">
+                            @(SettingsService.WordWrap ? "On" : "Off")
                         </FluentSwitch>
                     </ActionContent>
                 </SettingsCard>
@@ -68,8 +67,8 @@
                         Use the VIM mode.
                     </Description>
                     <ActionContent>
-                        <FluentSwitch @bind-Value="UseVim" @bind-Value:after="OnVimChanged">
-                            @(UseVim ? "On" : "Off")
+                        <FluentSwitch @bind-Value="SettingsService.UseVim" @bind-Value:after="SettingsService.SaveAsync">
+                            @(SettingsService.UseVim ? "On" : "Off")
                         </FluentSwitch>
                     </ActionContent>
                 </SettingsCard>
@@ -96,8 +95,8 @@
                                     Completions, live diagnostics (currently uses only the built-in compiler and default configuration).
                                 </Description>
                                 <ActionContent>
-                                    <FluentSwitch @bind-Value="EnableLanguageServices" @bind-Value:after="OnSetEnableLanguageServicesAsync">
-                                        @(EnableLanguageServices ? "On" : "Off")
+                                    <FluentSwitch @bind-Value="SettingsService.EnableLanguageServices" @bind-Value:after="SettingsService.SaveAsync">
+                                        @(SettingsService.EnableLanguageServices ? "On" : "Off")
                                     </FluentSwitch>
                                 </ActionContent>
                             </SettingsCard>
@@ -111,8 +110,8 @@
                                     Whether to display debug-level logs in the browser development console.
                                 </Description>
                                 <ActionContent>
-                                    <FluentSwitch @bind-Value="DebugLogs" @bind-Value:after="OnSetDebugLogsAsync">
-                                        @(DebugLogs ? "On" : "Off")
+                                    <FluentSwitch @bind-Value="SettingsService.DebugLogs" @bind-Value:after="SettingsService.SaveAsync">
+                                        @(SettingsService.DebugLogs ? "On" : "Off")
                                     </FluentSwitch>
                                 </ActionContent>
                             </SettingsCard>
@@ -126,8 +125,8 @@
                                     Whether to display trace-level logs in the browser development console.
                                 </Description>
                                 <ActionContent>
-                                    <FluentSwitch @bind-Value="TraceLogs" @bind-Value:after="OnSetTraceLogsAsync">
-                                        @(TraceLogs ? "On" : "Off")
+                                    <FluentSwitch @bind-Value="SettingsService.TraceLogs" @bind-Value:after="SettingsService.SaveAsync">
+                                        @(SettingsService.TraceLogs ? "On" : "Off")
                                     </FluentSwitch>
                                 </ActionContent>
                             </SettingsCard>
@@ -143,8 +142,8 @@
                                         Whether to display info about memory usage (and a button to download GC traces) in the top right corner of the app.
                                     </Description>
                                     <ActionContent>
-                                        <FluentSwitch @bind-Value="EnableMemoryUsageView" @bind-Value:after="OnSetEnableMemoryUsageViewAsync">
-                                            @(EnableMemoryUsageView ? "On" : "Off")
+                                        <FluentSwitch @bind-Value="SettingsService.EnableMemoryUsageView" @bind-Value:after="SettingsService.SaveAsync">
+                                            @(SettingsService.EnableMemoryUsageView ? "On" : "Off")
                                         </FluentSwitch>
                                     </ActionContent>
                                 </SettingsCard>
@@ -161,8 +160,8 @@
                                         Moves compilation (and language services if enabled) to a separate worker thread (it is recommended to keep this enabled).
                                     </Description>
                                     <ActionContent>
-                                        <FluentSwitch @bind-Value="EnableWorker" @bind-Value:after="OnSetEnableWorkerAsync">
-                                            @(EnableWorker ? "On" : "Off")
+                                        <FluentSwitch @bind-Value="SettingsService.EnableWorker" @bind-Value:after="SettingsService.SaveAsync">
+                                            @(SettingsService.EnableWorker ? "On" : "Off")
                                         </FluentSwitch>
                                     </ActionContent>
                                 </SettingsCard>
@@ -187,8 +186,8 @@
                                     Cache inputs and outputs on a server for faster sharing.
                                 </Description>
                                 <ActionContent>
-                                    <FluentSwitch @bind-Value="EnableCaching" @bind-Value:after="OnSetEnableCachingAsync">
-                                        @(EnableCaching ? "On" : "Off")
+                                    <FluentSwitch @bind-Value="SettingsService.EnableCaching" @bind-Value:after="SettingsService.SaveAsync">
+                                        @(SettingsService.EnableCaching ? "On" : "Off")
                                     </FluentSwitch>
                                 </ActionContent>
                             </SettingsCard>
@@ -202,8 +201,8 @@
                                     Automatically begin compilation on start.
                                 </Description>
                                 <ActionContent>
-                                    <FluentSwitch @bind-Value="AutoCompileOnStart" @bind-Value:after="OnSetAutoCompileOnStartAsync">
-                                        @(AutoCompileOnStart ? "On" : "Off")
+                                    <FluentSwitch @bind-Value="SettingsService.AutoCompileOnStart" @bind-Value:after="SettingsService.SaveAsync">
+                                        @(SettingsService.AutoCompileOnStart ? "On" : "Off")
                                     </FluentSwitch>
                                 </ActionContent>
                             </SettingsCard>
@@ -500,7 +499,6 @@
 
     private bool modalHidden = true;
     private DesignThemeModes theme;
-    private IJSObjectReference? vimDisposable;
     private string? sdkVersion, roslynVersion, razorVersion;
     private BuildConfiguration roslynConfiguration, razorConfiguration;
     private string? loadingSdkVersion, loadingRoslynVersion, loadingRazorVersion;
@@ -510,85 +508,14 @@
     private string? sdkError, roslynError, razorError;
     private bool checkedForUpdates;
 
-    [Parameter] public bool WordWrap { get; set; }
-    [Parameter] public EventCallback<bool> WordWrapChanged { get; set; }
-    [Parameter] public bool UseVim { get; set; }
-    [Parameter] public EventCallback<bool> UseVimChanged { get; set; }
-    [Parameter, EditorRequired] public required StandaloneCodeEditor InputEditor { get; set; }
-    [Parameter, EditorRequired] public required StandaloneCodeEditor OutputEditor { get; set; }
     [CascadingParameter] public required Page Page { get; set; }
 
     public DesignThemeModes Theme => theme;
 
     public bool ModalHidden => modalHidden;
 
-    private bool DebugLogs
-    {
-        get => Logging.LogLevel <= LogLevel.Debug;
-        set => Logging.LogLevel = value ? LogLevel.Debug : LogLevel.Information;
-    }
-
-    private bool TraceLogs
-    {
-        get => Logging.LogLevel <= LogLevel.Trace;
-        set => Logging.LogLevel = value ? LogLevel.Trace : DebugLogs ? LogLevel.Debug : LogLevel.Information;
-    }
-
-    [Parameter] public bool EnableMemoryUsageView { get; set; }
-    [Parameter] public EventCallback<bool> EnableMemoryUsageViewChanged { get; set; }
-
-    /// <remarks>
-    /// Turning this on by default for existing users means we need new key, hence the <c>2</c>.
-    /// </remarks>
-    private const string EnableLanguageServicesKey = $"{nameof(EnableLanguageServices)}2";
-    private bool EnableLanguageServices { get; set; }
-    private bool EnableWorker { get; set; }
-    public bool EnableCaching { get; set; }
-    public bool AutoCompileOnStart { get; set; }
-    private RazorToolchain RazorToolchain { get; set; }
+    private RazorToolchain RazorToolchain { get; set; } = RazorToolchain.SourceGeneratorOrInternalApi;
     private RazorStrategy RazorStrategy { get; set; }
-
-    private async Task OnSetDebugLogsAsync()
-    {
-        await LocalStorage.SetItemAsync(nameof(DebugLogs), DebugLogs);
-    }
-
-    private async Task OnSetTraceLogsAsync()
-    {
-        await LocalStorage.SetItemAsync(nameof(TraceLogs), TraceLogs);
-    }
-
-    private async Task OnSetEnableMemoryUsageViewAsync()
-    {
-        await EnableMemoryUsageViewChanged.InvokeAsync(EnableMemoryUsageView);
-        await LocalStorage.SetItemAsync(nameof(EnableMemoryUsageView), EnableMemoryUsageView);
-    }
-
-    private async Task OnSetEnableLanguageServicesAsync()
-    {
-        await UpdateLanguageServicesAsync();
-        await LocalStorage.SetItemAsync(EnableLanguageServicesKey, EnableLanguageServices);
-
-        if (EnableLanguageServices)
-        {
-            await Page.ResetWorkspaceAsync();
-        }
-    }
-
-    private async Task OnSetEnableWorkerAsync()
-    {
-        await LocalStorage.SetItemAsync(nameof(EnableWorker), EnableWorker);
-    }
-
-    private async Task OnSetEnableCachingAsync()
-    {
-        await LocalStorage.SetItemAsync(nameof(EnableCaching), EnableCaching);
-    }
-
-    private async Task OnSetAutoCompileOnStartAsync()
-    {
-        await LocalStorage.SetItemAsync(nameof(AutoCompileOnStart), AutoCompileOnStart);
-    }
 
     private async Task OnSetRazorToolchainAsync()
     {
@@ -624,47 +551,17 @@
     protected override async Task OnInitializedAsync()
     {
         await UpdateChecker.InitializeAsync();
-    }
-
-    public async Task InitializeAsync()
-    {
         UpdateChecker.UpdateStatusChanged += StateHasChanged;
+        StartWatching(SettingsService);
 
         // Load settings from local storage.
-        WordWrap = await LocalStorage.TryLoadOptionAsync(nameof(WordWrap), defaultValue: false);
-        if (WordWrap)
-        {
-            await OnWordWrapChanged();
-        }
-        UseVim = await LocalStorage.TryLoadOptionAsync(nameof(UseVim), defaultValue: false);
-        if (UseVim)
-        {
-            await OnVimChanged();
-        }
-        DebugLogs = await LocalStorage.TryLoadOptionAsync(nameof(DebugLogs), defaultValue: HostEnvironment.IsDevelopment);
-        TraceLogs = await LocalStorage.TryLoadOptionAsync(nameof(TraceLogs), defaultValue: false);
-        EnableMemoryUsageView = await LocalStorage.TryLoadOptionAsync(nameof(EnableMemoryUsageView), defaultValue: false);
-        if (EnableMemoryUsageView)
-        {
-            await EnableMemoryUsageViewChanged.InvokeAsync(EnableMemoryUsageView);
-        }
-        EnableLanguageServices = await LocalStorage.TryLoadOptionAsync(EnableLanguageServicesKey, defaultValue: true);
-        EnableWorker = await LocalStorage.TryLoadOptionAsync(nameof(EnableWorker), defaultValue: true);
-        EnableCaching = await LocalStorage.TryLoadOptionAsync(nameof(EnableCaching), defaultValue: true);
-        AutoCompileOnStart = await LocalStorage.TryLoadOptionAsync(nameof(AutoCompileOnStart), defaultValue: true);
-        RazorToolchain = RazorToolchain.SourceGeneratorOrInternalApi;
-
-        await UpdateLanguageServicesAsync();
-
-        if (HostEnvironment.SupportsWebWorkers)
-        {
-            Worker.Disabled = !EnableWorker;
-        }
+        await SettingsService.LoadIfNeededAsync();
     }
 
     void IDisposable.Dispose()
     {
         UpdateChecker.UpdateStatusChanged -= StateHasChanged;
+        StopWatching(SettingsService);
     }
 
     public Task OpenModalAsync()
@@ -927,47 +824,6 @@
         await LoadRazorInfoAsync();
     }
 
-    public Task ToggleWordWrapAsync()
-    {
-        WordWrap = !WordWrap;
-        return OnWordWrapChanged();
-    }
-
-    private async Task OnWordWrapChanged()
-    {
-        await RefreshAsync();
-        await WordWrapChanged.InvokeAsync(WordWrap);
-        await LocalStorage.SetItemAsync(nameof(WordWrap), WordWrap);
-
-        var updateOptions = new EditorUpdateOptions { WordWrap = WordWrap ? "on" : "off" };
-        await InputEditor.UpdateOptions(updateOptions);
-        await OutputEditor.UpdateOptions(updateOptions);
-    }
-
-    private async Task OnVimChanged()
-    {
-        await RefreshAsync();
-        await UseVimChanged.InvokeAsync(UseVim);
-        await LocalStorage.SetItemAsync(nameof(UseVim), UseVim);
-        if (UseVim)
-        {
-            if (vimDisposable is null)
-            {
-                vimDisposable = await JSRuntime.InvokeAsync<IJSObjectReference>("jslib.EnableVimMode", InputEditor.Id, "vim-status");
-            }
-        }
-        else
-        {
-            if (vimDisposable is not null)
-            {
-                await vimDisposable.InvokeVoidAsync("dispose");
-                vimDisposable = null;
-            }
-        }
-
-        await InputEditor.Layout();
-    }
-
     private async Task SetLuminanceAsync(bool dark)
     {
         await BlazorMonaco.Editor.Global.SetTheme(JSRuntime, Page.GetMonacoTheme(dark: dark));
@@ -995,15 +851,5 @@
     {
         await Page.SaveStateToUrlAsync();
         loadUpdate();
-    }
-
-    private async Task UpdateLanguageServicesAsync()
-    {
-        await LanguageServices.EnableAsync(EnableLanguageServices);
-        if (!EnableLanguageServices)
-        {
-            // If disabled, replace live errors with compilation errors.
-            await Page.DisplaySquigglesAsync();
-        }
     }
 }

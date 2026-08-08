@@ -71,7 +71,7 @@ partial class Page
 
         if (loadPreferences)
         {
-            state = state.WithPreferences(await loadPreferencesAsync());
+            state = state.WithPreferences(SettingsService.CompilationPreferences);
         }
 
         // Load new inputs (don't change the actual Page fields yet while we do this async work
@@ -140,7 +140,7 @@ partial class Page
 
         // Try loading from cache.
         if (!await TryLoadFromTemplateCacheAsync(state, updateOutput: false) &&
-            settings.EnableCaching)
+            SettingsService.EnableCaching)
         {
             _ = TryLoadFromCacheAsync(state, updateOutput: true);
         }
@@ -153,21 +153,6 @@ partial class Page
 
         // Load settings.
         await settings.LoadFromStateAsync(savedState);
-
-        async Task<CompilationPreferences> loadPreferencesAsync()
-        {
-            try
-            {
-                return await LocalStorage.ContainKeyAsync(nameof(CompilationPreferences))
-                    ? (await LocalStorage.GetItemAsync<CompilationPreferences>(nameof(CompilationPreferences)) ?? CompilationPreferences.Default)
-                    : CompilationPreferences.Default;
-            }
-            catch (Exception ex)
-            {
-                Logger.LogError(ex, "Failed to load preferences from local storage");
-                return CompilationPreferences.Default;
-            }
-        }
     }
 
     private bool NavigateToSlug(string slug)
@@ -205,7 +190,8 @@ partial class Page
         if (savePreferences && editingUserPreferences)
         {
             var preferences = savedState.GetPreferences();
-            await LocalStorage.SetItemAsync(nameof(CompilationPreferences), preferences);
+            SettingsService.CompilationPreferences = preferences;
+            await SettingsService.SaveAsync();
         }
 
         var newSlug = Compressor.Compress(savedState);

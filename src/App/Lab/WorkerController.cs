@@ -12,9 +12,12 @@ namespace DotNetLab.Lab;
 internal sealed class WorkerController : IAsyncDisposable
 {
     private readonly ILogger<WorkerController> logger;
+    private readonly Logging logging;
     private readonly IAppHostEnvironment hostEnvironment;
+    private readonly SettingsService settingsService;
     private readonly IWorkerConfigurer? workerConfigurer;
     private readonly Dispatcher dispatcher;
+    private readonly Lazy<Task<bool>>? isEnabled;
     private readonly Lazy<IServiceProvider> workerServices;
     private readonly ConcurrentDictionary<int, TaskCompletionSource<WorkerOutputMessage>> pendingRequests = new();
     private readonly SemaphoreSlim workerGuard = new(initialCount: 1, maxCount: 1);
@@ -26,28 +29,22 @@ internal sealed class WorkerController : IAsyncDisposable
 
     public WorkerController(
         ILogger<WorkerController> logger,
+        Logging logging,
         IAppHostEnvironment hostEnvironment,
+        SettingsService settingsService,
         IWorkerConfigurer? workerConfigurer)
     {
         this.logger = logger;
+        this.logging = logging;
         this.hostEnvironment = hostEnvironment;
+        this.settingsService = settingsService;
         this.workerConfigurer = workerConfigurer;
-        Disabled = !hostEnvironment.SupportsWebWorkers;
         dispatcher = Dispatcher.CreateDefault();
+        isEnabled = !hostEnvironment.SupportsWebWorkers ? null : new(ComputeIsEnabledAsync);
         workerServices = new(CreateWorkerServices);
     }
 
     public event Action<string>? Failed;
-
-    public bool Disabled
-    {
-        get;
-        set
-        {
-            Debug.Assert(value || hostEnvironment.SupportsWebWorkers);
-            field = value;
-        }
-    }
 
     public PingResult? LastPingResult { get; private set; }
 
@@ -57,6 +54,22 @@ internal sealed class WorkerController : IAsyncDisposable
         workerGuard.Dispose();
     }
 
+    private ValueTask<bool> GetIsEnabledAsync()
+    {
+        if (isEnabled is null)
+        {
+            return new(false);
+        }
+
+        return new(isEnabled.Value);
+    }
+
+    private async Task<bool> ComputeIsEnabledAsync()
+    {
+        await settingsService.LoadIfNeededAsync();
+        return settingsService.EnableWorker;
+    }
+
     [SupportedOSPlatform("browser")]
     private Task EnsureInteropScriptInitializedAsync() => initializeInteropScript.Value;
 
@@ -64,7 +77,7 @@ internal sealed class WorkerController : IAsyncDisposable
     {
         return WorkerServices.Create(
            baseUrl: hostEnvironment.BaseAddress,
-           logLevel: Logging.LogLevel,
+           logLevel: logging.LogLevel,
            configureServices: workerConfigurer is null ? null : workerConfigurer.ConfigureWorkerServices);
     }
 
@@ -145,7 +158,7 @@ internal sealed class WorkerController : IAsyncDisposable
 
     private async Task<Task<WorkerInstance?>> RecreateWorkerNoLockAsync()
     {
-        if (Disabled)
+        if (!await GetIsEnabledAsync())
         {
             if (OperatingSystem.IsBrowser())
             {
@@ -199,7 +212,7 @@ internal sealed class WorkerController : IAsyncDisposable
     [SupportedOSPlatform("browser")]
     private async Task<WorkerInstance?> CreateWorkerAsync()
     {
-        Debug.Assert(!Disabled);
+        Debug.Assert(await GetIsEnabledAsync());
 
         // Some errors like StackOverflow don't propagate correctly from the worker unless we ping it explicitly.
         var pingTimer = new Timer(TimeSpan.FromSeconds(10));
@@ -217,7 +230,7 @@ internal sealed class WorkerController : IAsyncDisposable
 
         var workerReady = new TaskCompletionSource();
         var worker = WorkerControllerInterop.CreateWorker(
-            scriptUrl: getWorkerUrl("../_content/DotNetLab.WorkerWebAssembly/main.js", [hostEnvironment.BaseAddress, Logging.LogLevel.ToString()]),
+            scriptUrl: getWorkerUrl("../_content/DotNetLab.WorkerWebAssembly/main.js", [hostEnvironment.BaseAddress, logging.LogLevel.ToString()]),
             messageHandler: void (string data) =>
             {
                 dispatcher.InvokeAsync(async () =>
@@ -301,7 +314,7 @@ internal sealed class WorkerController : IAsyncDisposable
         WorkerControllerInterop.CollectAndDownloadGcDump();
 
         // Download worker's GC dump.
-        if (!Disabled)
+        if (await GetIsEnabledAsync())
         {
             JSObject? worker = (await GetWorkerAsync())?.Handle;
             if (worker == null)

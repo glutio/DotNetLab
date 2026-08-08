@@ -7,7 +7,7 @@
 @inject InputOutputCache Cache
 @inject TemplateCache TemplateCache
 @inject BlazorMonacoInterop BlazorMonacoInterop
-@inject ILocalStorageService LocalStorage
+@inject SettingsService SettingsService
 @inject CursorSynchronizer.Services CursorSynchronizerServices
 @inject IAppHostEnvironment HostEnvironment
 @inject IUpdateChecker UpdateChecker
@@ -54,7 +54,7 @@
 
         @* Compile button *@
         <FluentButton Appearance="Appearance.Accent" OnClick="() => CompileAsync()" Loading="compilationInProgress"
-                      Title="Compile (Ctrl+S)" IconStart="@(new Icons.Regular.Size20.FlashPlay())" Disabled="!initialized">
+                      Title="Compile (Ctrl+S)" IconStart="@(new Icons.Regular.Size20.FlashPlay())">
             Compile
         </FluentButton>
 
@@ -106,7 +106,7 @@
         </div>
 
         @* Memory usage info *@
-        @if (enableMemoryUsageView)
+        @if (SettingsService.EnableMemoryUsageView)
         {
             <MemoryUsageView />
         }
@@ -114,8 +114,8 @@
         <div>
             @* Keyboard button *@
             <FluentButton OnClick="ToggleInputVirtualKeyboardAsync"
-                          Appearance="@(disableInputVirtualKeyboard ? Appearance.Accent : Appearance.Neutral)"
-                          Title="@(disableInputVirtualKeyboard ? "Enable the on-screen keyboard for the input editor" : "Disable the on-screen keyboard for the input editor")">
+                          Appearance="@(SettingsService.DisableInputVirtualKeyboard ? Appearance.Accent : Appearance.Neutral)"
+                          Title="@(SettingsService.DisableInputVirtualKeyboard ? "Enable the on-screen keyboard for the input editor" : "Disable the on-screen keyboard for the input editor")">
                 <FluentIcon Value="@(new Icons.Regular.Size20.Keyboard())" Color="Color.Neutral" />
             </FluentButton>
 
@@ -139,12 +139,12 @@
 </FluentHeader>
 
 <CascadingValue IsFixed="true" Value="this">
-    <Settings @ref="settings" InputEditor="inputEditor" OutputEditor="outputEditor" @bind-WordWrap="wordWrap" @bind-UseVim="useVim" @bind-EnableMemoryUsageView="enableMemoryUsageView" />
+    <Settings @ref="settings" />
 </CascadingValue>
 
 @* Input / output panels *@
 @* Panels have `overflow: hidden` by default, which would cause Monaco Editor popups to get cropped, hence we reset it to `overflow: initial`. *@
-<FluentMultiSplitter Orientation="orientation" Style="flex-grow: 1" Class="@(displayHintSquiggles ? null : "no-squiggly-hint")">
+<FluentMultiSplitter Orientation="orientation" Style="flex-grow: 1" Class="@(SettingsService.DisplayHintSquiggles ? null : "no-squiggly-hint")">
     @* Input panel *@
     <FluentMultiSplitterPane Collapsible Style="overflow: initial">
         <div style="display: flex; flex-direction: column; height: 100%">
@@ -192,7 +192,7 @@
             </FluentTabs>
 
             @* VIM status bar *@
-            <div id="vim-status" class="vim-status-bar" hidden="@(!useVim)" />
+            <div id="vim-status" class="vim-status-bar" hidden="@(!SettingsService.UseVim)" />
 
             @* Input editor *@
             <div style="flex-grow: 1">
@@ -362,16 +362,16 @@
     /// </summary>
     private readonly AsyncLock inputsLock = new();
 
+    private readonly Lazy<Task<IJSObjectReference>> moduleTask;
     private readonly TaskCompletionSource editorInitialized = new();
     private readonly List<Input> inputs = new();
     private readonly Dictionary<string, EditorState> outputStates = new();
     private CursorSynchronizer? cursorSynchronizer;
     private bool editorInitializationStarted;
-    private bool initialized;
     private bool monacoThemeDefined;
     private DotNetObjectReference<Page>? dotNetObjectReference;
     private Action? unregisterEventListeners;
-    private IJSObjectReference module = null!;
+    private IJSObjectReference? vimDisposable;
     private Input? configuration;
     private string activeInputTabId = IndexToInputTabId(0);
     private StandaloneCodeEditor inputEditor = null!;
@@ -389,11 +389,6 @@
     private OutputDisclaimer outputDisclaimer;
     private CompiledState? compiled;
     private Settings settings = null!;
-    private bool wordWrap;
-    private bool useVim;
-    private bool enableMemoryUsageView;
-    private bool displayHintSquiggles;
-    private bool disableInputVirtualKeyboard;
     private bool showRenderedHtml;
     private Orientation orientation;
     private string? workerError;
@@ -531,25 +526,36 @@
     private bool OutputHasToolbar
         => DisplayOutputType is "tree" or "html" or "il" or CompiledAssembly.DiagnosticsOutputType;
 
+    public Page()
+    {
+        moduleTask = new(() => JSRuntime.InvokeAsync<IJSObjectReference>(
+            "import", "./_content/DotNetLab.App/Lab/Page.razor.js").AsTask());
+    }
+
     protected override async Task OnInitializedAsync()
     {
-        orientation = GetAutoOrientation();
-
         NavigationManager.LocationChanged += OnLocationChanged;
         UpdateChecker.UpdateStatusChanged += StateHasChanged;
         ScreenInfo.Updated += OnScreenInfoUpdated;
         Worker.Failed += OnWorkerFailed;
+        SettingsService.PropertyChanged += OnSettingsPropertyChanged;
 
-        displayHintSquiggles = await LocalStorage.TryLoadOptionAsync(nameof(displayHintSquiggles), defaultValue: false);
-        disableInputVirtualKeyboard = await LocalStorage.TryLoadOptionAsync(nameof(disableInputVirtualKeyboard), defaultValue: false);
+        orientation = GetAutoOrientation();
 
-        module = await JSRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/DotNetLab.App/Lab/Page.razor.js");
-        await module.InvokeVoidAsync("setVirtualKeyboardDisabled", outputEditor.Id, true);
+        await SettingsService.LoadIfNeededAsync();
 
-        if (disableInputVirtualKeyboard)
+        // Begin the initial compilation as early as possible so the app becomes usable quickly.
+        if (SettingsService.AutoCompileOnStart && !compilationInProgress)
         {
-            await module.InvokeVoidAsync("setVirtualKeyboardDisabled", inputEditor.Id, true);
+            // Avoid storing the first auto compilation in cache
+            // (the same shared snippet would be stored multiple times unnecessarily and
+            // users can always store their snippet separately by compiling manually).
+            await CompileAsync(storeInCache: false);
         }
+
+        await (await moduleTask.Value).InvokeVoidAsync("setVirtualKeyboardDisabled", outputEditor.Id, true);
+
+        await SetDisableInputVirtualKeyboardAsync(firstTime: true);
     }
 
     private async Task EditorInitAsync()
@@ -571,12 +577,10 @@
         await RegisterFormatActionAsync();
         await RegisterSquigglyHintActionAsync();
         dotNetObjectReference = DotNetObjectReference.Create(this);
-        unregisterEventListeners = await module.InvokeAsync<Action>("registerEventListeners", dotNetObjectReference);
+        unregisterEventListeners = await (await moduleTask.Value).InvokeAsync<Action>("registerEventListeners", dotNetObjectReference);
 
         cursorSynchronizer = new CursorSynchronizer(CursorSynchronizerServices, inputEditor, outputEditor);
         await cursorSynchronizer.InitAsync();
-
-        await settings.InitializeAsync();
 
         await LoadStateFromUrlAsync();
 
@@ -585,33 +589,25 @@
             await inputEditor.Focus();
         }
 
+        await SetVimModeAsync();
+        await SetLanguageServicesAsync();
+
         if (!editorInitialized.TrySetResult())
         {
             Logger.LogError("Failed to set editor initialized result.");
-        }
-
-        initialized = true;
-        StateHasChanged();
-
-        if (settings.AutoCompileOnStart && !compilationInProgress)
-        {
-            // Avoid storing the first auto compilation in cache
-            // (the same shared snippet would be stored multiple times unnecessarily and
-            // users can always store their snippet separately by compiling manually).
-            await CompileAsync(storeInCache: false);
         }
     }
 
     private async Task ToggleInputVirtualKeyboardAsync()
     {
-        disableInputVirtualKeyboard = !disableInputVirtualKeyboard;
-        StateHasChanged();
-        await LocalStorage.SetItemAsync(nameof(disableInputVirtualKeyboard), disableInputVirtualKeyboard);
-        await module.InvokeVoidAsync("setVirtualKeyboardDisabled", inputEditor.Id, disableInputVirtualKeyboard);
+        SettingsService.DisableInputVirtualKeyboard = !SettingsService.DisableInputVirtualKeyboard;
+        await SettingsService.SaveAsync();
     }
 
     async ValueTask IAsyncDisposable.DisposeAsync()
     {
+        SettingsService.PropertyChanged -= OnSettingsPropertyChanged;
+
         NavigationManager.LocationChanged -= OnLocationChanged;
         UpdateChecker.UpdateStatusChanged -= StateHasChanged;
         ScreenInfo.Updated -= OnScreenInfoUpdated;
@@ -631,12 +627,24 @@
             await outputModel.DisposeAsync();
         }
 
-        if (module is not null)
+        if (moduleTask.IsValueCreated)
         {
             try
             {
+                var module = await moduleTask.Value;
                 await module.InvokeVoidAsync("dispose");
                 await module.DisposeAsync();
+            }
+            catch (JSDisconnectedException) { }
+        }
+
+        if (vimDisposable is not null)
+        {
+            try
+            {
+                await vimDisposable.InvokeVoidAsync("dispose");
+                await vimDisposable.DisposeAsync();
+                vimDisposable = null;
             }
             catch (JSDisconnectedException) { }
         }
@@ -644,6 +652,86 @@
         dotNetObjectReference?.Dispose();
 
         inputsLock.Dispose();
+    }
+
+    private void OnSettingsPropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        InvokeAsync(async () =>
+        {
+            StateHasChanged();
+
+            switch (e.PropertyName)
+            {
+                case nameof(SettingsService.WordWrap):
+                    {
+                        await editorInitialized.Task;
+                        var updateOptions = new EditorUpdateOptions { WordWrap = ComputeWordWrapEditorOption() };
+                        await inputEditor.UpdateOptions(updateOptions);
+                        await outputEditor.UpdateOptions(updateOptions);
+                    }
+                    break;
+
+                case nameof(SettingsService.UseVim):
+                    {
+                        await editorInitialized.Task;
+                        await SetVimModeAsync();
+                    }
+                    break;
+
+                case nameof(SettingsService.EnableLanguageServices):
+                    {
+                        await editorInitialized.Task;
+                        await SetLanguageServicesAsync();
+                    }
+                    break;
+
+                case nameof(SettingsService.DisableInputVirtualKeyboard):
+                    {
+                        await SetDisableInputVirtualKeyboardAsync(firstTime: false);
+                    }
+                    break;
+            }
+        });
+    }
+
+    private async Task SetVimModeAsync()
+    {
+        if (SettingsService.UseVim)
+        {
+            vimDisposable ??= await JSRuntime.InvokeAsync<IJSObjectReference>("jslib.EnableVimMode", inputEditor.Id, "vim-status");
+            await inputEditor.Layout();
+        }
+        else if (vimDisposable is not null)
+        {
+            await vimDisposable.InvokeVoidAsync("dispose");
+            await vimDisposable.DisposeAsync();
+            vimDisposable = null;
+            await inputEditor.Layout();
+        }
+    }
+
+    private async Task SetLanguageServicesAsync()
+    {
+        await LanguageServices.EnableAsync(SettingsService.EnableLanguageServices);
+        if (SettingsService.EnableLanguageServices)
+        {
+            await ResetWorkspaceAsync();
+        }
+        else
+        {
+            // If disabled, replace live errors with compilation errors.
+            await DisplaySquigglesAsync();
+        }
+    }
+
+    private async Task SetDisableInputVirtualKeyboardAsync(bool firstTime)
+    {
+        if (firstTime && !SettingsService.DisableInputVirtualKeyboard)
+        {
+            return;
+        }
+
+        await (await moduleTask.Value).InvokeVoidAsync("setVirtualKeyboardDisabled", inputEditor.Id, SettingsService.DisableInputVirtualKeyboard);
     }
 
     private async Task OnLocationChanged(string targetSlug)
@@ -663,7 +751,7 @@
     public async Task CopyUrlToClipboardAsync()
     {
         await SaveStateToUrlAsync();
-        await module.InvokeVoidAsync("copyUrlToClipboard", HostEnvironment.LabUrlPrefix);
+        await (await moduleTask.Value).InvokeVoidAsync("copyUrlToClipboard", HostEnvironment.LabUrlPrefix);
         urlCopied = true;
         StateHasChanged();
         var token = Interlocked.Increment(ref urlCopiedToken);
@@ -679,7 +767,7 @@
 
     public async Task LoadUrlFromClipboardAsync()
     {
-        var text = await module.InvokeAsync<string>("getClipboardText");
+        var text = await (await moduleTask.Value).InvokeAsync<string>("getClipboardText");
         if (NavigateToSlug(GetSlugFromClipboardText(text)))
         {
             await LoadStateFromUrlAsync();
@@ -730,7 +818,7 @@
             ReadOnly = output,
             // This avoids a virtual keyboard showing up on mobile on the output (readonly) editor.
             DomReadOnly = output,
-            WordWrap = wordWrap ? "on" : "off",
+            WordWrap = ComputeWordWrapEditorOption(),
             BracketPairColorization = output ? new() { Enabled = false } : null,
             Padding = new() { Top = 10 },
             Scrollbar = new()
@@ -746,6 +834,8 @@
             },
         };
     }
+
+    private string ComputeWordWrapEditorOption() => SettingsService.WordWrap ? "on" : "off";
 
     public string GetMonacoTheme(bool dark)
     {
@@ -779,7 +869,11 @@
             Label = "Toggle Word Wrap",
             ContextMenuGroupId = "navigation",
             Keybindings = [(int)KeyMod.Alt | (int)BlazorMonaco.KeyCode.KeyZ],
-            Run = _ => InvokeAsync(settings.ToggleWordWrapAsync),
+            Run = _ =>
+            {
+                SettingsService.WordWrap = !SettingsService.WordWrap;
+                InvokeAsync(SettingsService.SaveAsync);
+            },
         };
         await inputEditor.AddAction(action);
         await outputEditor.AddAction(action);
@@ -805,16 +899,13 @@
         {
             Id = "squiggly-hint",
             Label = ".NET Lab: Toggle Squiggly Hint (Hidden Diagnostic Decoration)",
-            Run = _ => InvokeAsync(ToggleSquigglyHintAsync),
+            Run = _ =>
+            {
+                SettingsService.DisplayHintSquiggles = !SettingsService.DisplayHintSquiggles;
+                InvokeAsync(SettingsService.SaveAsync);
+            },
         };
         await inputEditor.AddAction(action);
-
-        async Task ToggleSquigglyHintAsync()
-        {
-            displayHintSquiggles = !displayHintSquiggles;
-            StateHasChanged();
-            await LocalStorage.SetItemAsync(nameof(displayHintSquiggles), displayHintSquiggles);
-        }
     }
 
     private async Task OnInputPresetSelectedAsync(MenuChangeEventArgs args)
@@ -969,14 +1060,14 @@
     {
         if (currentInput is { } previousInput)
         {
-            previousInput.ViewState = await inputEditor.SaveViewStateAsync(module);
+            previousInput.ViewState = await inputEditor.SaveViewStateAsync(await moduleTask.Value);
         }
 
         currentInput = input;
 
         // Update the editor.
         await inputEditor.SetModel(input.Model);
-        await inputEditor.RestoreViewStateAsync(input.ViewState, module);
+        await inputEditor.RestoreViewStateAsync(input.ViewState, await moduleTask.Value);
 
         // Update the tabs.
         activeInputTabId = IndexToInputTabId(index);
@@ -1050,6 +1141,7 @@
 
             if (formattedCode != currentCode)
             {
+                var module = await moduleTask.Value;
                 var viewState = await inputEditor.SaveViewStateAsync(module);
                 await BlazorMonacoInterop.SetModelValueUndoable(inputEditor.Id, input.Model.Uri, formattedCode);
                 await inputEditor.RestoreViewStateAsync(viewState, module);
@@ -1124,7 +1216,7 @@
 
     private void TryStoreInCache(SavedState state, CompiledAssembly output)
     {
-        if (!settings.EnableCaching)
+        if (!SettingsService.EnableCaching)
         {
             return;
         }
@@ -1310,7 +1402,7 @@
 
             if (saveViewState && currentOutput is { } previousOutput)
             {
-                previousOutput.ViewState = await outputEditor.SaveViewStateAsync(module);
+                previousOutput.ViewState = await outputEditor.SaveViewStateAsync(await moduleTask.Value);
             }
 
             currentOutput = state;
@@ -1325,7 +1417,7 @@
                 // (currently we only detect language change - e.g., from error to normal output).
                 previousLanguage == language)
             {
-                await outputEditor.RestoreViewStateAsync(state.ViewState, module);
+                await outputEditor.RestoreViewStateAsync(state.ViewState, await moduleTask.Value);
             }
             else if (isOutputLanguage)
             {
