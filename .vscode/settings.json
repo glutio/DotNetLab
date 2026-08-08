@@ -1,5 +1,12 @@
 {
     "csharp.debug.sourceFileMap": {
         "/_/": "${workspaceFolder}/"
-    }
+    },
+    "cSpell.words": [
+        "Blazor",
+        "checkmark",
+        "configurer",
+        "Photino",
+        "wwwroot"
+    ]
 }
