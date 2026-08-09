@@ -18,9 +18,11 @@ public partial class App
 
     public static void RegisterServices(IServiceCollection services)
     {
-        services.AddScoped<ILocalStorageService, LocalStorageService>();
         services.AddFluentUIComponents();
 
+        services.AddScoped<Logging>();
+        services.AddScoped<LocalStorageService>();
+        services.AddScoped<SettingsService>();
         services.AddScoped<WorkerController>();
         services.AddScoped<BlazorMonacoInterop>();
         services.AddScoped<CursorSynchronizer.Services>();
@@ -28,23 +30,29 @@ public partial class App
         services.AddScoped<InputOutputCache>();
         services.AddScoped<TemplateCache>();
 
-        services.AddLogging(builder =>
+        services.AddOptions<LoggerFilterOptions>().Configure<IScopedServiceProviderAccessor>((options, accessor) =>
         {
-            builder.AddFilter("DotNetLab.*",
-                static (logLevel) => logLevel >= Logging.LogLevel);
+            options.AddFilter("DotNetLab.*", logLevel =>
+            {
+                if (accessor.ServiceProvider is { } scopedServiceProvider)
+                {
+                    var logging = scopedServiceProvider.GetRequiredService<Logging>();
+                    return logLevel >= logging.LogLevel;
+                }
+
+                return true;
+            });
         });
     }
 
     public static void Initialize(IServiceProvider services)
     {
-        var appHostEnvironment = services.GetRequiredService<IAppHostEnvironment>();
-        if (appHostEnvironment.IsDevelopment)
-        {
-            Logging.LogLevel = LogLevel.Debug;
-        }
+        var accessor = services.GetRequiredService<IScopedServiceProviderAccessor>();
+        (accessor as SimpleScopedServiceProviderAccessor)?.ServiceProvider = services;
 
-        services.GetRequiredService<ILogger<App>>()
-            .LogInformation("Environment: {Environment}", appHostEnvironment.Environment);
+        var appHostEnvironment = services.GetRequiredService<IAppHostEnvironment>();
+        var logger = services.GetRequiredService<ILogger<App>>();
+        logger.LogInformation("Environment: {Environment}", appHostEnvironment.Environment);
     }
 }
 
@@ -71,4 +79,18 @@ public sealed record DesktopAppLink
     public required string Title { get; init; }
     public required string Description { get; init; }
     public Action? OnClick { get; init; }
+}
+
+public interface IScopedServiceProviderAccessor
+{
+    IServiceProvider? ServiceProvider { get; }
+}
+
+/// <summary>
+/// This should be only used by entry points where the scope applies to the whole app lifetime,
+/// i.e., client apps, not a server app.
+/// </summary>
+public sealed class SimpleScopedServiceProviderAccessor : IScopedServiceProviderAccessor
+{
+    public IServiceProvider? ServiceProvider { get; set; }
 }

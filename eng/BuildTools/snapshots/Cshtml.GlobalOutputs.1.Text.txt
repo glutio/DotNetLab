@@ -1,6 +1,8 @@
-﻿get_Customer(IL_0000-IL_0007 50:6-50:39): return <Customer>k__BackingField;
+﻿.ctor(IL_0001-IL_0006 43:49-43:63): new Customer()
+get_Customer(IL_0000-IL_0007 50:6-50:39): return <Customer>k__BackingField;
 set_Customer(IL_0000-IL_0007 55:6-55:40): <Customer>k__BackingField = value;
 set_Customer(IL_0007-IL_0008 56:5-56:6): }
+.ctor(IL_0001-IL_0006 69:43-69:45): ""
 get_Id(IL_0000-IL_0007 76:6-76:33): return <Id>k__BackingField;
 set_Id(IL_0000-IL_0007 81:6-81:34): <Id>k__BackingField = value;
 set_Id(IL_0007-IL_0008 82:5-82:6): }

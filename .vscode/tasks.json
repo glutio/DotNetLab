@@ -12,7 +12,7 @@
                 "--artifacts-path",
                 "artifacts/watch",
                 "/p:RunAnalyzers=false",
-                "/p:DotNetLabUseCompilerToolset=false"
+                "/p:DotNetLabWatchBuild=true"
             ],
             "options": {
                 "env": {
@@ -36,7 +36,7 @@
                 "--artifacts-path",
                 "artifacts/watch-wasm",
                 "/p:RunAnalyzers=false",
-                "/p:DotNetLabUseCompilerToolset=false"
+                "/p:DotNetLabWatchBuild=true"
             ],
             "options": {
                 "env": {

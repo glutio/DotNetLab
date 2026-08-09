@@ -338,7 +338,7 @@ internal sealed class LanguageServicesClient(
                 await BlazorMonaco.Editor.Global.SetModelMarkers(jsRuntime, model, MonacoConstants.MarkersOwner, markers);
                 return 0;
             },
-            // Skip debounce to ensure compiler diagnostics are merged with IDE diangostics.
+            // Skip debounce to ensure compiler diagnostics are merged with IDE diagnostics.
             skipDebounce: afterCompilation);
 
             return true;
