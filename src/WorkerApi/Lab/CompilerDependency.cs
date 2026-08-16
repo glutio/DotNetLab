@@ -146,12 +146,6 @@ public sealed record CompilerInfo(
     public string CommitInfoSaveKey = $"{CompilerKind}CommitInfo";
 }
 
-[JsonDerivedType(typeof(BuiltIn), nameof(BuiltIn))]
-[JsonDerivedType(typeof(NuGet), nameof(NuGet))]
-[JsonDerivedType(typeof(NuGetLatest), nameof(NuGetLatest))]
-[JsonDerivedType(typeof(Build), nameof(Build))]
-[JsonDerivedType(typeof(PullRequest), nameof(PullRequest))]
-[JsonDerivedType(typeof(Branch), nameof(Branch))]
 public closed record CompilerVersionSpecifier
 {
     /// <remarks>

@@ -2,41 +2,37 @@
 using BlazorMonaco.Editor;
 using BlazorMonaco.Languages;
 using DotNetLab.Lab;
-using System.Text.Json.Serialization;
 
 namespace DotNetLab;
 
-[JsonDerivedType(typeof(Ping), nameof(Ping))]
-[JsonDerivedType(typeof(Cancel), nameof(Cancel))]
-[JsonDerivedType(typeof(Compile), nameof(Compile))]
-[JsonDerivedType(typeof(FormatCode), nameof(FormatCode))]
-[JsonDerivedType(typeof(GetOutput), nameof(GetOutput))]
-[JsonDerivedType(typeof(UseCompilerVersion), nameof(UseCompilerVersion))]
-[JsonDerivedType(typeof(GetCompilerDependencyInfo), nameof(GetCompilerDependencyInfo))]
-[JsonDerivedType(typeof(GetSdkVersions), nameof(GetSdkVersions))]
-[JsonDerivedType(typeof(GetSdkInfo), nameof(GetSdkInfo))]
-[JsonDerivedType(typeof(TryGetSubRepoCommitHash), nameof(TryGetSubRepoCommitHash))]
-[JsonDerivedType(typeof(ProvideCompletionItems), nameof(ProvideCompletionItems))]
-[JsonDerivedType(typeof(ResolveCompletionItem), nameof(ResolveCompletionItem))]
-[JsonDerivedType(typeof(ProvideSemanticTokens), nameof(ProvideSemanticTokens))]
-[JsonDerivedType(typeof(ProvideCodeActions), nameof(ProvideCodeActions))]
-[JsonDerivedType(typeof(ProvideHover), nameof(ProvideHover))]
-[JsonDerivedType(typeof(ProvideSignatureHelp), nameof(ProvideSignatureHelp))]
-[JsonDerivedType(typeof(OnDidChangeWorkspace), nameof(OnDidChangeWorkspace))]
-[JsonDerivedType(typeof(OnDidChangeModelContent), nameof(OnDidChangeModelContent))]
-[JsonDerivedType(typeof(OnCachedCompilationLoaded), nameof(OnCachedCompilationLoaded))]
-[JsonDerivedType(typeof(GetDiagnostics), nameof(GetDiagnostics))]
-public abstract record WorkerInputMessage
+public interface IWorkerInputMessage
+{
+    int Id { get; }
+
+    Task<object?> HandleNonGenericAsync(WorkerInputMessage.IExecutor executor);
+
+    Task<WorkerOutputMessage> HandleAndGetOutputAsync(WorkerInputMessage.IExecutor executor);
+}
+
+public interface IWorkerInputMessage<TOutput> : IWorkerInputMessage
+{
+    Task<TOutput> HandleAsync(WorkerInputMessage.IExecutor executor);
+
+    async Task<object?> IWorkerInputMessage.HandleNonGenericAsync(WorkerInputMessage.IExecutor executor)
+    {
+        return await HandleAsync(executor);
+    }
+}
+
+public closed record WorkerInputMessage
 {
     public required int Id { get; init; }
 
-    protected abstract Task<object?> HandleNonGenericAsync(IExecutor executor);
-
-    public async Task<WorkerOutputMessage> HandleAndGetOutputAsync(IExecutor executor)
+    public async Task<WorkerOutputMessage> HandleAndGetOutputAsync(WorkerInputMessage.IExecutor executor)
     {
         try
         {
-            var outgoing = await HandleNonGenericAsync(executor);
+            var outgoing = await ((IWorkerInputMessage)this).HandleNonGenericAsync(executor);
             if (ReferenceEquals(outgoing, NoOutput.Instance))
             {
                 return new WorkerOutputMessage.Empty { Id = Id, InputType = GetType().Name };
@@ -52,161 +48,161 @@ public abstract record WorkerInputMessage
         }
     }
 
-    public sealed record Ping : WorkerInputMessage<PingResult>
+    public sealed record Ping : WorkerInputMessage, IWorkerInputMessage<PingResult>
     {
-        public override Task<PingResult> HandleAsync(IExecutor executor)
+        public Task<PingResult> HandleAsync(IExecutor executor)
         {
             return executor.HandleAsync(this);
         }
     }
 
-    public sealed record Cancel(int MessageIdToCancel) : WorkerInputMessage<NoOutput>
+    public sealed record Cancel(int MessageIdToCancel) : WorkerInputMessage, IWorkerInputMessage<NoOutput>
     {
-        public override Task<NoOutput> HandleAsync(IExecutor executor)
+        public Task<NoOutput> HandleAsync(IExecutor executor)
         {
             return executor.HandleAsync(this);
         }
     }
 
-    public sealed record Compile(CompilationInput Input, bool LanguageServicesEnabled) : WorkerInputMessage<CompiledAssembly>
+    public sealed record Compile(CompilationInput Input, bool LanguageServicesEnabled) : WorkerInputMessage, IWorkerInputMessage<CompiledAssembly>
     {
-        public override Task<CompiledAssembly> HandleAsync(IExecutor executor)
+        public Task<CompiledAssembly> HandleAsync(IExecutor executor)
         {
             return executor.HandleAsync(this);
         }
     }
 
-    public sealed record FormatCode(string Code, bool IsScript) : WorkerInputMessage<string>
+    public sealed record FormatCode(string Code, bool IsScript) : WorkerInputMessage, IWorkerInputMessage<string>
     {
-        public override Task<string> HandleAsync(IExecutor executor)
+        public Task<string> HandleAsync(IExecutor executor)
         {
             return executor.HandleAsync(this);
         }
     }
 
-    public sealed record GetOutput(CompilationInput Input, string? File, string OutputType) : WorkerInputMessage<CompiledFileLazyResult>
+    public sealed record GetOutput(CompilationInput Input, string? File, string OutputType) : WorkerInputMessage, IWorkerInputMessage<CompiledFileLazyResult>
     {
-        public override Task<CompiledFileLazyResult> HandleAsync(IExecutor executor)
+        public Task<CompiledFileLazyResult> HandleAsync(IExecutor executor)
         {
             return executor.HandleAsync(this);
         }
     }
 
-    public sealed record UseCompilerVersion(CompilerKind CompilerKind, string? Version, BuildConfiguration Configuration) : WorkerInputMessage<bool>
+    public sealed record UseCompilerVersion(CompilerKind CompilerKind, string? Version, BuildConfiguration Configuration) : WorkerInputMessage, IWorkerInputMessage<bool>
     {
-        public override Task<bool> HandleAsync(IExecutor executor)
+        public Task<bool> HandleAsync(IExecutor executor)
         {
             return executor.HandleAsync(this);
         }
     }
 
-    public sealed record GetCompilerDependencyInfo(CompilerKind CompilerKind) : WorkerInputMessage<PackageDependencyInfo?>
+    public sealed record GetCompilerDependencyInfo(CompilerKind CompilerKind) : WorkerInputMessage, IWorkerInputMessage<PackageDependencyInfo?>
     {
-        public override Task<PackageDependencyInfo?> HandleAsync(IExecutor executor)
+        public Task<PackageDependencyInfo?> HandleAsync(IExecutor executor)
         {
             return executor.HandleAsync(this);
         }
     }
 
-    public sealed record GetSdkVersions : WorkerInputMessage<List<SdkVersionInfo>>
+    public sealed record GetSdkVersions : WorkerInputMessage, IWorkerInputMessage<List<SdkVersionInfo>>
     {
-        public override Task<List<SdkVersionInfo>> HandleAsync(IExecutor executor)
+        public Task<List<SdkVersionInfo>> HandleAsync(IExecutor executor)
         {
             return executor.HandleAsync(this);
         }
     }
 
-    public sealed record GetSdkInfo(string VersionToLoad) : WorkerInputMessage<SdkInfo>
+    public sealed record GetSdkInfo(string VersionToLoad) : WorkerInputMessage, IWorkerInputMessage<SdkInfo>
     {
-        public override Task<SdkInfo> HandleAsync(IExecutor executor)
+        public Task<SdkInfo> HandleAsync(IExecutor executor)
         {
             return executor.HandleAsync(this);
         }
     }
 
-    public sealed record TryGetSubRepoCommitHash(string MonoRepoCommitHash, string SubRepoUrl) : WorkerInputMessage<string?>
+    public sealed record TryGetSubRepoCommitHash(string MonoRepoCommitHash, string SubRepoUrl) : WorkerInputMessage, IWorkerInputMessage<string?>
     {
-        public override Task<string?> HandleAsync(IExecutor executor)
+        public Task<string?> HandleAsync(IExecutor executor)
         {
             return executor.HandleAsync(this);
         }
     }
 
-    public sealed record ProvideCompletionItems(string ModelUri, Position Position, CompletionContext Context) : WorkerInputMessage<string>
+    public sealed record ProvideCompletionItems(string ModelUri, Position Position, CompletionContext Context) : WorkerInputMessage, IWorkerInputMessage<string>
     {
-        public override Task<string> HandleAsync(IExecutor executor)
+        public Task<string> HandleAsync(IExecutor executor)
         {
             return executor.HandleAsync(this);
         }
     }
 
-    public sealed record ResolveCompletionItem(MonacoCompletionItem Item) : WorkerInputMessage<string?>
+    public sealed record ResolveCompletionItem(MonacoCompletionItem Item) : WorkerInputMessage, IWorkerInputMessage<string?>
     {
-        public override Task<string?> HandleAsync(IExecutor executor)
+        public Task<string?> HandleAsync(IExecutor executor)
         {
             return executor.HandleAsync(this);
         }
     }
 
-    public sealed record ProvideSemanticTokens(string ModelUri, string? RangeJson, bool Debug) : WorkerInputMessage<string?>
+    public sealed record ProvideSemanticTokens(string ModelUri, string? RangeJson, bool Debug) : WorkerInputMessage, IWorkerInputMessage<string?>
     {
-        public override Task<string?> HandleAsync(IExecutor executor)
+        public Task<string?> HandleAsync(IExecutor executor)
         {
             return executor.HandleAsync(this);
         }
     }
 
-    public sealed record ProvideCodeActions(string ModelUri, string? RangeJson) : WorkerInputMessage<string?>
+    public sealed record ProvideCodeActions(string ModelUri, string? RangeJson) : WorkerInputMessage, IWorkerInputMessage<string?>
     {
-        public override Task<string?> HandleAsync(IExecutor executor)
+        public Task<string?> HandleAsync(IExecutor executor)
         {
             return executor.HandleAsync(this);
         }
     }
 
-    public sealed record ProvideHover(string ModelUri, string PositionJson) : WorkerInputMessage<string?>
+    public sealed record ProvideHover(string ModelUri, string PositionJson) : WorkerInputMessage, IWorkerInputMessage<string?>
     {
-        public override Task<string?> HandleAsync(IExecutor executor)
+        public Task<string?> HandleAsync(IExecutor executor)
         {
             return executor.HandleAsync(this);
         }
     }
 
-    public sealed record ProvideSignatureHelp(string ModelUri, string PositionJson, string ContextJson) : WorkerInputMessage<string?>
+    public sealed record ProvideSignatureHelp(string ModelUri, string PositionJson, string ContextJson) : WorkerInputMessage, IWorkerInputMessage<string?>
     {
-        public override Task<string?> HandleAsync(IExecutor executor)
+        public Task<string?> HandleAsync(IExecutor executor)
         {
             return executor.HandleAsync(this);
         }
     }
 
-    public sealed record OnDidChangeWorkspace(ImmutableArray<ModelInfo> Models, bool Refresh) : WorkerInputMessage<NoOutput>
+    public sealed record OnDidChangeWorkspace(ImmutableArray<ModelInfo> Models, bool Refresh) : WorkerInputMessage, IWorkerInputMessage<NoOutput>
     {
-        public override Task<NoOutput> HandleAsync(IExecutor executor)
+        public Task<NoOutput> HandleAsync(IExecutor executor)
         {
             return executor.HandleAsync(this);
         }
     }
 
-    public sealed record OnDidChangeModelContent(string ModelUri, ModelContentChangedEvent Args) : WorkerInputMessage<NoOutput>
+    public sealed record OnDidChangeModelContent(string ModelUri, ModelContentChangedEvent Args) : WorkerInputMessage, IWorkerInputMessage<NoOutput>
     {
-        public override Task<NoOutput> HandleAsync(IExecutor executor)
+        public Task<NoOutput> HandleAsync(IExecutor executor)
         {
             return executor.HandleAsync(this);
         }
     }
 
-    public sealed record OnCachedCompilationLoaded(CompilerConfiguration Config, CompiledAssembly Output) : WorkerInputMessage<NoOutput>
+    public sealed record OnCachedCompilationLoaded(CompilerConfiguration Config, CompiledAssembly Output) : WorkerInputMessage, IWorkerInputMessage<NoOutput>
     {
-        public override Task<NoOutput> HandleAsync(IExecutor executor)
+        public Task<NoOutput> HandleAsync(IExecutor executor)
         {
             return executor.HandleAsync(this);
         }
     }
 
-    public sealed record GetDiagnostics(string ModelUri) : WorkerInputMessage<ImmutableArray<MarkerData>>
+    public sealed record GetDiagnostics(string ModelUri) : WorkerInputMessage, IWorkerInputMessage<ImmutableArray<MarkerData>>
     {
-        public override Task<ImmutableArray<MarkerData>> HandleAsync(IExecutor executor)
+        public Task<ImmutableArray<MarkerData>> HandleAsync(IExecutor executor)
         {
             return executor.HandleAsync(this);
         }
@@ -235,17 +231,6 @@ public abstract record WorkerInputMessage
         Task<NoOutput> HandleAsync(OnCachedCompilationLoaded message);
         Task<ImmutableArray<MarkerData>> HandleAsync(GetDiagnostics message);
     }
-
-}
-
-public abstract record WorkerInputMessage<TOutput> : WorkerInputMessage
-{
-    protected sealed override async Task<object?> HandleNonGenericAsync(IExecutor executor)
-    {
-        return await HandleAsync(executor);
-    }
-
-    public abstract Task<TOutput> HandleAsync(IExecutor executor);
 }
 
 public sealed record NoOutput
