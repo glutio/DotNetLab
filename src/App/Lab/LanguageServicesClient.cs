@@ -284,6 +284,7 @@ internal sealed class LanguageServicesClient(
         }
 
         InvalidateCaches();
+        currentModelUrl = modelUri;
 
         await worker.OnDidChangeModelContentAsync(modelUri, args);
         _ = UpdateDiagnosticsAsync();
