@@ -7,6 +7,6 @@ internal sealed partial class WorkerInterop
 {
     private const string ModuleName = "worker-interop.js";
 
-    [JSImport("getDotNetConfig", ModuleName), SupportedOSPlatform("browser")]
+    [JSImport("getDotNetConfig", ModuleName)]
     public static partial string GetDotNetConfig();
 }

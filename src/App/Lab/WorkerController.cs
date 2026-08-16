@@ -596,7 +596,7 @@ internal sealed class WorkerInstance
 
 internal static partial class WorkerControllerInterop
 {
-    [JSImport("createWorker", nameof(WorkerController)), SupportedOSPlatform("browser")]
+    [JSImport("createWorker", nameof(WorkerController))]
     public static partial JSObject CreateWorker(
         string scriptUrl,
         [JSMarshalAs<JSType.Function<JSType.String>>]
@@ -604,19 +604,19 @@ internal static partial class WorkerControllerInterop
         [JSMarshalAs<JSType.Function<JSType.String>>]
         Action<string> errorHandler);
 
-    [JSImport("workerReady", nameof(WorkerController)), SupportedOSPlatform("browser")]
+    [JSImport("workerReady", nameof(WorkerController))]
     public static partial void WorkerReady(JSObject workerSetup);
 
-    [JSImport("postMessage", nameof(WorkerController)), SupportedOSPlatform("browser")]
+    [JSImport("postMessage", nameof(WorkerController))]
     public static partial void PostMessage(JSObject workerSetup, string message);
 
-    [JSImport("postSideMessage", nameof(WorkerController)), SupportedOSPlatform("browser")]
+    [JSImport("postSideMessage", nameof(WorkerController))]
     public static partial void PostSideMessage(JSObject workerSetup, string message);
 
-    [JSImport("disposeWorker", nameof(WorkerController)), SupportedOSPlatform("browser")]
+    [JSImport("disposeWorker", nameof(WorkerController))]
     public static partial void DisposeWorker(JSObject workerSetup);
 
-    [JSImport("collectAndDownloadGcDump", nameof(WorkerController)), SupportedOSPlatform("browser")]
+    [JSImport("collectAndDownloadGcDump", nameof(WorkerController))]
     public static partial void CollectAndDownloadGcDump();
 }
 
