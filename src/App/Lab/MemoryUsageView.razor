@@ -29,7 +29,6 @@
         long total = appInfo.TotalMemory + (workerInfo?.TotalMemory ?? 0);
         text = total.Bytes().Humanize();
         tooltip = $"App: {appInfo.Info} (click to refresh)\nWorker: {(workerInfo?.Info ?? "N/A")}";
-        StateHasChanged();
     }
 
     private async Task DownloadProfileAsync()
