@@ -1,6 +1,12 @@
 ﻿const path = require("path");
 
 module.exports = {
+    // BlazorMonaco provides the global Monaco instance. Bundling monaco-vim's peer
+    // dependency creates a second editor runtime with separate provider registries.
+    externals: {
+        "monaco-editor": "monaco",
+        "monaco-editor/esm/vs/editor/editor.api": "monaco",
+    },
     module: {
         rules: [
             {
