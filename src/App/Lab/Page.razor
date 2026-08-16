@@ -1753,7 +1753,14 @@
     private async Task OnDidChangeModelContentAsync(ModelContentChangedEvent args)
     {
         inputChanged = DateTimeOffset.Now;
-        await LanguageServices.OnDidChangeModelContentAsync(args);
+        if (CurrentInput is { Model.Uri: var modelUri })
+        {
+            await LanguageServices.OnDidChangeModelContentAsync(modelUri, args);
+        }
+        else
+        {
+            Logger.LogWarning("No current input to change content of.");
+        }
     }
 
     private void OnScreenInfoUpdated()

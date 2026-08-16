@@ -276,7 +276,7 @@ internal sealed class LanguageServicesClient(
         _ = UpdateDiagnosticsAsync();
     }
 
-    public async Task OnDidChangeModelContentAsync(ModelContentChangedEvent args)
+    public async Task OnDidChangeModelContentAsync(string modelUri, ModelContentChangedEvent args)
     {
         if (!Enabled)
         {
@@ -285,13 +285,7 @@ internal sealed class LanguageServicesClient(
 
         InvalidateCaches();
 
-        if (currentModelUrl is null)
-        {
-            logger.LogWarning("No current document to change content of.");
-            return;
-        }
-
-        await worker.OnDidChangeModelContentAsync(modelUri: currentModelUrl, args);
+        await worker.OnDidChangeModelContentAsync(modelUri, args);
         _ = UpdateDiagnosticsAsync();
     }
 
