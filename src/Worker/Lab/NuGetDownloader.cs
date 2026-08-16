@@ -508,7 +508,7 @@ internal sealed class NuGetDownloader : ICompilerDependencyResolver
         try
         {
             var findPackageById = await repository.GetResourceAsync<FindPackageByIdResource>();
-            var versions = await findPackageById.GetAllVersionsAsync(
+            var versions = await findPackageById!.GetAllVersionsAsync(
                 packageId,
                 cacheContext,
                 NullLogger.Instance,
@@ -527,7 +527,7 @@ internal sealed class NuGetDownloader : ICompilerDependencyResolver
         try
         {
             var depResource = await repository.GetResourceAsync<DependencyInfoResource>();
-            return await depResource.ResolvePackage(
+            return await depResource!.ResolvePackage(
                 packageIdentity,
                 framework,
                 cacheContext,
@@ -645,7 +645,7 @@ internal sealed class NuGetDownloader : ICompilerDependencyResolver
                 DependencyInfo = dep,
                 // Only nuget.org is known to support range requests needed by the ZipDirectoryReader.
                 // Outside browser, use full nupkg because it's persistently cached.
-                Zip = !OperatingSystem.IsBrowser() || !dep.Source.PackageSource.IsNuGetOrg
+                Zip = !OperatingSystem.IsBrowser() || !dep.Source!.PackageSource.IsNuGetOrg
                     ? null
                     : new(async () =>
                     {
@@ -668,8 +668,8 @@ internal sealed class NuGetDownloader : ICompilerDependencyResolver
                 NupkgStream = new(async () =>
                 {
                     var stream = new MemoryStream();
-                    var findPackageById = await dep.Source.GetResourceAsync<FindPackageByIdResource>();
-                    await findPackageById.CopyNupkgToStreamAsync(
+                    var findPackageById = await dep.Source!.GetResourceAsync<FindPackageByIdResource>();
+                    await findPackageById!.CopyNupkgToStreamAsync(
                         dep.Id,
                         dep.Version,
                         stream,
@@ -952,8 +952,8 @@ internal sealed class NuGetDownloadablePackage(
         var result = await this.result;
 
         // Try extracting from metadata endpoint (to avoid downloading the nupkg just to extract the nuspec out of it).
-        var metadataResource = await result.DependencyInfo.Source.GetResourceAsync<PackageMetadataResource>();
-        var metadata = await metadataResource.GetMetadataAsync(
+        var metadataResource = await result.DependencyInfo.Source!.GetResourceAsync<PackageMetadataResource>();
+        var metadata = await metadataResource!.GetMetadataAsync(
             new PackageIdentity(result.DependencyInfo.Id, result.DependencyInfo.Version),
             result.CacheContext,
             NullLogger.Instance,
