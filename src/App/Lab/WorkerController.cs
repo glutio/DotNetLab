@@ -326,7 +326,7 @@ internal sealed class WorkerController : IAsyncDisposable
         }
     }
 
-    private void LogOutgoingMessage(WorkerInputMessage message, string details)
+    private void LogOutgoingMessage(IWorkerInputMessage message, string details)
     {
         logger.Log(
             message is WorkerInputMessage.Ping ? LogLevel.Trace : LogLevel.Debug,
@@ -336,7 +336,7 @@ internal sealed class WorkerController : IAsyncDisposable
             details);
     }
 
-    private async Task<WorkerOutputMessage> PostMessageUnsafeAsync(WorkerInputMessage message)
+    private async Task<WorkerOutputMessage> PostMessageUnsafeAsync(IWorkerInputMessage message)
     {
         var workerInstance = await GetWorkerAsync();
 
@@ -384,7 +384,7 @@ internal sealed class WorkerController : IAsyncDisposable
     }
 
     private async void PostMessage<T>(T message)
-        where T : WorkerInputMessage<NoOutput>
+        where T : IWorkerInputMessage<NoOutput>
     {
         try
         {
@@ -397,7 +397,7 @@ internal sealed class WorkerController : IAsyncDisposable
     }
 
     private async Task PostMessageAsync<T>(T message)
-        where T : WorkerInputMessage<NoOutput>
+        where T : IWorkerInputMessage<NoOutput>
     {
         var incoming = await PostMessageUnsafeAsync(message);
         switch (incoming)
@@ -416,7 +416,7 @@ internal sealed class WorkerController : IAsyncDisposable
         Func<string, TIn>? fallback = null,
         TIn? deserializeAs = default,
         CancellationToken cancellationToken = default)
-        where TOut : WorkerInputMessage<TIn>
+        where TOut : IWorkerInputMessage<TIn>
     {
         _ = deserializeAs; // unused, just to help type inference
 

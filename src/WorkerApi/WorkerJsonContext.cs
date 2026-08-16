@@ -7,7 +7,7 @@ using System.Text.Json.Serialization.Metadata;
 
 namespace DotNetLab;
 
-[JsonSourceGenerationOptions(DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault)]
+[JsonSourceGenerationOptions(DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault, InferClosedTypePolymorphism = true)]
 [JsonSerializable(typeof(WorkerInputMessage))]
 [JsonSerializable(typeof(WorkerOutputMessage))]
 [JsonSerializable(typeof(CompiledAssembly))]
