@@ -1233,7 +1233,8 @@
 
     public async Task DisplaySquigglesAsync()
     {
-        if (!LanguageServices.Enabled || !await LanguageServices.UpdateDiagnosticsAfterCompilationAsync())
+        if (!LanguageServices.Enabled ||
+            !await LanguageServices.UpdateDiagnosticsAfterCompilationAsync(CurrentInput?.Model.Uri))
         {
             using var _ = await inputsLock.LockAsync();
 
@@ -1678,7 +1679,8 @@
 
         StateHasChanged();
 
-        if (!LanguageServices.Enabled || !await LanguageServices.OnCachedCompilationLoadedAsync(config, output))
+        if (!LanguageServices.Enabled ||
+            !await LanguageServices.OnCachedCompilationLoadedAsync(config, output, CurrentInput?.Model.Uri))
         {
             await DisplaySquigglesAsync();
         }
@@ -1728,7 +1730,7 @@
             })
             .ToImmutableArray();
         InputsAndConfiguration.ForEach(t => { t.Input.NewContent = null; });
-        return LanguageServices.OnDidChangeWorkspaceAsync(models);
+        return LanguageServices.OnDidChangeWorkspaceAsync(models, CurrentInput?.Model.Uri);
     }
 
     /// <summary>
@@ -1747,7 +1749,7 @@
                 NewContent = await t.Input.Model.GetTextAsync(),
                 IsConfiguration = t.IsConfiguration,
             });
-        await LanguageServices.OnDidChangeWorkspaceAsync(models, refresh: true);
+        await LanguageServices.OnDidChangeWorkspaceAsync(models, CurrentInput?.Model.Uri, refresh: true);
     }
 
     private async Task OnDidChangeModelContentAsync(ModelContentChangedEvent args)

@@ -18,7 +18,6 @@ internal sealed class LanguageServicesClient(
     private IAsyncDisposable? completionProvider, semanticTokensProvider, codeActionProvider, hoverProvider, signatureHelpProvider;
     private IAsyncDisposable? outputSemanticTokensProvider, outputDefinitionProvider;
     private int outputRegistered;
-    private string? currentModelUrl;
     private DebounceInfo completionDebounce = new(new CancellationTokenSource());
     private DebounceInfo diagnosticsDebounce = new(new CancellationTokenSource());
     private (string ModelUri, string? RangeJson, Task<string?> Result)? lastCodeActions;
@@ -245,7 +244,7 @@ internal sealed class LanguageServicesClient(
         lastCodeActions = null;
     }
 
-    public async Task OnDidChangeWorkspaceAsync(ImmutableArray<ModelInfo> models, bool refresh = false)
+    public async Task OnDidChangeWorkspaceAsync(ImmutableArray<ModelInfo> models, string? activeModelUri, bool refresh = false)
     {
         if (!Enabled)
         {
@@ -255,7 +254,7 @@ internal sealed class LanguageServicesClient(
         InvalidateCaches();
         worker.OnDidChangeWorkspace(models, refresh);
 
-        _ = UpdateDiagnosticsAsync();
+        _ = UpdateDiagnosticsAsync(activeModelUri);
 
         if (refresh)
         {
@@ -272,8 +271,7 @@ internal sealed class LanguageServicesClient(
             return;
         }
 
-        currentModelUrl = args.NewModelUrl;
-        _ = UpdateDiagnosticsAsync();
+        _ = UpdateDiagnosticsAsync(args.NewModelUrl);
     }
 
     public async Task OnDidChangeModelContentAsync(string modelUri, ModelContentChangedEvent args)
@@ -284,13 +282,11 @@ internal sealed class LanguageServicesClient(
         }
 
         InvalidateCaches();
-        currentModelUrl = modelUri;
-
         await worker.OnDidChangeModelContentAsync(modelUri, args);
-        _ = UpdateDiagnosticsAsync();
+        _ = UpdateDiagnosticsAsync(modelUri);
     }
 
-    public async Task<bool> OnCachedCompilationLoadedAsync(CompilerConfiguration config, CompiledAssembly output)
+    public async Task<bool> OnCachedCompilationLoadedAsync(CompilerConfiguration config, CompiledAssembly output, string? activeModelUri)
     {
         try
         {
@@ -305,30 +301,30 @@ internal sealed class LanguageServicesClient(
             return false;
         }
 
-        return await UpdateDiagnosticsAfterCompilationAsync();
+        return await UpdateDiagnosticsAfterCompilationAsync(activeModelUri);
     }
 
-    public Task<bool> UpdateDiagnosticsAfterCompilationAsync()
+    public Task<bool> UpdateDiagnosticsAfterCompilationAsync(string? activeModelUri)
     {
-        return UpdateDiagnosticsAsync(afterCompilation: true);
+        return UpdateDiagnosticsAsync(activeModelUri, afterCompilation: true);
     }
 
-    private async Task<bool> UpdateDiagnosticsAsync(bool afterCompilation = false)
+    private async Task<bool> UpdateDiagnosticsAsync(string? modelUri, bool afterCompilation = false)
     {
-        if (currentModelUrl == null)
+        if (modelUri == null)
         {
             return false;
         }
 
         try
         {
-            await DebounceAsync(ref diagnosticsDebounce, (worker, jsRuntime, currentModelUrl), 0, static async (args, cancellationToken) =>
+            await DebounceAsync(ref diagnosticsDebounce, (worker, jsRuntime, modelUri), 0, static async (args, cancellationToken) =>
             {
-                var (worker, jsRuntime, currentModelUrl) = args;
-                var markers = (await worker.GetDiagnosticsAsync(currentModelUrl))
+                var (worker, jsRuntime, modelUri) = args;
+                var markers = (await worker.GetDiagnosticsAsync(modelUri))
                     .Select(static m => m.WithSeverityIcon())
                     .ToList();
-                var model = await BlazorMonaco.Editor.Global.GetModel(jsRuntime, currentModelUrl);
+                var model = await BlazorMonaco.Editor.Global.GetModel(jsRuntime, modelUri);
                 cancellationToken.ThrowIfCancellationRequested();
                 await BlazorMonaco.Editor.Global.SetModelMarkers(jsRuntime, model, MonacoConstants.MarkersOwner, markers);
                 return 0;
