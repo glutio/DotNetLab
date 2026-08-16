@@ -16,7 +16,7 @@
 
     protected override void OnInitialized()
     {
-        timer.Elapsed += (s, e) => { Refresh(); InvokeAsync(StateHasChanged); };
+        timer.Elapsed += (s, e) => { InvokeAsync(() => { Refresh(); StateHasChanged(); }); };
         timer.Start();
     }
 
